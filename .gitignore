@@ -1,2 +1,8 @@
 *.aux
 *.gummi
+*.log
+*.lot
+*.lof
+*.blg
+*.bbl
+*.toc
