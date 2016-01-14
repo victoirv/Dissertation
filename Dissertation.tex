@@ -42,6 +42,12 @@
 \usepackage{setspace}                    %   for line spacing commands
 \usepackage{url}
 \usepackage{notoccite} %So citations don't start in t.o.c. or figure list
+\usepackage{aas_macros}
+\usepackage{color}
+
+
+\newcommand{\inote}[1]{\textcolor{red}{\textbf{#1}}} %If you want \inote{#} instead of just \note #, for inline notes
+\def\note#1\par{\textcolor{red}{\textbf{#1}}\\} %Make note bold and red, re-add newline
 
 %% The file ``mydissertationabbrev.sty'' is an (optional) personalized file that
 %% may contain any and all LaTeX command (re)definitions that will be used

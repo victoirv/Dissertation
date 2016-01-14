@@ -55,19 +55,39 @@ Geomagnetic substorms, in contrast with storms, are much shorter; typically only
 
 Geomagnetic storms and substorms can have significant impacts on Earth and space systems, from inducing currents in large power grids to harming satellite circuitry and onboard data \cite{1989Storm}. Because of the potential damage of such events, any ability to forecast a storm could allow operators to prevent or mitigate problems in their systems. Becuase of the large correlation of CMEs with geomagnetic storms \cite{Yermolaev}, it can be estimated that our forewarning time is the difference between observing a CME (via visual or X-ray methods) and its propagation time plus magnetospheric interaction time. This time can be anywhere from one to five days, depending on the speed of the CME and how it interacts with the interplanetary medium \cite{StormSources}. With a light delay of only eight minutes, this is ample time to see a storm approaching Earth and for operators to react, but a problem lies in the fact that storms are poorly predicted with such lead times \cite{WeigelDecision}. Some storms have slow onsets, some spike suddenly; some have high velocities, and some coincide with large amounts of high-energy particles; no single factor has yet proven to be a good predictor for storms, and while prediction has gradually improved over the years, there remains room for further study. 
 
-
-
-Leave off with statement on how outer magnetosphere influences plasmasphere.
+All of these processes tend to couple earthwards with the plasmasphere, by transferring plasma and radiation from the interplanetary medium down into the Earth's magnetic influence. 
 
 \subsection{Plasmasphere}
 
 \subsubsection{Discovery}
+The plasmasphere was largely unknown until the beginning of the space age, being found both through analyses of very low frequency radio waves and in-situ spacecraft measurements. Previously it was believed that electron density decreased continuously from the ionosphere to the interplanetary medium. These experiments showed that the Earth had an envelope of cold plasma around it that ended in an abrupt boundary, and varied in location and density gradient with geomagnetic activity \cite{EarthsPlasmasphere}.
 
 \subsubsection{Processes}
+The plasmasphere is interconnected with the rest of the magnetosphere, the radiation belts, and the ionosphere. While many of the specifics of this interaction are still not fully understood, some parts have been observed and explained to a reliable degree of accuracy. 
 
-Plumes, erosion, etc.
+At the lowest level, photoionization of oxygen in the ionosphere produces excess electrons that get transferred up into the plasmasphere along magnetic field lines bringing energy/heat along with it. There is also an upward daily "refilling" flux until a saturation point is reached, bringing the lower bounds of the plasmasphere into equilibrium with the upper ionosphere. This flux also typically reverses on the night side, sending electrons back down into the ionosphere.
 
-Leave off with list of things that are not well understood and how work in thesis approaches them.
+During periods where the location of the plasmapause is quickly brought earthwards, or a new plasmapause is established, plasma caught outside the plasmapause is known to be magnetically convected outwards and sunwards\cite{ErosionRecoveryPlasmasphere}, termed "eroding". 
+
+At times, the plasmasphere because distorted at the plasmapause due to dayside reconnection, causing bulges that can become elongated and detached during co-rotation, usually across the dusk side. These extended segments of plasma are known as "plumes" and show up as a peak in density in a normally empty plasmatrough. These plumes also often occur with, and possible because of, enhanced magnetospheric activity\cite{EvolutionPlasmasphericIons}.
+
+\note Useful figures?  Alfven layer? Subauroral convection? Magnitude of plasma loss and time scale of loss/refill? Roche Limit?
+
+\note Leave off with list of things that are not well understood and how work in thesis approaches them.
+
+\subsection{Radiation Belts}
+
+\subsubsection{Discovery}
+The radiation belts that surround Earth, known as the Van Allen Radiation Belts, are two (occasionally three\cite{LinksBetweenPlasmapauseRadiationBelt}) bands of energetic particles encircling the planet. The existence of such bands was theorized based on knowledge of magnetically trapped motion, but untested until the beginning of the space age when a particle counter was sent up on a satellite and found the expected bands of density.
+
+\subsubsection{Processes}
+The outer radiation belt is filled with particles (mostly electrons) pulled from the solar wind and trapped by the magnetosphere, and occasionally lost when the magnetopause moves back inward. The inner belt tends to be filled by heavier particles (electrons and protons) coming up from the ionosphere, and is overall less variable than the outer belt\cite{LinksBetweenPlasmapauseRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere\cite{LongTermVariationsSlotRegion}.
+
+As mentioned before, the azimuthal drift of ions in the radiation belts is what leads to the ring current. When increased geomagnetic activity causes a change in particles in the radiation belts, this leads to a change in the ring current, which perturbs the Earth's magnetic field noticeably. This perturbation is the basis for the $D_{st}$ index used to gauge magnetic activity. 
+
+The radiation belts also have an impact on the plasmasphere by acting as an occasional source of low energy particles and a sink for high energy particles. The plasmasphere also acts on the radiation belts via the VLF waves, energizing electrons out of the plasmasphere and into the radiation belts, or providing particles already in the belts the energy needed to become untrapped\cite{LinksBetweenPlasmapauseRadiationBelt}. While the outer limits of the plasmasphere and the outer radiation belt often coincide and react similarly to geomagnetic activity, they can become separated during geomagnetically quiet times.
+
+\note inputs, outputs, composition, correlation with plasmasphere, flux dropouts
 
 \subsection{Statistical Modeling of Magnetopshere and Plasmasphere}
 
@@ -75,7 +95,8 @@ Initial forecasts were based on an observed time delay between sunspots and geom
 
 The convergence of the advancement in both statistical and MHD-based simulation has led to a situation where the scientific community has the capacity for monitoring space weather in real time, and forecasting the near-Earth effects.  There have been efforts to test the forecast performance of select models over a small number of geomagnetic events \cite{ANNforecast,StormModel,StatCompStorms,Yermolaev}. However no research has been done that involves the analysis of long-term forecasting performance of these models and comparison of the results with existing methods.
 
+\note Models of plasmasphere (CIMI?), comparison to empirical measurements (CLUSTER, IMAGE, THEMIS)
 
-Make connection to each paper with a section in chapter 2.
+\note Make connection to each paper with a section in chapter 2.
 
 
