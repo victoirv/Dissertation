@@ -1,16 +1,20 @@
 \chapter[Models]{Methods}
 
 These are the methods that were used.  No single method is ideal, and using many methods is better for insight, especially for nonlinear/complex systems.
+\note Expand
 
 \section{Linear}
 
 \subsection{Overview}
+Linear modeling is the most basic form of model, where an output is directly related to an input (or inputs) by a constant coefficient. In the simplest form, it appears as $y=ax+b$ where $y$ is an output, $x$ is an input, $a$ is a constant coefficient relating the input to the output, and $b$ is a constant shifting factor to account for variables with a non-zero mean. \inote{cite?} Due to its simplicity and ease of application, it is used in practically all fields as a first attempt to discover information about the data and any potential relationships. 
 
 \subsection{Correlation}
+Correlation is the degree to which two variables are statistically similar. Mathematically, correlation is defined as: $corr(x,y)=\frac{E[(x-\mu_x)(y-\mu_y)]}{\sigma_x\sigma_y}$,\inote{Important enough to make full width equation?} which accounts for differences in variables caused by variance ($\sigma$) or mean ($\mu$). This allows an analysis of the underlying relationship between multiple measurements when they may not be measuring the same thing. For example, total rainfall will correlate with the water depth of a reservoir, despite being different kinds of measurements and the (somewhat) one-way causality of the relationship. 
+\note Need better example. Also, "variable" vs "measurement"
 
 \subsection{Impulse Response}
 
-Impulse response systems are systems in which the output (a response) is driven by a linear sum of coefficients of an input (a series of impulses). A simple example would be making a loud noise in a concert hall. The response will be the unique echoes and reverberations created by the initial driving sound, and with enough noise, a statistical model can be generated that will map the input sound to a response echo. In the magnetosphere, the most used example is an impulse of $v_{B_s}$ driving the Auroral Electrojet (AE/AL) index \cite{VBzAL}, or the Disturbance Storm Time ($D_{st}$) index \cite{VBzDST}, also shown in Figure \ref{VBzIRplot}.
+Impulse response systems are systems in which the output (a response) is driven by a linear sum of coefficients of an input (a series of impulses). A simple example would be making a loud noise in a concert hall. The response will be the unique echoes and reverberations created by the initial driving sound, and with enough noise, a statistical model can be generated that will map the input sound to a response echo. In the magnetosphere, the most used example is an impulse of $v_{B_s}$ driving the Auroral Electrojet (AE/AL) index \cite{VBzAL}, or the Disturbance Storm Time ($D_{st}$) \inote{How often is it worth restating the meaning of acronyms if they haven't been mentioned for a while?} index \cite{VBzDST}, also shown in Figure \ref{VBzIRplot}.
 
 \begin{figure}[htp]
 \centering
@@ -18,6 +22,8 @@ Impulse response systems are systems in which the output (a response) is driven 
 \caption{DST (black), nonlinear autoregressive exogenous (ARX) model (red), Burton et al 1975 model (green). (b) $v_{B_S}$ impulse as input.\cite{ARXEqn}}
 \label{VBzIRplot}
 \end{figure}
+
+\note Convert figures to eps
 
 This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this proposal, what starts as a simple Box-Jenkins model of the form \cite{DOYvar}:
 \begin{align*}
@@ -54,7 +60,7 @@ x_l \\ x_{l+1} \\ ... \\ x_{N}
 This is a linear model for the behavior of a system. However, it has been shown that the set of coefficients describing the response of a system can change with storm intensity \cite{ARXEqn}, the time scale modeled \cite{Coupling}, and even the time of day \cite{VBzAL}. This creates a very large number of possible directions for research, from predicting storm onsets, to predicting storm intensities, to modeling the overall shape and behavior of a storm, as well as all of the other possible interactions outside of storm-time. 
 
 \subsection{Caveats}
-There will be a number of things that, ideally, must come together to make this kind of data prediction work. For one: ARX methods can often be heavily dependent on a concept known as "persistence", whereby the best prediction for a variable at any time is that same variable at the last measured time step. For example, if the high temperature today is $70^\circ$, it is fairly likely that the high temperature tomorrow will be near $70^\circ$. Too much reliance on persistence forecasting, though, and predictions can lose their usefulness. Figure \ref{persist}, for example, shows how a model can achieve high correlation with persistence, but be almost entirely useless for predicting events before they happen.
+There will be a number of things that, ideally, must come together to make this kind of data prediction work. For one: ARX methods can often be heavily dependent on a concept known as "persistence", whereby the best prediction for a variable at any time is that same variable at the last measured time step. For example, if the high temperature today is $70^\circ$, it is fairly likely that the high temperature tomorrow will be near $70^\circ$. Too much reliance on persistence forecasting, though, and predictions can lose their usefulness. Figure \ref{persist}, for example, shows how a model can achieve high correlation with persistence, but be almost entirely useless for predicting events before they happen. \inote{Bit more detail why}
 
 \begin{figure}[h!]
 \centering
@@ -88,14 +94,25 @@ Figure \ref{Lags} shows a set of predictions made for autocorrelation in geomagn
 \section{ARMAX}
 
 \subsection{Overview}
+A class of model known as an Auto-Regressive Moving Average with eXogenous inputs model (ARMAX) is often used in time series analysis to combine the effects of persistence, linear dependence, and an average that changes with time. It makes a slight change on the ARX model in Equation \ref{ARXEqn}, adding the moving average term:
+\begin{align}
+\hat{x}(t+\Delta t)&=\sum_{i=0}^la_i\cdot x(t-i\Delta t)+\sum_{j=0}^m b_j\cdot f(t-j\Delta t)+\sum_{k=0}^n c_k\cdot g(t-k\Delta t)+c_{t+\Delta t}
+\label{ARMAXEqn}
+\end{align}
+\note Clean up notation
+
 
 \subsection{Applicability}
+As implied by the name, an ARMAX model is suitable for analysis of a time-dependent linear system where the value of a measurement is determined by its own persistence, an external variable, and some factor that contributes to a moving average with time. Most linear systems can be encapsulated by this framework, some even being overspecified with this level of accounting for variability.
 
 \subsection{Caveats and Biases}
+Though by the nature of least squares analysis used for linear models, an optimal (minimal error) solution will be found, there is still room for overfitting due to noise, or for seemingly fitting a linear solution to a nonlinear system. If you allow for enough degrees of freedom, any system can be fit by a linear model. \inote{Explain or cite}
 
 \subsection{Mean vs Median}
+The question of whether to use means or medians for analysis is based on what facets of the data are most important to the research. Since means biased towards outliers and medians biased against them, the decision rests on how much weight should be given to outliers (or extreme values) in a study. For example, when looking at long-term solar wind variables, intermittent spikes may not be relevant to the overall pattern of behavior being analyzed, but knowing that on a short time scale a certain day had a noticeable spike may be important. In the former case, using the median would likely be best, and using the mean for the latter. \inote{Too colloquial?}
 
 \subsection{Effects of time averaging}
+Similarly to the mean vs median question, the decision on if/how much to average the data over time will affect the resulting time series to be biased against intermittent spikes in value. The more time added to any particular average, the less impact any short-term changes will have on the final value.
 
 \subsection{Results and Analysis}
 
@@ -119,4 +136,5 @@ Another algorithm known as Principal Component Analysis (PCA) can be used to tak
 
 \subsubsection{Comparison to Linear Model}
 
-Note that you always compare performance relative to linear model as a reference point.  Useful for determining how important nonlinearity is.
+\note Note that you always compare performance relative to linear model as a reference point.  Useful for determining how important nonlinearity is.
+
