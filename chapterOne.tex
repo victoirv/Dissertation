@@ -38,7 +38,7 @@ Our current computational technology, combined with over 50 years' worth of sate
 The complex structure of the magnetosphere and plasmasphere lead to a number of distinct behaviors and processes such as ring currents, geomagnetic storms, and magnetospheric substorms.
 
 \paragraph{Ring Current}
-The Ring Current, shown in Figure \ref{RingCurrentFigure} is a formed when the magnetosphere splits the neutral solar wind into positive and negative components, where they circle the earth moving along magnetic field lines until they either connect with particles in the upper atmosphere/ionosphere and fall out, or remain trapped in the magnetosphere and slowly drift in opposing directions around the magnetic equator. With enough energetic particles drifting together, a current is generated that can significantly affect the Earth's magnetic field and is labeled the Ring Current. These particles in the current are injected into the magnetosphere via conditions that cause the solar wind's magnetic field to connect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms.
+The Ring Current, shown in Figure \ref{RingCurrentFigure} is a formed when the magnetosphere splits the neutral solar wind into positive and negative components, where they circle the earth moving along magnetic field lines until they either connect with particles in the upper atmosphere/ionosphere and fall out, or remain trapped in the magnetosphere and slowly drift in opposing directions around the magnetic equator. With enough energetic particles drifting together, a current is generated that can significantly affect the Earth's magnetic field and is labeled the ring current. These particles in the current are injected into the magnetosphere via conditions that cause the solar wind's magnetic field to connect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms.
 
 \begin{figure}[htp]
 \centering
@@ -71,7 +71,6 @@ During periods where the location of the plasmapause is quickly brought earthwar
 
 At times, the plasmasphere because distorted at the plasmapause due to dayside reconnection, causing bulges that can become elongated and detached during co-rotation, usually across the dusk side. These extended segments of plasma are known as "plumes" and show up as a peak in density in a normally empty plasmatrough. These plumes also often occur with, and possible because of, enhanced magnetospheric activity\cite{EvolutionPlasmasphericIons}.
 
-\note Useful figures?  Alfven layer? Subauroral convection? Magnitude of plasma loss and time scale of loss/refill? Roche Limit?
 
 \note Leave off with list of things that are not well understood and how work in thesis approaches them.
 
@@ -83,11 +82,29 @@ The radiation belts that surround Earth, known as the Van Allen Radiation Belts,
 \subsubsection{Processes}
 The outer radiation belt is filled with particles (mostly electrons) pulled from the solar wind and trapped by the magnetosphere, and occasionally lost when the magnetopause moves back inward. The inner belt tends to be filled by heavier particles (electrons and protons) coming up from the ionosphere, and is overall less variable than the outer belt\cite{LinksBetweenPlasmapauseRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere\cite{LongTermVariationsSlotRegion}.
 
-As mentioned before, the azimuthal drift of ions in the radiation belts is what leads to the ring current. When increased geomagnetic activity causes a change in particles in the radiation belts, this leads to a change in the ring current, which perturbs the Earth's magnetic field noticeably. This perturbation is the basis for the $D_{st}$ index used to gauge magnetic activity. 
+\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.15]{{Figures/BounceMotion.eps}}
+	\caption{Motion of magnetically trapped particles \cite{IntroductionToGeomagneticallyTrapped}}
+	\label{BounceMotion}
+\end{figure}
 
-The radiation belts also have an impact on the plasmasphere by acting as an occasional source of low energy particles and a sink for high energy particles. The plasmasphere also acts on the radiation belts via the VLF waves, energizing electrons out of the plasmasphere and into the radiation belts, or providing particles already in the belts the energy needed to become untrapped\cite{LinksBetweenPlasmapauseRadiationBelt}. While the outer limits of the plasmasphere and the outer radiation belt often coincide and react similarly to geomagnetic activity, they can become separated during geomagnetically quiet times.
+The various forms of particle movement are shown in Figure \ref{BounceMotion}. The primary components being the drift motion leading to the ring current, and the bounce motion leading to the existence of belts of radiation. As particles approach the "Mirror point", a slight angle between the motion and the curvature of the magnetic field line lead to a force opposing the motion along the line, eventually mirroring the particle back in the direction it came from. Since this applies to all particles within a certain range of energies and pitch angles, the collective sum of trapped particles forms the radiation belts.
 
-\note correlation with plasmasphere, flux dropouts. Worth putting Radiation Belts before Ring Current? Are these proper nouns (i.e. The Radiation Belts, or just radiation belts? Capitalize only when prefaced by Van Allen?)
+The azimuthal (equatorial) drift of ions in the radiation belts is what leads to the ring current. When increased geomagnetic activity causes a change in particles in the radiation belts, this leads to a change in the ring current, which perturbs the Earth's magnetic field noticeably. This perturbation is the basis for the $D_{st}$ index used to gauge magnetic activity. 
+
+The radiation belts also have an impact on the plasmasphere by acting as an occasional source of low energy particles and a sink for high energy particles. The plasmasphere also acts on the radiation belts via the VLF waves, energizing electrons out of the plasmasphere and into the radiation belts, or providing particles already in the belts the energy needed to become untrapped\cite{LinksBetweenPlasmapauseRadiationBelt}. While the outer limits of the plasmasphere and the outer radiation belt often coincide and react similarly to geomagnetic activity, they can become separated during geomagnetically active times \cite{LinksBetweenPlasmapauseRadiationBelt}. An example of this variation in relative position is shown in Figure \ref{PlasmasphereRadiationBeltFig}.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[scale=0.15]{{Figures/Cluster_plasmasphere.eps}}
+	\caption{Relative position of plasmasphere (blue) and radiation belts (red) with varying geomagnetic activity levels (Adapted from \cite{LinksBetweenPlasmapauseRadiationBeltFig}.)}
+	\label{PlasmasphereRadiationBeltFig}
+\end{figure}
+
+\vnote denton paper for plasmasphere bounce motion and density along field line
+
+\vnote correlation with plasmasphere? Mention radiation belt in ring current section and how they're independent. all lowercase)
 
 \subsection{Statistical Modeling of Magnetosphere and Plasmasphere}
 
@@ -95,7 +112,16 @@ Initial forecasts were based on an observed time delay between sunspots and geom
 
 The convergence of the advancement in both statistical and MHD-based simulation has led to a situation where the scientific community has the capacity for monitoring space weather in real time, and forecasting the near-Earth effects.  There have been efforts to test the forecast performance of select models over a small number of geomagnetic events \cite{ANNforecast,StormModel,StatCompStorms,Yermolaev}. However no research has been done that involves the analysis of long-term forecasting performance of these models and comparison of the results with existing methods.
 
-\note Models of plasmasphere (CIMI?), comparison to empirical measurements (CLUSTER, IMAGE, THEMIS)
+Models specific to the plasmasphere and plasmatrough include Carpenter and Anderson's ISEE/Whistler Model of Equatorial Electron Density in the Magnetosphere, which empirically derives the location and density of the plasmasphere and plasmatrough. They state that the inner edge of the plasmapause is located at $L_{ppi}=5.6-0.46K_{p_{max}}$, with $K_{p_{max}}$ as the maximum value of $K_p$ in the previous 24 hours. This specifies the outer boundary of the plasmasphere, and from there the density is defined inwards as $n_e=n_{e_{L_{ppi}}}*10^{-(L-L_{ppi})/\Delta pp}$, where $n_{e_{L_{ppi}}}$ relates day number, sunspot number, whistler profiles, and multiple year long perturbations in an exponential fashion shown as $n_e(L,d,\bar{R})=10^{\Sigma x_i}$. $L_{ppi}$ and $\Delta pp$ are empirically derived plasmapause location and width, respectively. 
+
+ Gallagher and Craven's Global Core Plasma Model \cite{Gallagher2000GlobalCore}, which empirically links plasma density and magnetosphere conditions by fitting Carpenter's equation but includes a sinusoidal dependence on magnetic local time (MLT) with the other considerations for density. At the most basic level, it reduces to an exponential equation of the form $n_{ps}=10^{gh}-1$, where $g$ and $h$ are terms relating to the inner plasmasphere and plasmapause, but the derivations of $g$ and $h$ are where the complexities of the model come into play.
+
+Moldwin \cite{Moldwin2002ModelPlasmapause} builds on this model by refining the empirically derived plasmapause location with new measurements and an in-depth analysis of the bounds of the previously established models.
+
+O'Brien \cite{OBrien2003EmpiricalPlasmapause} finds that using auroral electrojet (AE) or disturbance storm time ($D_{st}$) indices work better than KP for determining plasmapause location.
+
+
+\vnote Theoretical models of plasmasphere (CIMI?), comparison to empirical measurements (CLUSTER, IMAGE, THEMIS). Tie in with results. Discuss current results based on plasmapause but current study focused on plasmatrough (Denton and Takahashi show most data in plasmatrough)
 
 \note Make connection to each paper with a section in chapter 2.
 

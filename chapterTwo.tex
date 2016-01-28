@@ -1,20 +1,16 @@
 \chapter[Models]{Methods}
 
-These are the methods that were used.  No single method is ideal, and using many methods is better for insight, especially for nonlinear/complex systems.
-\note Expand
+This work utilized a number of linear and nonlinear methods of analysis and modeling, including Auto-Regressive Moving Average models with eXogenous inputs (ARMAX) and neural net models. No single method is ideal, and using many methods is better for insight, especially for nonlinear/complex systems. The details of their application will be expanded upon in their respective sections.
 
 \section{Linear}
 
 \subsection{Overview}
-Linear modeling is the most basic form of model, where an output is directly related to an input (or inputs) by a constant coefficient. In the simplest form, it appears as $y=ax+b$ where $y$ is an output, $x$ is an input, $a$ is a constant coefficient relating the input to the output, and $b$ is a constant shifting factor to account for variables with a non-zero mean. \inote{cite?} Due to its simplicity and ease of application, it is used in practically all fields as a first attempt to discover information about the data and any potential relationships. 
+Due to its simplicity and ease of application, linear models are used in practically all fields as a first attempt to discover information about the data and any potential relationships. In Space Physics, where the underlying behavior of a complex system is not theoretically known, and in-situ measurements are sparse, linear models are often the first step towards understanding what components are related and to what degree. Sometimes this leads to understanding unexpected complexities in a system.
+\vnote Example. Lemaire p.183 heavier ions in outer plasmasphere than inner plasmasphere? Correlation between plasmapause and radiation belt boundary?
 
-\subsection{Correlation}
-Correlation is the degree to which two variables are statistically similar. Mathematically, correlation is defined as: $corr(x,y)=\frac{E[(x-\mu_x)(y-\mu_y)]}{\sigma_x\sigma_y}$,\inote{Important enough to make full width equation?} which accounts for differences in variables caused by variance ($\sigma$) or mean ($\mu$). This allows an analysis of the underlying relationship between multiple measurements when they may not be measuring the same thing. For example, total rainfall will correlate with the water depth of a reservoir, despite being different kinds of measurements and the (somewhat) one-way causality of the relationship. 
-\note Need better example. Also, "variable" vs "measurement"
+\subsection{ARX}
 
-\subsection{Impulse Response}
-
-Impulse response systems are systems in which the output (a response) is driven by a linear sum of coefficients of an input (a series of impulses). A simple example would be making a loud noise in a concert hall. The response will be the unique echoes and reverberations created by the initial driving sound, and with enough noise, a statistical model can be generated that will map the input sound to a response echo. In the magnetosphere, the most used example is an impulse of $v_{B_s}$ driving the Auroral Electrojet (AE/AL) index \cite{VBzAL}, or the Disturbance Storm Time ($D_{st}$) \inote{How often is it worth restating the meaning of acronyms if they haven't been mentioned for a while?} index \cite{VBzDST}, also shown in Figure \ref{VBzIRplot}.
+Impulse response systems are systems in which the output (a response) is driven by a linear sum of coefficients of an input (a series of impulses). A simple example would be making a loud noise in a concert hall. The response will be the unique echoes and reverberations created by the initial driving sound, and with enough signal, a statistical model can be generated that will map the input sound to a response echo. In the magnetosphere, the most used example is an impulse of $v_{B_s}$ driving the Auroral Electrojet (AE/AL) index \cite{VBzAL}, or the Disturbance Storm Time ($D_{st}$) index \cite{VBzDST}, also shown in Figure \ref{VBzIRplot}.
 
 \begin{figure}[htp]
 \centering
@@ -23,7 +19,7 @@ Impulse response systems are systems in which the output (a response) is driven 
 \label{VBzIRplot}
 \end{figure}
 
-\note Convert figures to eps
+\vnote Convert figures to eps
 
 This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this proposal, what starts as a simple Box-Jenkins model of the form \cite{DOYvar}:
 \begin{align*}
@@ -59,15 +55,29 @@ x_l \\ x_{l+1} \\ ... \\ x_{N}
 
 This is a linear model for the behavior of a system. However, it has been shown that the set of coefficients describing the response of a system can change with storm intensity \cite{ARXEqn}, the time scale modeled \cite{Coupling}, and even the time of day \cite{VBzAL}. This creates a very large number of possible directions for research, from predicting storm onsets, to predicting storm intensities, to modeling the overall shape and behavior of a storm, as well as all of the other possible interactions outside of storm-time. 
 
-\subsection{Caveats}
-There will be a number of things that, ideally, must come together to make this kind of data prediction work. For one: ARX methods can often be heavily dependent on a concept known as "persistence", whereby the best prediction for a variable at any time is that same variable at the last measured time step. For example, if the high temperature today is $70^\circ$, it is fairly likely that the high temperature tomorrow will be near $70^\circ$. Too much reliance on persistence forecasting, though, and predictions can lose their usefulness. Figure \ref{persist}, for example, shows how a model can achieve high correlation with persistence, but be almost entirely useless for predicting events before they happen. \inote{Bit more detail why}
+
+\subsection{ARMAX}
+
+A class of model known as an Auto-Regressive Moving Average with eXogenous inputs model (ARMAX) is often used in time series analysis to combine the effects of persistence, linear dependence, and an average that changes with time. It makes a slight change on the ARX model in Equation \ref{ARXEqn}, adding the moving average term:
+\begin{align}
+\hat{x}(t+\Delta t)&=\sum_{i=0}^la_i\cdot x(t-i\Delta t)+\sum_{j=0}^m b_j\cdot f(t-j\Delta t)+\sum_{k=0}^n c_k\cdot g(t-k\Delta t)+c_{t+\Delta t}
+\label{ARMAXEqn}
+\end{align}
+\vnote Clean up notation ($c_t$ or $c_n$? All go 0 to $t$?)
+
+
+\subsection{Applicability}
+As implied by the name, an ARMAX model is suitable for analysis of a time-dependent linear system where the value of a measurement is determined by its own persistence, an external variable, and some factor that contributes to a moving average with time. Most linear systems can be encapsulated by this framework, some even being overspecified with this level of accounting for variability.
+
+\subsection{Caveats and Biases}
+There will be a number of things that, ideally, must come together to make this kind of data prediction work. For one: ARX methods can often be heavily dependent on a concept known as "persistence", whereby the best prediction for a variable at any time is that same variable at the last measured time step. For example, if the high temperature today is $70^\circ$, it is fairly likely that the high temperature tomorrow will be near $70^\circ$. Too much reliance on persistence forecasting, though, and predictions can lose their usefulness. Figure \ref{persist}, for example, shows how a model can achieve high correlation with persistence, but be almost entirely useless for predicting events before they happen since the spikes are never anticipated, just modeled after they've already been seen. 
 
 \begin{figure}[h!]
-\centering
-\includegraphics[scale=0.45]{{Figures/GICshift.png}}
-\includegraphics[scale=0.45]{{Figures/GICCoef.png}}
-\caption{Persistence forecast; model in red}
-\label{persist}
+	\centering
+	\includegraphics[scale=0.45]{{Figures/GICshift.png}}
+	\includegraphics[scale=0.45]{{Figures/GICCoef.png}}
+	\caption{Persistence forecast; model in red}
+	\label{persist}
 \end{figure}
 
 In this case, it is clear that the largest auto-correlation coefficient comes at 1 time lag, meaning the most recent measurement has the most weight in a forecast. For day-to-day behavior, this is acceptable as being part of the behavior of the system. For the forecasting of extreme events, however, another metric must be used that measures the ability of the model to predict events at or before their actual occurrence, while simultaneously avoiding predicting events that do not happen. One method for comparing models in this fashion is by using the Heidke Skill Score \cite{Heidke,Brier}, which is based on the quantity:
@@ -83,58 +93,58 @@ Where $N_H$ is the number of correct forecasts, $N_{\bar{H}}$ is the number of f
 The other major problem in forecasting is that of lead time. Being able to forecast a storm one minute in advance is generally not enough time for operators to take mitigating action.
 
 \begin{figure}[h!]
-\centering
-\includegraphics[scale=0.50]{{Figures/GIClags.png}}
-\caption{Correlation vs lags}
-\label{Lags}
+	\centering
+	\includegraphics[scale=0.50]{{Figures/GIClags.png}}
+	\caption{Correlation vs lags}
+	\label{Lags}
 \end{figure}
 
 Figure \ref{Lags} shows a set of predictions made for autocorrelation in geomagnetically-induced currents (GIC). This metric is a measure of how much electric currents in the magnetosphere induce currents in ground-based electrical systems. The predictions were made further and further in time from the current magnetic field and GIC measurements, with decreasing accuracy as the predicted time got further from the current time. While an accurate prediction can be made one minute in advance, a prediction 3 hours in advance has almost no correlation with what actually happens. This is the main problem that this dissertation hopes to address.
 
-\section{ARMAX}
+\subsubsection{Mean vs Median}
+The question of whether to use means or medians for analysis is based on what facets of the data are most important to the research. Since means biased towards outliers and medians biased against them, the decision rests on how much weight should be given to outliers (or extreme values) in a study. For example, when looking at long-term solar wind variables, intermittent spikes may not be relevant to the overall pattern of behavior being analyzed, but knowing that on a short time scale a certain day had a noticeable spike may be important. In the former case, using the median would likely be best, and using the mean for the latter. However, space physics often deals with skewed distributions and sparse data, leading to an uncertainty of which method is best, so both are and analyzed with their respective traits in mind.
+\note Numerically specific result
 
-\subsection{Overview}
-A class of model known as an Auto-Regressive Moving Average with eXogenous inputs model (ARMAX) is often used in time series analysis to combine the effects of persistence, linear dependence, and an average that changes with time. It makes a slight change on the ARX model in Equation \ref{ARXEqn}, adding the moving average term:
-\begin{align}
-\hat{x}(t+\Delta t)&=\sum_{i=0}^la_i\cdot x(t-i\Delta t)+\sum_{j=0}^m b_j\cdot f(t-j\Delta t)+\sum_{k=0}^n c_k\cdot g(t-k\Delta t)+c_{t+\Delta t}
-\label{ARMAXEqn}
-\end{align}
-\note Clean up notation
-
-
-\subsection{Applicability}
-As implied by the name, an ARMAX model is suitable for analysis of a time-dependent linear system where the value of a measurement is determined by its own persistence, an external variable, and some factor that contributes to a moving average with time. Most linear systems can be encapsulated by this framework, some even being overspecified with this level of accounting for variability.
-
-\subsection{Caveats and Biases}
-Though by the nature of least squares analysis used for linear models, an optimal (minimal error) solution will be found, there is still room for overfitting due to noise, or for seemingly fitting a linear solution to a nonlinear system. If you allow for enough degrees of freedom, any system can be fit by a linear model. \inote{Explain or cite}
-
-\subsection{Mean vs Median}
-The question of whether to use means or medians for analysis is based on what facets of the data are most important to the research. Since means biased towards outliers and medians biased against them, the decision rests on how much weight should be given to outliers (or extreme values) in a study. For example, when looking at long-term solar wind variables, intermittent spikes may not be relevant to the overall pattern of behavior being analyzed, but knowing that on a short time scale a certain day had a noticeable spike may be important. In the former case, using the median would likely be best, and using the mean for the latter. \inote{Too colloquial?}
-
-\subsection{Effects of time averaging}
+\subsubsection{Effects of time averaging}
 Similarly to the mean vs median question, the decision on if/how much to average the data over time will affect the resulting time series to be biased against intermittent spikes in value. The more time added to any particular average, the less impact any short-term changes will have on the final value.
 
-\subsection{Results and Analysis}
+\subsection{Summary}
+\vnote reitterate relevance
+
 
 \section{Nonlinear}
 
 \subsection{Overview}
 
-Other models will be devised to test nonlinear approaches to forecasting. One common choice are models based on neural networks \cite{NNARMA,ANNforecast} which allow for a model that can approximate a non-linear system. The usefulness of this is apparent in a few key points: the weights of contribution of any particular variable to a system will likely be nonlinear in some fashion (e.g. a ground station's measurements will depend on sunlight heating the ionosphere which depends on latitude, time of year, and time of day), and allowing for the non-linear effects of saturation where perhaps the magnetosphere will behave differently after reaching certain levels of particle density or electric potential.
+Other models were used to test nonlinear approaches to forecasting. The first choice was a model based on neural networks \cite{NNARMA,ANNforecast} which approximates a non-linear system given a set of training data. The usefulness of this is apparent in a few key points: the weights of contribution of any particular variable to a system will likely be nonlinear in some fashion (e.g. a ground station's measurements will depend on sunlight heating the ionosphere which depends on latitude, time of year, and time of day), and allowing for the non-linear effects of saturation where perhaps the magnetosphere will behave differently after reaching certain levels of particle density or electric potential, rather than directly scaling regardless of limits.
 
 Another algorithm known as Principal Component Analysis (PCA) can be used to take the large number of possible variables and define an orthogonal set of vectors that most efficiently encapsulate the variance in the data. By doing this, the number of variables needed for computing any linear or non-linear algorithm can be reduced and optimized, making predictions quicker while maintaining most of the predictive benefits of using all possible data.
 
 \subsection{Neural Networks}
 
-\subsubsection{Applicability}
+\subsection{Applicability}
+Nonlinear models are applicable when a system has more complexity than can be encapsulated by a linear model. Since they're usually a class of model that trains adaptive weights that can be tuned by known inputs and outputs, they're especially useful for systems where a large amount of training data are available.
 
-\subsubsection{Caveats and Biases}
+\subsection{Caveats and Biases}
+Nonlinear models can be susceptible to overfitting, since they inherently attempt to fit more complexity than a linear model, but can also be controlled via the number of inputs and weights used. They also may suggest more structure than might truly exist. Both of these problems are lessened by training with more data, if available. Figure \ref{NNvsLinear} shows a comparison of predicting equatorial mass density ($\rho_{eq}$) with the $F_{10.7}$ index and solar wind velocity ($V_{sw}$). The neural net model shows much more structure than the linear model despite being given the same data. Whether that structure reflects any real physical phenomenon, however, is a difficult problem to answer.
 
-\subsubsection{Parameters and Inputs}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.3]{Figures/{NNVsw-F10.7-rho_eq-GOES2}.png}
+		\includegraphics[scale=0.3]{Figures/{LinearVsw-F10.7-rho_eq-GOES2}.png}
+	\caption{Nonlinear model vs linear model of $\rho_{eq}$}
+	\label{NNvsLinear}
+\end{figure}
 
-\subsubsection{Results and Analysis}
 
-\subsubsection{Comparison to Linear Model}
 
-\note Note that you always compare performance relative to linear model as a reference point.  Useful for determining how important nonlinearity is.
+\subsection{Comparison to Linear Model}
+Nonlinear models differ from linear models by incorporating some method for accounting for effects within a domain that are not seen across the entire domain. Though both models can be given the same inputs, and trained on the same outputs, the models themselves can fundamentally differ. Linear models are also generally simple to interpret (e.g. $y=2*x$ means for every change in $x$, $y$ changes by double that amount.) Nonlinear models, on the other hand, generally have no simple interpretation and must be approached by testing for a range of parameters in the model to map out resulting outputs and make some interpretation of the underlying structure.
+
+\subsection{Summary}
+Results nonlinear
+
+
+
+\vnote Note that you always compare performance relative to linear model as a reference point.  Useful for determining how important nonlinearity is.
 
