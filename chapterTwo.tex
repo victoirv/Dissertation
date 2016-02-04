@@ -116,9 +116,10 @@ Similarly to the mean vs median question, the decision on if/how much to average
 
 \subsection{Overview}
 
-Other models were used to test nonlinear approaches to forecasting. The first choice was a model based on neural networks \cite{NNARMA,ANNforecast} which approximates a non-linear system given a set of training data. The usefulness of this is apparent in a few key points: the weights of contribution of any particular variable to a system will likely be nonlinear in some fashion (e.g. a ground station's measurements will depend on sunlight heating the ionosphere which depends on latitude, time of year, and time of day), and allowing for the non-linear effects of saturation where perhaps the magnetosphere will behave differently after reaching certain levels of particle density or electric potential, rather than directly scaling regardless of limits.
+While many nonlinear systems are approximated by a number of localized linear models for the sake of simplicity and ease of interpretation, the design and implementation of nonlinear models has become greatly simplified in recent years. Their use allows for determining nonlinear structure without pre-assuming any localization of the data, and as such were used to attempt forecasting in this dissertation. The first choice was a model based on neural networks \cite{NNARMA,ANNforecast} which approximates a non-linear system given a set of training data. The usefulness of this is apparent in a few key points: the weights of contribution of any particular variable to a system will likely be nonlinear in some fashion (e.g. a ground station's measurements will depend on sunlight heating the ionosphere which depends on latitude, time of year, and time of day), and allowing for the non-linear effects of saturation where perhaps the magnetosphere will behave differently after reaching certain levels of particle density or electric potential, rather than directly scaling regardless of limits.
 
-Another algorithm known as Principal Component Analysis (PCA) can be used to take the large number of possible variables and define an orthogonal set of vectors that most efficiently encapsulate the variance in the data. By doing this, the number of variables needed for computing any linear or non-linear algorithm can be reduced and optimized, making predictions quicker while maintaining most of the predictive benefits of using all possible data.
+Another algorithm known as Principal Component Analysis (PCA) can be used to take the large number of possible variables and define an orthogonal set of vectors that most efficiently encapsulate the variance in the data. By doing this, the number of variables needed for computing any linear or non-linear algorithm can be reduced and optimized, making predictions quicker while maintaining most of the predictive benefits of using all possible data, as well as indicating which variables contain the most information relevant to the predictions.
+
 
 \subsection{Neural Networks}
 
@@ -137,14 +138,15 @@ Nonlinear models can be susceptible to overfitting, since they inherently attemp
 \end{figure}
 
 
+\vnote Fix figure to be showing the same scales
 
 \subsection{Comparison to Linear Model}
-Nonlinear models differ from linear models by incorporating some method for accounting for effects within a domain that are not seen across the entire domain. Though both models can be given the same inputs, and trained on the same outputs, the models themselves can fundamentally differ. Linear models are also generally simple to interpret (e.g. $y=2*x$ means for every change in $x$, $y$ changes by double that amount.) Nonlinear models, on the other hand, generally have no simple interpretation and must be approached by testing for a range of parameters in the model to map out resulting outputs and make some interpretation of the underlying structure.
+Nonlinear models differ from linear models by incorporating some method for accounting for effects within a domain that are not seen across the entire domain. Though both models can be given the same inputs, and trained on the same outputs, the models themselves can fundamentally differ. Linear models are also generally simple to interpret (e.g. $y=2*x$ means for every change in $x$, $y$ changes by double that amount.) Nonlinear models, on the other hand, often have no simple interpretation and must be approached by testing for a range of parameters in the model to map out resulting outputs and make some interpretation of the underlying structure.
+
+Nonlinear models can be compared to a linear model of the same data in order to assess the usefulness of accounting for nonlinear features. If both models result in similar correlation values, it can be said that the nonlinear model offers no extra insight into the structure of the system and the relationships therein. 
 
 \subsection{Summary}
-Results nonlinear
+\vnote reitterate relevance
 
 
-
-\vnote Note that you always compare performance relative to linear model as a reference point.  Useful for determining how important nonlinearity is.
 
