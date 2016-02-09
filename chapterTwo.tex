@@ -19,8 +19,6 @@ Impulse response systems are systems in which the output (a response) is driven 
 \label{VBzIRplot}
 \end{figure}
 
-\vnote Convert figures to eps
-
 This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this proposal, what starts as a simple Box-Jenkins model of the form \cite{DOYvar}:
 \begin{align*}
 x(t)&=c+\sum_{j=0}^{m}{a_j f(t-j\Delta t)}
@@ -74,13 +72,12 @@ There will be a number of things that, ideally, must come together to make this 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.45]{{Figures/GICshift.png}}
-	\includegraphics[scale=0.45]{{Figures/GICCoef.png}}
+	\includegraphics[scale=0.45]{{Figures/GICExample/GIC1.eps}}
 	\caption{Persistence forecast; model in red}
 	\label{persist}
 \end{figure}
 
-In this case, it is clear that the largest auto-correlation coefficient comes at 1 time lag, meaning the most recent measurement has the most weight in a forecast. For day-to-day behavior, this is acceptable as being part of the behavior of the system. For the forecasting of extreme events, however, another metric must be used that measures the ability of the model to predict events at or before their actual occurrence, while simultaneously avoiding predicting events that do not happen. One method for comparing models in this fashion is by using the Heidke Skill Score \cite{Heidke,Brier}, which is based on the quantity:
+In this case, it is clear that the most recent measurement has the most weight in a forecast. For day-to-day behavior, this is acceptable as being part of the behavior of the system. For the forecasting of extreme events, however, another metric must be used that measures the ability of the model to predict events at or before their actual occurrence, while simultaneously avoiding predicting events that do not happen. One method for comparing models in this fashion is by using the Heidke Skill Score \cite{Heidke,Brier}, which is based on the quantity:
 \begin{align*}
 S=\frac{R-E}{T-E}
 \end{align*}
@@ -94,7 +91,7 @@ The other major problem in forecasting is that of lead time. Being able to forec
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.50]{{Figures/GIClags.png}}
+	\includegraphics[scale=0.50]{{Figures/GICExample/GIClags.eps}}
 	\caption{Correlation vs lags}
 	\label{Lags}
 \end{figure}

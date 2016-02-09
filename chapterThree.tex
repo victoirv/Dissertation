@@ -1,14 +1,32 @@
-\chapter[Work]{Work}
+\chapter[Measurements]{Measurements}
 
-\section{Data}
-\vnote Wait to cite Takahashi until here? Or include in plasmasphere 
+\section{Solar Wind}
+Solar wind is the largest driver of particle density in the magnetosphere \vinote{cite}, and as such is an important input for a plasmatrough model. Conditions such as magnetic field orientation and particle velocity are important considerations for whether the plasmasphere is expected to be compressed, saturated, or experiencing high variability. By adding these to a model that account for time delayed inputs, their effects can be accounted for and aid in categorizing the state of the plasmatrough.
 
 \subsection{Source}
+Solar wind data for this dissertation is provided by the OMNIWeb service \vinote{cite}, a combination of many satellites' data to create a uniform, high resolution, near-Earth set of solar wind measurements. The one-hour resolution dataset was used since the study is concerned with effects on timescales of longer than an hour, and to more easily compare to the other data sources used.
+
 \subsection{Coverage}
+Low resolution OMNI data is available from 1963 to present, but only the years of 1983-1992 were considered as they overlapped with the other data sets of interest. The data covers, but is not limited to: magnetic field strength in all three dimensions; solar wind proton density and temperature; the $K_p$, $AE$, $F_{10.7}$, and $D_{st}$ indices; and varying levels of proton flux.
+
+\subsection{Cleaning}
+The only data cleaning required on the OMNI dataset was to convert fill values of 999.9 and 9999 to NaN, to be appropriate for use in data analysis. Of the variables included (see Coverage), this was necessary for all variables other than $K_p$ and the proton flux variables.
+
+\section{Geomagnetic}
+
+\subsection{Source}
+
+\subsection{Coverage}
+
 \subsection{Cleaning}
 
-\section{Analysis}
-\subsection{Impulse Response}
-\subsection{Neural Network}
+\section{Plasmasphere}
+Plasmasphere data covers the inner regions of the magnetosphere, and in this case is aimed at a region around $L=6.8$, considered a reasonable centerpoint for the plasmasphere and plasmatrough \vinote{cite}.
 
-\section{Results}
+\subsection{Source}
+The data come from \cite{Takahashi2010SolarCycleVariation}, which takes data from the Geostationary Operational Environmental Satellites (GOES) and uses a set of magnetic field models to relate Alfvén waves to equatorial mass density (\req). \vinote{Define Alfvén waves?}
+
+\subsection{Coverage}
+The GOES satellites \vinote{ATM machine?} used in this study cover the years from 1980 to the end of 1991, often with overlapping years between satellites. The satellites themselves held a geostationary orbit at around 6.62 $R_E$ and collected data on a 10 minute cadence \vinote{***Can't find any reference that mentions original data acquisition rate for magnetometers. Also looks like satellites may have different collection rates and even periods of deliberate inactivity. Takahashi 2010 seems to suggest that it was a 10 second rate (page 4).} 
+
+\subsection{Cleaning}

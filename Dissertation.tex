@@ -44,6 +44,7 @@
 \usepackage{notoccite} %So citations don't start in t.o.c. or figure list
 \usepackage{aas_macros}
 \usepackage{color}
+\usepackage[utf8x]{inputenc} %So you can say alfvén
 
 
 \newcommand{\vinote}[1]{\textcolor{red}{\textbf{#1}}} %If you want \inote{#} instead of just \note #, for inline notes
@@ -51,6 +52,8 @@
 
 \newcommand{\inote}[1]{\textcolor{blue}{\textbf{#1}}} %Inline notes in blue
 \def\note#1\par{\textcolor{blue}{\textbf{#1}}\\} 
+
+\newcommand{\req}{$\rho_{eq}$} %Since it's used so often
 
 
 %% The file ``mydissertationabbrev.sty'' is an (optional) personalized file that
