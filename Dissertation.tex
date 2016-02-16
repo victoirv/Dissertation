@@ -38,13 +38,14 @@
 \usepackage{amssymb}                     %%
 \usepackage{amsthm}                      %%
 \usepackage[normalem]{ulem}              %   a nice standard underline package
-\usepackage[noadjust,verbose,sort]{cite} %   arranges reference citations neatly
+%%\usepackage[noadjust,verbose,sort]{cite} %   arranges reference citations neatly
 \usepackage{setspace}                    %   for line spacing commands
 \usepackage{url}
 \usepackage{notoccite} %So citations don't start in t.o.c. or figure list
 \usepackage{aas_macros}
 \usepackage{color}
 \usepackage[utf8x]{inputenc} %So you can say alfvén
+\usepackage{natbib}
 
 
 \newcommand{\vinote}[1]{\textcolor{red}{\textbf{#1}}} %If you want \inote{#} instead of just \note #, for inline notes
@@ -53,7 +54,8 @@
 \newcommand{\inote}[1]{\textcolor{blue}{\textbf{#1}}} %Inline notes in blue
 \def\note#1\par{\textcolor{blue}{\textbf{#1}}\\} 
 
-\newcommand{\req}{$\rho_{eq}$} %Since it's used so often
+\newcommand{\req}{\ensuremath{\rho_{eq}}} %Since it's used so often. ensuremath lets it be used in equations or text
+\newcommand{\dst}{\ensuremath{D_{st}}} %Now I'm just getting lazy
 
 
 %% The file ``mydissertationabbrev.sty'' is an (optional) personalized file that
@@ -196,7 +198,7 @@ This dissertation intends to first: be a survey of current forecasting capabilit
 %\bibliographystyle{IEEEtran}
 %\bibliographystyle{vplainnat} %Needs to be modified, but references name(year) instead of just [number]
 %Can also try apa, apalike, apasoft, cea, named, aaai-named,
-\bibliographystyle{apalike}
+\bibliographystyle{plainnat}
 \bibliography{bibfile}
 
 %%
