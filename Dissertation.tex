@@ -48,6 +48,10 @@
 \usepackage{natbib}
 
 
+%%%%%%%%%%%%
+%Note:
+%Macros ignore spaces after them. Ensure spacing if needed inline by doing "\macro\ "
+
 \newcommand{\vinote}[1]{\textcolor{red}{\textbf{#1}}} %If you want \inote{#} instead of just \note #, for inline notes
 \def\vnote#1\par{\textcolor{red}{\textbf{#1}}\\} %Make note bold and red, re-add newline
 
@@ -55,7 +59,7 @@
 \def\note#1\par{\textcolor{blue}{\textbf{#1}}\\} 
 
 \newcommand{\req}{\ensuremath{\rho_{eq}}} %Since it's used so often. ensuremath lets it be used in equations or text
-\newcommand{\dst}{\ensuremath{D_{st}}} %Now I'm just getting lazy
+\newcommand{\dst}{\ensuremath{D_{st}}} %Now I'm just getting lazy. 
 
 
 %% The file ``mydissertationabbrev.sty'' is an (optional) personalized file that

@@ -3,14 +3,22 @@
 
 The measurements can, to a certain extent, be broken into three main components: those pertaining to the solar wind, those from the magnetosphere in general, and those specific to the plasmasphere. An example of all the combined data sources is shown in Figure \ref{fig:alldata-GOES6-1983-1991}, providing solar wind variables $B_z$, $V_{SW}$; solar variable $F_{10.7}$, plasmatrough variable \req, and magnetosphere/plasmasphere variable \dst.
 
-\vnote Include similar plot, but for single event
+Similarly, Figure \ref{fig:alldata-GOES6-1989-1989} shows the same variables before, during, and after the March 1989 geomagnetic storm as seen by GOES 6. This makes it clearer how the variables are interrelated, notably how short-timescale effects such as drops in $B_z$ and \dst\ are connected, or longer time scale changes on $F_{10.7}$ and $V_{SW}$ are related. This figure also shows how the sparse availability of \req\ created challenges for this study, as discussed later.
 
-\begin{figure}
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/alldata-GOES6-1983-1991}
-	\caption{Selected data from GOES 6}
+	\caption{Data from GOES 6 with dashed lines indicating default storm thresholds}
 	\label{fig:alldata-GOES6-1983-1991}
 \end{figure}
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/alldata-GOES6-1989-1989}
+	\caption{Data from GOES 6 around March 1989 geomagnetic storm}
+	\label{fig:alldata-GOES6-1989-1989}
+\end{figure}
+
+
 
 \section{Solar Wind}
 Solar wind is the largest driver of particle density in the magnetosphere \vinote{cite}, and as such is an important input for a plasmatrough model. Conditions such as magnetic field orientation and particle velocity are important considerations for whether the plasmasphere is expected to be compressed, saturated, or experiencing high variability. By adding these to a model that account for time delayed inputs, their effects can be accounted for and aid in categorizing the state of the plasmatrough.
@@ -18,19 +26,21 @@ Solar wind is the largest driver of particle density in the magnetosphere \vinot
 \subsection{Source}
 Solar wind data for this dissertation is provided by the OMNIWeb service \vinote{cite}, a combination of many satellites' data to create a uniform, high resolution, near-Earth set of solar wind measurements. The one-hour resolution dataset was used since the study is concerned with effects on timescales of longer than an hour, and to more easily compare to the other data sources used. 
 
-However, since the OMNIWeb data has gaps for some of the variables, \cite{Kondrashov2014ReconstructionOfGaps} was used as they reliably reconstruct gaps to make a continuous, uniform data set. \vinote{Details of how}
+However, since the OMNIWeb data has gaps for some of the variables, \cite{Kondrashov2014ReconstructionOfGaps} was used as they reliably reconstruct gaps to make a continuous, uniform data set. They used Singular Spectrum Analysis with synthetic gaps created by shifting real gaps from 1984-1995 data onto 1996-2007 data so that verification data would exist to test the effectiveness of their model. 
 
 \subsection{Coverage}
 Low resolution OMNI data is available from 1963 to present, but only the years of 1983-1992 were considered as they overlapped with the other data sets of interest. The data covers, but is not limited to: magnetic field strength in all three dimensions; solar wind proton density and temperature; the $K_p$, $AE$, $F_{10.7}$, and $D_{st}$ indices; and varying levels of proton flux.
 
 \subsection{Data preparation}
-The only data cleaning required on the OMNI dataset was to convert fill values of 999.9 and 9999 to NaN, to be appropriate for use in data analysis. Of the variables included (see Coverage), this was necessary for all variables other than $K_p$ and the proton flux variables.
+The only data cleaning required on the OMNI dataset was to convert fill values of 999.9 and 9999 to NaN, to be appropriate for use in data analysis. Of the variables included (see Coverage), $B$, $B_z$ (GSE and GSM), and Solar wind proton density and plasma speed all were missing about 35\% of their data. The $AE$ index was missing about 7\% of its data, and all other variables were provided complete.
 
 \section{Geomagnetic}
 Geomagnetic data cover everything inside the magnetopause, but in this study will tend to refer specifically to information in the magnetosphere but not in the plasmasphere or ionosphere.
 
 \subsection{Source}
-The data come from \cite{Takahashi2010SolarCycleVariation}, which takes data from the Geostationary Operational Environmental Satellites (GOES) and uses a set of magnetic field models to relate Alfvén waves to equatorial mass density (\req). \vinote{Define Alfvén waves? Earlier}. 
+The data come from \cite{Takahashi2010SolarCycleVariation}, which takes data from the Geostationary Operational Environmental Satellites (GOES) and uses a set of magnetic field models to relate Alfvén waves to equatorial mass density (\req). 
+
+\vnote More detail on how they're relatable 
 
 \subsection{Coverage}
 The GOES satellites used in this study cover the years from 1980 to the end of 1991, often with overlapping years between satellites. The satellites themselves held a geostationary orbit at around 6.62 $R_E$ and collected data on a roughly 3-second cadence \citep{GOESDataSource}, which was then transformed onto a 10-minute cadence. Their position means they're almost always measuring properties of the plasmatrough, the region devoid of dense plasma just outside the plasmasphere.
@@ -48,7 +58,7 @@ Data for the plasmasphere also comes from the GOES and OMNI datasets previously 
 
 \subsection{Coverage}
 Since the data come from the same sources, the coverage is also the same. 
-\vnote True? Any caveats, like specific MLT that calculations apply to plasmasphere?
+\vnote True? Any caveats, like specific MLT that calculations apply to plasmasphere? Verify presence of data for different variables
 
 \subsection{Data preparation}
 See previous section. \vinote{Talk about specifics of calculations for plasmasphere variables? }

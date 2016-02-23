@@ -20,8 +20,7 @@ Our current computational technology, combined with over 50 years' worth of sate
 
 The complex structure of the magnetosphere and plasmasphere lead to a number of distinct behaviors and processes such as ring currents, geomagnetic storms, and magnetospheric substorms.
 
-\paragraph{Ring Current}
-The Ring Current, shown in Figure \ref{RingCurrentFigure} is a formed when the magnetosphere splits the neutral solar wind into positive and negative components, where they circle the earth moving along magnetic field lines until they either connect with particles in the upper atmosphere/ionosphere and fall out, or remain trapped in the magnetosphere and slowly drift in opposing directions around the magnetic equator. With enough energetic particles drifting together, a current is generated that can significantly affect the Earth's magnetic field and is labeled the ring current. These particles in the current are injected into the magnetosphere via conditions that cause the solar wind's magnetic field to connect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms.
+The Ring Current, shown in Figure \ref{RingCurrentFigure} is a formed when the magnetosphere splits the neutral solar wind into positive and negative components, where they circle the earth moving along magnetic field lines until they either connect with particles in the upper atmosphere/ionosphere and fall out, or remain trapped in the magnetosphere and slowly drift in opposing directions around the magnetic equator. With enough energetic particles drifting together, a current is generated that can significantly affect the Earth's magnetic field and is labeled the ring current. These particles in the current are injected into the magnetosphere via conditions that cause the solar wind's magnetic field to connect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms. 
 
 \begin{figure}[htp]
 \centering
@@ -54,8 +53,6 @@ During periods where the location of the plasmapause is quickly brought earthwar
 
 At times, the plasmasphere because distorted at the plasmapause due to dayside reconnection, causing bulges that can become elongated and detached during co-rotation, usually across the dusk side. These extended segments of plasma are known as "plumes" and show up as a peak in density in a normally empty plasmatrough. These plumes also often occur with, and possible because of, enhanced magnetospheric activity\cite{EvolutionPlasmasphericIons}.
 
-\vnote Define Alfvén waves
-
 \note Leave off with list of things that are not well understood and how work in thesis approaches them.
 
 \subsection{Radiation Belts}
@@ -73,7 +70,7 @@ The outer radiation belt is filled with particles (mostly electrons) pulled from
 	\label{BounceMotion}
 \end{figure}
 
-The various forms of particle movement are shown in Figure \ref{BounceMotion}. The primary components being the drift motion leading to the ring current, and the bounce motion leading to the existence of belts of radiation. As particles approach the "Mirror point", a slight angle between the motion and the curvature of the magnetic field line lead to a force opposing the motion along the line, eventually mirroring the particle back in the direction it came from. Since this applies to all particles within a certain range of energies and pitch angles, the collective sum of trapped particles forms the radiation belts.
+The various forms of particle movement are shown in Figure \ref{BounceMotion}. The primary components being the drift motion leading to the ring current, and the bounce motion leading to the existence of belts of radiation. As particles approach the "Mirror point", a slight angle between the motion and the curvature of the magnetic field line lead to a force opposing the motion along the line, eventually mirroring the particle back in the direction it came from. Since this applies to all particles within a certain range of energies and pitch angles, the collective sum of trapped particles forms the radiation belts. By modeling the particle mass, momentum, and the magnetic field strength of a given dipole magnetic field, approximations can be made regarding what amount of particles will become trapped in the field, and what amount will be lost to scattering \citep{Young2008MagneticFieldLineCurvature}.
 
 The azimuthal (equatorial) drift of ions in the radiation belts is what leads to the ring current. When increased geomagnetic activity causes a change in particles in the radiation belts, this leads to a change in the ring current, which perturbs the Earth's magnetic field noticeably. This perturbation is the basis for the $D_{st}$ index used to gauge magnetic activity. 
 
@@ -86,7 +83,9 @@ The radiation belts also have an impact on the plasmasphere by acting as an occa
 	\label{PlasmasphereRadiationBeltFig}
 \end{figure}
 
-\vnote denton paper for plasmasphere bounce motion and density along field line
+Another source/sink of energy for particles in the radiation belts (or general magnetospheric plasma) is via Alfvén waves \citep{Keling2009AlfvenWaves}. These waves are composed of oscillations of particles traveling along magnetic field lines, carrying both energy and field-aligned currents as they propagate. By moving energy along the field lines, Alfvén waves also couple the various distinct sections of plasma around Earth. 
+
+\vnote denton paper for plasmasphere bounce motion \citep{Young2008MagneticFieldLineCurvature} and density along field line (cite?)
 
 \vnote correlation with plasmasphere? Mention radiation belt in ring current section and how they're independent. 
 
@@ -108,9 +107,11 @@ Models specific to the plasmasphere and plasmatrough include Carpenter and Ander
 
 As for models specifically of the plasmatrough, \cite{Lotoaniu1999PlasmaMassDensity} take ground based Ultra Low Frequency (ULF) wave measurements, then map them to plasma mass densities between $L=4.5$ and $L=10$ via the Tsyganenko T89 magnetic field model and an $R^{-4}$ plasma mass density profile. These estimated values were then compared to in-situ measurements from the CRRES satellite and found that this technique can, under specific conditions, accurately measure plasmatrough mass density. 
 
-\cite{Takahashi2006MassDensityInferred} take a similar approach, but approximate ULF waves from the CRRES satellite directly, instead of using ground stations, and then map that to mass density values. By using the electric field spectra on the satellite and finding a fundamental frequency of the toroidal waves, they estimate mass density with a combination of theoretical model and empirical observations. The magnetic field model is either T89 or T96, dependent on $K_p$ or \dst respectively. Instead of an $R^{-4}$ dependence for the mass density model, they use $\rho=\req(LR_E/R)^{0.5}$, and then combine with frequency observations via $\rho_{eq\_est}=\rho_{eq\_theory}(f_{1\_theory}/f_{1\_obs})^2$.
+\cite{Takahashi2006MassDensityInferred} take a similar approach, but approximate ULF waves from the CRRES satellite directly, instead of using ground stations, and then map that to mass density values. By using the electric field spectra on the satellite and finding a fundamental frequency of the toroidal waves, they estimate mass density with a combination of theoretical model and empirical observations. The magnetic field model used is either T89 or T96, dependent on $K_p$ or \dst\  respectively. Instead of an $R^{-4}$ dependence for the mass density model, they use $\rho=\req(LR_E/R)^{0.5}$, and then combine with frequency observations via $\rho_{eq\_est}=\rho_{eq\_theory}(f_{1\_theory}/f_{1\_obs})^2$.
 
-\vnote Takahashi (2010), Kondrashov 2014, Denton (2006, 2015), Min 2013
+\vnote Takahashi (2010), Kondrashov 2014, Denton (2006, 2015), Min 2013, Tsyganenko models
+
+\vnote King and Papitshivili OMNI data reference
 
 \vnote Discuss current results based on plasmapause but current study focused on plasmatrough (Denton and Takahashi show most data in plasmatrough)
 
