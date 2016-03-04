@@ -38,9 +38,7 @@ The only data cleaning required on the OMNI dataset was to convert fill values o
 Geomagnetic data cover everything inside the magnetopause, but in this study will tend to refer specifically to information in the magnetosphere but not in the plasmasphere or ionosphere.
 
 \subsection{Source}
-The data come from \cite{Takahashi2010SolarCycleVariation}, which takes data from the Geostationary Operational Environmental Satellites (GOES) and uses a set of magnetic field models to relate Alfvén waves to equatorial mass density (\req). 
-
-\vnote More detail on how they're relatable 
+The data come from \cite{Takahashi2010SolarCycleVariation}, which takes data from the Geostationary Operational Environmental Satellites (GOES) and uses a set of magnetic field models to relate Alfvén waves to equatorial mass density (\req). By taking magnetic field vectors and applying spectral analysis, they find a set of fundamental harmonic frequencies of toroidal waves. Through testing, they find a strong linear dependence of the 27-day average third toroidal frequency ($f_{T3\_27d}$) on the similarly averaged $F_{10.7}$ index, of the form: $f_{T3\_27d}(mHz)=37.5-0.0972 F_{10.7\_27d}(sfu)$. From there, they also find a linear relationship to the averaged \req\ in the form $log(\rho_{eq\_27d})=0.421+0.00390 F_{10.7\_27d}$, effectively linking the derived toroidal frequency to \req.
 
 \subsection{Coverage}
 The GOES satellites used in this study cover the years from 1980 to the end of 1991, often with overlapping years between satellites. The satellites themselves held a geostationary orbit at around 6.62 $R_E$ and collected data on a roughly 3-second cadence \citep{GOESDataSource}, which was then transformed onto a 10-minute cadence. Their position means they're almost always measuring properties of the plasmatrough, the region devoid of dense plasma just outside the plasmasphere.
@@ -54,11 +52,10 @@ In order to align the GOES data with the OMNI 1-hour cadence, the median of all 
 Plasmasphere data covers the inner regions of the magnetosphere, bounded by the plasmapause on the outer edge and the ionosphere on the inner edge. This puts it at a typical distance of $L=3-5R_E$. 
 
 \subsection{Source}
-Data for the plasmasphere also comes from the GOES and OMNI datasets previously discussed, but have been calculated as extensions of directly measured data either onboard the satellites or from ground stations. 
+Data for the plasmasphere also comes from the GOES and OMNI datasets previously discussed, but are often calculated as extensions of directly measured data either onboard the satellites or from ground stations, depending on the current extent of the plasmasphere and location of the satellite.
 
 \subsection{Coverage}
-Since the data come from the same sources, the coverage is also the same. 
-\vnote True? Any caveats, like specific MLT that calculations apply to plasmasphere? Verify presence of data for different variables
+Since the data come from the same sources as that of the magnetosphere, the coverage is largely the same with specifics covered in \cite{Takahashi2010SolarCycleVariation}, where any error associated with temporary conditions is overshadowed by the variance in effectiveness of the model itself. 
 
 \subsection{Data preparation}
-See previous section. \vinote{Talk about specifics of calculations for plasmasphere variables? }
+The same preparation done for the magnetosphere applied to the plasmasphere data.  Some specific analysis done in \cite{Takahashi2010SolarCycleVariation} discusses how the spacecraft's geomagnetic location affected their ability to detect the necessary toroidal frequency, and thus estimate \req, so for some of the long-timescale averages, only certain MLTs were included. They also show that \req\ does correlate with geomagnetic activity (and, by extension, plasmapause location), so during long periods of no activity the plasmasphere extends beyond geosynchronous orbit, leading to measurements of \req\ reflecting density in the plasmasphere and not the plasmatrough. 
