@@ -7,7 +7,7 @@ While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most per
 \centering
 \includegraphics[width=0.7\linewidth]{Figures/rhoLT.eps}
 \includegraphics[width=0.7\linewidth]{Figures/nansbyhour.eps}
-\caption{Median \req\ binned by local time, and availability of \req\ with local time.}
+\caption{Median \req\ binned by local time, and availability of \req\ with local time. \vinote{Ticks every 2 hours}}
 \label{fig:ByHourExample}
 \end{figure}
 
@@ -19,41 +19,42 @@ This trend similarly holds for Magnetic Local Time (MLT), a time basis where "no
 \begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{Figures/F107MD27d-GOES6}
-\caption{Comparing $F_{10.7\_27d}$ and $log(\rho_{eq\_27d})$ using GOES 6 data}
+\caption{Comparing $F_{10.7\_27d}$ and $log(\rho_{eq\_27d})$ using GOES 6 data \vinote{Add all satellites with coverage}}
 \label{fig:F107rhoeq27dcomparison}
 \end{figure}
 
 \section{Linear Correlations}
-This dependence was further investigated, and extended, by creating a simple one-time-lag linear model for each major variable in the database as well as combinations of some to test for independent contributions to the correlation. The models were trained on half of the dataset and tested on the other half for each satellite, and this was repeated with new random samples 100 times and then the median correlation values were taken. The results are shown in Table \ref{CCperltable}.
+This dependence was further investigated, and extended, by creating a simple linear model for each major variable in the database as well as combinations of some to investigate independent contributions to the correlation \vinote{More detail}. The inputs were the median values of each variable for four hours before a \dst\ event onset, and they were trained to predict a median of the value at onset with the four hours following it. The models were trained on half of the dataset and tested on the other half for each satellite, and this was repeated with new random samples 100 times and then the median correlation values were taken. The results are shown in Table \ref{CCperltable}.
 
 \begin{table}[h]
 	\small
-	\begin{tabular}{|l|llll|}
+	\begin{tabular}{|L|llll|}
 		\hline
 		& GOES 2 & GOES 5 & GOES 6 & GOES 7\\ \hline
-		doy & -0.08 & +0.10 & -0.05 & +0.06 \\
-		MLT & -0.09 & -0.09 & -0.04 & -0.05 \\
-		Bz & +0.17 & -0.12 & +0.08 & -0.08 \\
-		Vsw & -0.04 & +0.29 & +0.06 & -0.06 \\
-		Dst & +0.27 & +0.66 & +0.06 & +0.22 \\
-		Rhosw & +0.34 & +0.63 & +0.07 & +0.34 \\
-		F107 & +0.42 & +0.14 & +0.49 & +0.42 \\
-		Bz+Vsw & +0.09 & +0.19 & +0.12 & -0.11 \\
-		Dst+F107 & +0.45 & +0.69 & +0.53 & +0.47 \\
-		All & -0.10 & +0.34 & +0.61 & +0.39 \\
+		DoY & -0.07 & +0.14 & -0.04 & +0.06 \\
+		MLT & -0.07 & -0.05 & -0.02 & -0.05 \\
+		B_z & +0.19 & -0.13 & +0.09 & -0.09 \\
+		V_{sw} & -0.04 & +0.27 & +0.05 & -0.05 \\
+		D_{st} & +0.26 & +0.67 & +0.09 & +0.21 \\
+		\rho_{sw} & +0.33 & +0.63 & +0.10 & +0.35 \\
+		F_{10.7} & +0.42 & +0.16 & +0.51 & +0.42 \\
+		B_z+V_{sw} & +0.10 & +0.18 & +0.11 & -0.12 \\
+		D_{st}+F_{10.7} & +0.44 & +0.69 & +0.54 & +0.47 \\
+		All & -0.06 & +0.34 & +0.62 & +0.40 \\
 		\hline
 	\end{tabular}
 	\caption{Table of linear model correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half} 
 	\label{CCperltable}
 \end{table}
 
+
 \vnote Look at making this (along with figures) a git submodule
 
-It can be seen that $F_{10.7}$ almost always correlates the most with \req, but that there is significant variance between data from different satellites. \vinote{Including training correlations? Make model a 12 hour model to smooth it out a bit?}
+It can be seen that $F_{10.7}$ almost always correlates the best with \req, but that there is significant variance between data from different satellites. \vinote{Include training correlations? Make model a 12 hour model to smooth it out a bit?}
 
 \section{Nonlinear Correlations}
 
-Similarly for a simple neural net model with one time lag, Table \ref{NNperltable}
+Similarly for a neural net model with the same input and target structure as the linear model, but training on a randomly selected 70\% of the data, testing on another 15\%, and validating on the remaining 15\%, Table \ref{NNperltable} shows the resulting correlation values for the validation data set.
 
 \begin{table}[h]
 	\small
