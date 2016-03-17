@@ -3,7 +3,7 @@
 \section{Overview}
 While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most pertinent variables used in this study, some further analysis was done to determine any potential biases introduced by specifics of the satellite motion or derivations used. For example, Figure \ref{fig:ByHourExample} shows that not only did data availability vary significantly with magnetic local time (MLT), but the values themselves vary significantly. \vinote{Cite that this is known (dawn vs dusk, etc)}
 
-\begin{figure}
+\begin{figure}[htp!]
 \centering
 \includegraphics[width=0.7\linewidth]{Figures/rhoMLT.eps}
 \includegraphics[width=0.7\linewidth]{Figures/nansbyhour.eps}
@@ -11,15 +11,6 @@ While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most per
 \label{fig:ByHourExample}
 \end{figure}
 
-\section{$F_{10.7}$ Dependence}
-\cite{Takahashi2010SolarCycleVariation} showed a strong correlation between the 27-day averaged $F_{10.7}$ index of solar activity and the averaged equatorial mass density (\req). This was chosen as a starting place for verifying the data analysis routines developed for this dataset, so as to show that data input, averaging, and interpolation were all done in a reasonable and reproducible manner. Figure \ref{fig:F107rhoeq27dcomparison} shows the strong correlation seen previously, and reasonably reproduces Figure 13.b from \cite{Takahashi2010SolarCycleVariation} for the years covered by GOES 6.
-
-\begin{figure}
-\centering
-\includegraphics[width=0.7\linewidth]{Figures/F107MD27d-GOES6}
-\caption{Comparing $F_{10.7\_27d}$ and $log(\rho_{eq\_27d})$ using GOES 6 data \vinote{Add all satellites with coverage}}
-\label{fig:F107rhoeq27dcomparison}
-\end{figure}
 
 \section{Linear Correlations}
 This dependence was further investigated, and extended, by creating a simple linear model for each major variable in the database as well as combinations of some to investigate independent contributions to the total correlation (by testing how much correlation improved in a combined model over either of the constituent models.)  The inputs were the median values of each variable for four hours before a \dst\ event onset, and they were trained to predict a median of the value at onset with the four hours following it. The models were trained on half of the dataset and tested on the other half for each satellite, and this was repeated with new random samples 100 times and then the median correlation values were taken. The results are shown in Table \ref{CCperltable}.
@@ -76,5 +67,49 @@ Similarly for a neural net model with the same input and target structure as the
 	\label{NNperltable}
 \end{table}
 
+\vnote Include error bars, separate table of training-test values
+
 It should be noted that nonlinear modeling is much more susceptible to overfitting than linear modeling \vinote{cite?} due to the higher order of fitting done on training and validation data, as well as the lack of a straight-forward optimal error-minimization method such as least squares regression \vinote{(non-unique solution, non-guaranteed convergence, etc)}. This is why some models, such as that including every possible variable, correlate worse than models of just a few parts. Where a linear model can minimize error by zeroing out variables without useful information, the neural net will try to incorporate the information anyway and end up overfitting \vinote{Too much explanation?}.
 
+
+
+\section{$F_{10.7}$ Dependence}
+\cite{Takahashi2010SolarCycleVariation} showed a strong correlation between the 27-day averaged $F_{10.7}$ index of solar activity and the averaged equatorial mass density (\req). This was chosen as a starting place for verifying the data analysis routines developed for this dataset, so as to show that data input, averaging, and interpolation were all done in a reasonable and reproducible manner. Figure \ref{fig:F107rhoeq27dcomparison}.a shows the strong correlation seen previously, and reasonably reproduces Figure 13.b from \cite{Takahashi2010SolarCycleVariation} for the years covered by GOES 6. It also shows the effects of long-time-scale averaging on the overall correlation of the two variables, suggesting that the connection is more influential long-term.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/F107MD27d-GOES6}
+	\includegraphics[width=0.7\linewidth]{Figures/ccplot-GOES6}
+	\caption{Top: Comparing $F_{10.7\_27d}$ and $log(\rho_{eq\_27d})$ using GOES 6 data \vinote{Add all satellites with coverage}. Bottom: $\f$ and $log(\req)$ correlation at varying time scales}
+	\label{fig:F107rhoeq27dcomparison}
+\end{figure}
+
+The dependence was then analyzed in a more nonlinear manner by investigating the behavior of storms under different $F_{10.7}$ conditions. The hypothesis being that solar activity would drive both geomagnetic storms and, consequently, \req. By separating storms into bins based on the median value of \f, then breaking those two bins into another two bins each separated by their respective medians, a profile of all storm behavior based on \f\ is obtained. Figure \ref{fig:HighLowF107rhoeq} shows the results of this across the events where \dst\ crossed below the $-50$~nT threshold. 
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107rhoeq-Dst50-GOES6-1983-1991}
+	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107Dst-Dst50-GOES6-1983-1991}	
+	\caption{\req\ and \dst\ of events binned by median \f\ values. \vinote{Literature search on \f\ and \dst. Temerin and Li \dst\ model. Worth talking about other satellites.}}
+	\label{fig:HighLowF107rhoeq}
+\end{figure}
+
+Figure \ref{fig:HighLowF107rhoeq}.a shows that \req\ reacts to decreases in \dst, but seemingly only during periods of higher solar activity. Since higher \f\ also correlates with a higher baseline \req, this effect could be due to saturation of the plasmasphere from the increased solar activity.
+
+Figure \ref{fig:HighLowF107rhoeq}.b shows that though all events are selected based on a \dst\ threshold, the behavior before and after the storm is affected by \f. For low solar activity events, the \dst\ changes are more sudden and severe, coming from and going back to a more positive baseline. High solar activity events have a longer recovery period.
+
+
+
+\section{$B_z$ Dependence}
+
+Similar to the \f\ dependence, tests were done to see if event behavior varied with the $z$-component of the interplanetary magnetic field (IMF). It's well established that the orientation of $B_z$ has a strong correlation with the strength geomagnetic storms \vinote{cite}, so events were found based on a threshold of $\req \geq 20~amu/cm^3$. These events were then binned by both the median $B_z$ at and four hours after threshold crossing, and $B_z$ at and four hours before threshold crossing. Figure \ref{fig:RhoBinnedBz} shows both cases.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/RhoBinnedBz-case24-t020-tf25-GOES6}
+	\includegraphics[width=0.7\linewidth]{Figures/RhoBinnedBz-case24-t025-tf30-GOES6}	
+	\caption{\req\ events binned by median $B_z$ before and after event onset}
+	\label{fig:RhoBinnedBz}
+\end{figure}
+
+For each binning method, a two sample t-test \vinote{Need to explain t-test? Double check terminology. "Two population t-test"} was performed for each hour to determine if the samples in each bin had significantly different means from those of the other bin. As there are 73 hours to perform a t-test on, a 95\% confidence interval could be expected to have at least four randomly significant results. Because of this, the one significant t-test result for events binned by pre-onset $B_z$ can not confirm that such a division shows significantly different behaviors, whereas the 14 significant test results for post-onset $B_z$ can be said to show a significant division in behavior between the bins. This physically suggests that the further into a \req\ increase you get, the more $B_z$ orientation impacts the long-term recovery to normal conditions \vinote{Conclude weak relationship and mention further shifts briefly. Shifting the window even further forward only gets 9 significant (for hours +5 to +10) and 10 (for +10 to +15)}. If instead of splitting into equal-number bins, the division is based on positive or negative $B_z$, either time window produces seven or more significant results, but with the added complication that one bin has twice as many samples as the other.
