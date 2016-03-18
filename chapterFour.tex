@@ -40,7 +40,7 @@ This dependence was further investigated, and extended, by creating a simple lin
 
 \vnote Look at making tables and figures a git submodule
 
-It can be seen that $F_{10.7}$ almost always correlates the best with \req, but that there is significant variance between data from different satellites. \vinote{Include training correlations? Make model a 12 hour model to smooth it out a bit?}
+It can be seen that $F_{10.7}$ almost always correlates the best with \req, but that there is significant variance between data from different satellites. 
 
 \section{Nonlinear Correlations}
 
@@ -69,7 +69,7 @@ Similarly for a neural net model with the same input and target structure as the
 
 \vnote Include error bars, separate table of training-test values
 
-It should be noted that nonlinear modeling is much more susceptible to overfitting than linear modeling \vinote{cite?} due to the higher order of fitting done on training and validation data, as well as the lack of a straight-forward optimal error-minimization method such as least squares regression \vinote{(non-unique solution, non-guaranteed convergence, etc)}. This is why some models, such as that including every possible variable, correlate worse than models of just a few parts. Where a linear model can minimize error by zeroing out variables without useful information, the neural net will try to incorporate the information anyway and end up overfitting \vinote{Too much explanation?}.
+It should be noted that nonlinear modeling is much more susceptible to overfitting than linear modeling \vinote{cite?} due to the higher order of fitting done on training and validation data, as well as the lack of a straight-forward optimal error-minimization method such as least squares regression \vinote{(non-unique solution, non-guaranteed convergence, etc)}. This is why some models, such as that including every possible variable, correlate worse than models of just a few parts. Where a linear model can minimize error by zeroing out variables without useful information, the neural net will try to incorporate the information anyway and end up overfitting.
 
 
 
@@ -90,11 +90,11 @@ The dependence was then analyzed in a more nonlinear manner by investigating the
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107rhoeq-Dst50-GOES6-1983-1991}
 	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107Dst-Dst50-GOES6-1983-1991}	
-	\caption{\req\ and \dst\ of events binned by median \f\ values. \vinote{Literature search on \f\ and \dst. Temerin and Li \dst\ model. Worth talking about other satellites.}}
+	\caption{\req\ and \dst\ of events binned by median \f\ values. \vinote{Literature search on \f\ and \dst. Temerin and Li \dst\ model}}
 	\label{fig:HighLowF107rhoeq}
 \end{figure}
 
-Figure \ref{fig:HighLowF107rhoeq}.a shows that \req\ reacts to decreases in \dst, but seemingly only during periods of higher solar activity. Since higher \f\ also correlates with a higher baseline \req, this effect could be due to saturation of the plasmasphere from the increased solar activity.
+Figure \ref{fig:HighLowF107rhoeq}.a shows that \req\ reacts to decreases in \dst, but seemingly only during periods of higher solar activity. Since higher \f\ also correlates with a higher baseline \req, this effect could be due to saturation of the plasmasphere from the increased solar activity. It should also be noted that this trend isn't seen as strongly for all satellites. GOES 2 and 6 show a significant spike and baseline shift, while GOES 7 and 5 lack the significant spike and shift respectively. 
 
 Figure \ref{fig:HighLowF107rhoeq}.b shows that though all events are selected based on a \dst\ threshold, the behavior before and after the storm is affected by \f. For low solar activity events, the \dst\ changes are more sudden and severe, coming from and going back to a more positive baseline. High solar activity events have a longer recovery period.
 
@@ -112,4 +112,4 @@ Similar to the \f\ dependence, tests were done to see if event behavior varied w
 	\label{fig:RhoBinnedBz}
 \end{figure}
 
-For each binning method, a two sample t-test \vinote{Need to explain t-test? Double check terminology. "Two population t-test"} was performed for each hour to determine if the samples in each bin had significantly different means from those of the other bin. As there are 73 hours to perform a t-test on, a 95\% confidence interval could be expected to have at least four randomly significant results. Because of this, the one significant t-test result for events binned by pre-onset $B_z$ can not confirm that such a division shows significantly different behaviors, whereas the 14 significant test results for post-onset $B_z$ can be said to show a significant division in behavior between the bins. This physically suggests that the further into a \req\ increase you get, the more $B_z$ orientation impacts the long-term recovery to normal conditions \vinote{Conclude weak relationship and mention further shifts briefly. Shifting the window even further forward only gets 9 significant (for hours +5 to +10) and 10 (for +10 to +15)}. If instead of splitting into equal-number bins, the division is based on positive or negative $B_z$, either time window produces seven or more significant results, but with the added complication that one bin has twice as many samples as the other.
+For each binning method, a two sample t-test was performed for each hour to determine if the samples in each bin had significantly different means from those of the other bin. As there are 73 hours to perform a t-test on, a 95\% confidence interval could be expected to have at least four randomly significant results. Because of this, the one significant t-test result for events binned by pre-onset $B_z$ can not confirm that such a division shows significantly different behaviors, whereas the 14 significant test results for post-onset $B_z$ can be said to show a significant division in behavior between the bins. This physically suggests that the further into a \req\ increase you get, the more $B_z$ orientation impacts the long-term recovery to normal conditions (and indeed moving the window further in time did continue to show significance, but weakly and with no obvious trend). If instead of splitting into equal-number bins, the division is based on positive or negative $B_z$, either time window produces seven or more significant results, but with the added complication that one bin has twice as many samples as the other and may be biased by averaging or the lack thereof. 
