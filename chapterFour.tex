@@ -37,6 +37,28 @@ This dependence was further investigated, and extended, by creating a simple lin
 	\label{CCperltable}
 \end{table}
 
+ \begin{table}[h]
+ 	\small
+ 	\begin{tabular}{|L|LLLL|}
+ 		\hline
+ 		T-Tr & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
+ 		DoY & -0.16\pm0.11 & -0.02\pm0.16 & -0.12\pm0.08 & 0.01\pm0.12 \\
+ 		MLT & -0.26\pm0.25 & -0.16\pm0.14 & -0.16\pm0.26 & -0.11\pm0.07 \\
+ 		B_z & -0.06\pm0.24 & -0.27\pm0.18 & -0.05\pm0.17 & -0.14\pm0.08 \\
+ 		V_{sw} & -0.11\pm0.13 & -0.02\pm0.13 & -0.03\pm0.13 & -0.12\pm0.08 \\
+ 		D_{st} & -0.02\pm0.21 & -0.01\pm0.12 & -0.06\pm0.16 & 0.00\pm0.17 \\
+ 		\rho_{sw} & -0.01\pm0.29 & -0.01\pm0.37 & -0.04\pm0.22 & 0.03\pm0.21 \\
+ 		F_{10.7} & 0.01\pm0.11 & -0.04\pm0.16 & 0.00\pm0.08 & -0.03\pm0.08 \\
+ 		B_z+V_{sw} & -0.15\pm0.20 & -0.17\pm0.20 & -0.08\pm0.12 & -0.24\pm0.08 \\
+ 		D_{st}+F_{10.7} & -0.05\pm0.12 & 0.02\pm0.11 & -0.01\pm0.10 & -0.03\pm0.08 \\
+ 		All & -0.64\pm0.22 & -0.54\pm0.28 & -0.16\pm0.14 & -0.25\pm0.13 \\
+ 		\hline
+ 	\end{tabular}
+ 	\caption{Table of differences in linear testing-training models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half} 
+ 	\label{CCdifftable}
+ \end{table}
+
+
 
 It can be seen that $F_{10.7}$ almost always correlates the best with \req, but that there is significant variance between data from different satellites. 
 
@@ -44,30 +66,54 @@ It can be seen that $F_{10.7}$ almost always correlates the best with \req, but 
 
 Similarly for a neural net model with the same input and target structure as the linear model, but training on a randomly selected 70\% of the data, testing on another 15\%, and validating on the remaining 15\%, Table \ref{NNperltable} shows the resulting correlation values for the validation data set.
 
-\begin{table}[h]
-	\small
-	\begin{tabular}{|L|LLLL|}
-		\hline
-		Test & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
-		DoY & +0.05\pm0.31 & +0.31\pm0.30 & +0.32\pm0.22 & +0.12\pm0.17 \\
-		MLT & +0.29\pm0.41 & +0.15\pm0.34 & +0.40\pm0.32 & +0.17\pm0.21 \\
-		B_z & +0.24\pm0.23 & +0.21\pm0.28 & +0.17\pm0.19 & -0.00\pm0.20 \\
-		V_{sw} & +0.20\pm0.25 & +0.36\pm0.19 & +0.19\pm0.24 & +0.06\pm0.18 \\
-		D_{st} & +0.08\pm0.27 & +0.18\pm0.25 & +0.02\pm0.17 & +0.18\pm0.24 \\
-		\rho_{sw} & +0.02\pm0.29 & +0.25\pm0.42 & +0.20\pm0.22 & +0.12\pm0.29 \\
-		F_{10.7} & +0.26\pm0.27 & +0.32\pm0.29 & +0.48\pm0.25 & +0.36\pm0.15 \\
-		B_z+V_{sw} & +0.11\pm0.25 & +0.20\pm0.38 & +0.15\pm0.21 & +0.02\pm0.17 \\
-		D_{st}+F_{10.7} & +0.17\pm0.25 & +0.21\pm0.32 & +0.47\pm0.15 & +0.35\pm0.17 \\
-		All & +0.21\pm0.41 & +0.67\pm0.40 & +0.60\pm0.35 & +0.17\pm0.33 \\
-		\hline
-	\end{tabular}
-	\caption{Table of nonlinear model test correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half} 
-	\label{NNperltable}
-\end{table}
+ \begin{table}[h]
+ 	\small
+ 	\begin{tabular}{|L|LLLL|}
+ 		\hline
+ 		& \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
+ 		DoY & +0.05\pm0.31 & +0.31\pm0.30 & +0.32\pm0.22 & +0.12\pm0.17 \\
+ 		MLT & +0.29\pm0.41 & +0.15\pm0.34 & +0.40\pm0.32 & +0.17\pm0.21 \\
+ 		B_z & +0.24\pm0.23 & +0.21\pm0.28 & +0.17\pm0.19 & -0.00\pm0.20 \\
+ 		V_{sw} & +0.20\pm0.25 & +0.36\pm0.19 & +0.19\pm0.24 & +0.06\pm0.18 \\
+ 		D_{st} & +0.08\pm0.27 & +0.18\pm0.25 & +0.02\pm0.17 & +0.18\pm0.24 \\
+ 		\rho_{sw} & +0.02\pm0.29 & +0.25\pm0.42 & +0.20\pm0.22 & +0.12\pm0.29 \\
+ 		F_{10.7} & +0.26\pm0.27 & +0.32\pm0.29 & +0.48\pm0.25 & +0.36\pm0.15 \\
+ 		B_z+V_{sw} & +0.11\pm0.25 & +0.20\pm0.38 & +0.15\pm0.21 & +0.02\pm0.17 \\
+ 		D_{st}+F_{10.7} & +0.17\pm0.25 & +0.21\pm0.32 & +0.47\pm0.15 & +0.35\pm0.17 \\
+ 		All & +0.21\pm0.41 & +0.67\pm0.40 & +0.60\pm0.35 & +0.17\pm0.33 \\
+ 		\hline
+ 	\end{tabular}
+ 	\caption{Table of nonlinear model test correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half} 
+ 	\label{NNperltable}
+ \end{table}
+ 
+ 
+ 
+ 
+  \begin{table}[h]
+  	\small
+  	\begin{tabular}{|L|LLLL|}
+  		\hline
+  		T-Tr & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
+  		DoY & -0.48\pm0.36 & -0.29\pm0.36 & -0.16\pm0.25 & -0.27\pm0.23 \\
+  		MLT & -0.31\pm0.40 & -0.34\pm0.42 & -0.23\pm0.38 & -0.28\pm0.26 \\
+  		B_z & -0.14\pm0.27 & -0.39\pm0.37 & -0.26\pm0.24 & -0.20\pm0.19 \\
+  		V_{sw} & -0.27\pm0.31 & -0.24\pm0.25 & -0.22\pm0.25 & -0.24\pm0.19 \\
+  		D_{st} & -0.37\pm0.32 & -0.25\pm0.31 & -0.26\pm0.22 & -0.21\pm0.24 \\
+  		\rho_{sw} & -0.31\pm0.30 & -0.16\pm0.45 & -0.22\pm0.27 & -0.47\pm0.37 \\
+  		F_{10.7} & -0.19\pm0.28 & -0.10\pm0.32 & -0.12\pm0.28 & -0.18\pm0.26 \\
+  		B_z+V_{sw} & -0.28\pm0.31 & -0.36\pm0.39 & -0.24\pm0.27 & -0.23\pm0.19 \\
+  		D_{st}+F_{10.7} & -0.30\pm0.29 & -0.17\pm0.33 & -0.19\pm0.22 & -0.20\pm0.16 \\
+  		All & -0.51\pm0.58 & -0.45\pm0.60 & -0.33\pm0.44 & -0.46\pm0.43 \\
+  		\hline
+  	\end{tabular}
+  	\caption{Table of differences in nonlinear testing-training models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half} 
+  	\label{NNdifftable}
+  \end{table}
+  
+ 
 
-\vnote Separate table of training-test values
-
-It should be noted that nonlinear modeling is much more susceptible to overfitting than linear modeling \vinote{cite?} due to the higher order of fitting done on training and validation data, as well as the lack of a straight-forward optimal error-minimization method such as least squares regression \vinote{(non-unique solution, non-guaranteed convergence, etc)}. This is why some models, such as that including every possible variable, correlate worse than models of just a few parts. Where a linear model can minimize error by zeroing out variables without useful information, the neural net will try to incorporate the information anyway and end up overfitting.
+It should be noted that nonlinear modeling is much more susceptible to overfitting than linear modeling \vinote{cite?} due to the higher order of fitting done on training and validation data, as well as the lack of a straight-forward optimal error-minimization method such as least squares regression \vinote{(non-unique solution, non-guaranteed convergence, etc)}. This is why some models, such as that including every possible variable, correlate worse than models of just a few parts. Where a linear model can minimize error by zeroing out variables without useful information, the neural net will try to incorporate the information anyway and end up overfitting. Table \ref{NNdifftable} shows how significant the differences are between training data and testing data by subtracting the median correlations from both data sets from each other, and doing the root mean squared (RMS) error as the combination of the two constituent errors.
 
 
 
