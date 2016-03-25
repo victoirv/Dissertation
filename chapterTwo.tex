@@ -124,18 +124,16 @@ Another algorithm known as Principal Component Analysis (PCA) can be used to tak
 Nonlinear models are applicable when a system has more complexity than can be encapsulated by a linear model. Since they're usually a class of model that trains adaptive weights that can be tuned by known inputs and outputs, they're especially useful for systems where a large amount of training data are available.
 
 \subsection{Caveats and Biases}
-Nonlinear models can be susceptible to overfitting, since they inherently attempt to fit more complexity than a linear model, but can also be controlled via the number of inputs and weights used. They also may suggest more structure than might truly exist. Both of these problems are lessened by training with more data, if available. Figure \ref{NNvsLinear} shows a comparison of predicting equatorial mass density (\req) with the $F_{10.7}$ index and solar wind velocity ($V_{sw}$). The neural net model shows much more structure than the linear model despite being given the same data. Whether that structure reflects any real physical phenomenon, however, is a difficult problem to answer.
+Nonlinear models can be susceptible to overfitting, since they inherently attempt to fit more complexity than a linear model, but can also be controlled via the number of inputs and weights used. They also may suggest more structure than might truly exist. Both of these problems are lessened by training with more data, if available. Figure \ref{NNvsLinear} shows a comparison of predicting equatorial mass density (\req) with the $F_{10.7}$ index and the disturbance storm time index (\dst). The neural net model shows much more structure than the linear model despite being given the same data. Whether that structure reflects any real physical phenomenon, however, is a difficult problem to answer, and so both models are often compared to attempt to ascertain what structure may be valid.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.3]{Figures/{NNVsw-F10.7-rho_eq-GOES2}.png}
-		\includegraphics[scale=0.3]{Figures/{LinearVsw-F10.7-rho_eq-GOES2}.png}
+	\includegraphics[scale=0.35]{Figures/{NNDst-F107-rhoeq-GOES6}.eps}
+		\includegraphics[scale=0.35]{Figures/{LinearDst-F107-rhoeq-GOES6}.eps}
 	\caption{Nonlinear model vs linear model of $\rho_{eq}$}
 	\label{NNvsLinear}
 \end{figure}
 
-
-\vnote Fix figure to be showing the same scales. Look at -zbuffer -opengl "help print"
 
 \subsection{Comparison to Linear Model}
 Nonlinear models differ from linear models by incorporating some method for accounting for effects within a domain that are not seen across the entire domain. Though both models can be given the same inputs, and trained on the same outputs, the models themselves can fundamentally differ. Linear models are also generally simple to interpret (e.g. $y=2*x$ means for every change in $x$, $y$ changes by double that amount.) Nonlinear models, on the other hand, often have no simple interpretation and must be approached by testing for a range of parameters in the model to map out resulting outputs and make some interpretation of the underlying structure.
