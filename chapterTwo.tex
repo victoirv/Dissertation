@@ -112,7 +112,7 @@ Because linear models are simple, optimizable, and adequately model many physica
 
 \subsection{Overview}
 
-While many nonlinear systems are approximated by a number of localized linear models for the sake of simplicity and ease of interpretation, the design and implementation of nonlinear models has become greatly simplified in recent years. Their use allows for determining nonlinear structure without pre-assuming any localization of the data, and as such were used to attempt forecasting in this dissertation. The first choice was a model based on neural networks \cite{NNARMA,ANNforecast} which approximates a non-linear system given a set of training data. The usefulness of this is apparent in a few key points: the weights of contribution of any particular variable to a system will likely be nonlinear in some fashion (e.g. a ground station's measurements will depend on sunlight heating the ionosphere which depends on latitude, time of year, and time of day), and allowing for the non-linear effects of saturation where perhaps the magnetosphere will behave differently after reaching certain levels of particle density or electric potential, rather than directly scaling regardless of limits.
+While many nonlinear systems are approximated by a number of localized linear models for the sake of simplicity and ease of interpretation, the design and implementation of nonlinear models has become greatly simplified in recent years. Their use allows for determining nonlinear structure without pre-assuming any localization of the data, and as such were used to attempt forecasting in this dissertation. The first choice was a model based on neural networks \citep{NNARMA,ANNforecast} which approximates a non-linear system given a set of training data. The usefulness of this is apparent in a few key points: the weights of contribution of any particular variable to a system will likely be nonlinear in some fashion (e.g. a ground station's measurements will depend on sunlight heating the ionosphere which depends on latitude, time of year, and time of day), and allowing for the non-linear effects of saturation where perhaps the magnetosphere will behave differently after reaching certain levels of particle density or electric potential, rather than directly scaling regardless of limits.
 
 Another algorithm known as Principal Component Analysis (PCA) can be used to take the large number of possible variables and define an orthogonal set of vectors that most efficiently encapsulate the variance in the data. By doing this, the number of variables needed for computing any linear or non-linear algorithm can be reduced and optimized, making predictions quicker while maintaining most of the predictive benefits of using all possible data, as well as indicating which variables contain the most information relevant to the predictions.
 
@@ -133,7 +133,7 @@ Sometimes, as in the top two plots of Figure \ref{NNvsLinear}, the structure see
 		\includegraphics[scale=0.35]{Figures/{LinearDst-F107-rhoeq-GOES6}.eps}
 			\includegraphics[scale=0.35]{Figures/{NNBz-F107-rhoeq-GOES5}.eps}
 			\includegraphics[scale=0.35]{Figures/{LinearBz-F107-rhoeq-GOES5}.eps}
-	\caption{Nonlinear models (left) vs linear models (right) of $\rho_{eq}$}
+	\caption{Nonlinear models (left) vs linear models (right) of $\rho_{eq}$ \vinote{ Say circle size are based on \req\ and normalize to color bar }}
 	\label{NNvsLinear}
 \end{figure}
 

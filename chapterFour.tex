@@ -1,7 +1,7 @@
 \chapter[Analysis]{Analysis}
 
 \section{Overview}
-While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most pertinent variables used in this study, some further analysis was done to determine any potential biases introduced by specifics of the satellite motion or derivations used. For example, Figure \ref{fig:ByHourExample} shows that not only did data availability vary significantly with magnetic local time (MLT), but the values themselves vary significantly (e.g. AE models are better in the dawn sector and \dst\ models better at dusk \citep{OBrien2003EmpiricalPlasmapause}. \vinote{Go as far back as Carpenter 1967? http://adsabs.harvard.edu/abs/1967JGR....72.2969C})
+While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most pertinent variables used in this study, some further analysis was done to determine any potential biases introduced by specifics of the satellite motion or derivations used. For example, Figure \ref{fig:ByHourExample} shows that not only did data availability vary significantly with magnetic local time (MLT), but the values themselves vary significantly (e.g. AE models are better in the dawn sector and \dst\ models better at dusk \citep{OBrien2003EmpiricalPlasmapause}. \vinote{Go as far back as Carpenter 1967? http://adsabs.harvard.edu/abs/1967JGR....72.2969C Yes, but put earlier in paragraph}
 
 \begin{figure}[htp!]
 \centering
@@ -107,7 +107,7 @@ Similarly for a neural net model with the same input and target structure as the
  		All & -0.64\pm+0.22 & -0.54\pm+0.28 & -0.16\pm+0.14 & -0.25\pm+0.13 \\
  		\hline
  	\end{tabular}
- 	\caption{Table of differences in linear testing-training models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half} 
+ 	\caption{Table of differences in linear testing-training models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half \vinote{No plus on error, do tr-t. Center headers.}} 
  	\label{CCdifftable}
  \end{table}
 
@@ -119,16 +119,23 @@ It should be noted that nonlinear modeling is much more susceptible to overfitti
 
 
 \section{$F_{10.7}$ Dependence}
-\cite{Takahashi2010SolarCycleVariation} showed a strong correlation between the 27-day averaged $F_{10.7}$ index of solar activity and the averaged equatorial mass density (\req). This was chosen as a starting place for verifying the data analysis routines developed for this dataset, so as to show that data input, averaging, and interpolation were all done in a reasonable and reproducible manner. Figure \ref{fig:F107rhoeq27dcomparison}.a shows the strong correlation seen previously, and reasonably reproduces Figure 13.b from \cite{Takahashi2010SolarCycleVariation} for the years covered by GOES 6. It also shows the effects of long-time-scale averaging on the overall correlation of the two variables, suggesting that the connection is more influential long-term.
+\cite{Takahashi2010SolarCycleVariation} showed a strong correlation between the 27-day averaged $F_{10.7}$ index of solar activity and the averaged equatorial mass density (\req). This was chosen as a starting place for verifying the data analysis routines developed for this dataset, so as to show that data input, averaging, and interpolation were all done in a reasonable and reproducible manner. Figure \ref{fig:F107rhoeq27dcomparison}.a shows the strong correlation seen previously, and reasonably reproduces Figure 13.b from \cite{Takahashi2010SolarCycleVariation} for the years covered by GOES 6. Figure \ref{fig:ccplot} shows the effects of long-time-scale averaging on the overall correlation of the two variables, suggesting that the connection is more influential long-term.
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.55\linewidth]{Figures/F107MD27d-GOES6}
-		\includegraphics[width=0.55\linewidth]{Figures/F107MD27d-all}
-	\includegraphics[width=0.55\linewidth]{Figures/ccplot-GOES6}
-	\caption{Top: Comparing $F_{10.7\_27d}$ and $log(\rho_{eq\_27d})$ using GOES 6 data. Middle: Same as top, but all available satellites. Bottom: $\f$ and $log(\req)$ correlation at varying time scales}
+	\includegraphics[width=0.85\linewidth]{Figures/F107MD27d-GOES6}
+		\includegraphics[width=0.85\linewidth]{Figures/F107MD27d-all}
+	\caption{Top: Comparing $F_{10.7\_27d}$ and $log(\rho_{eq\_27d})$ using GOES 6 data. Bottom: Same as top, but all available satellites}
 	\label{fig:F107rhoeq27dcomparison}
 \end{figure}
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.55\linewidth]{Figures/ccplot-GOES6}
+	\caption{\f\ and $log(\req)$ correlation at varying time scales}
+	\label{fig:ccplot}
+\end{figure}
+
 
 The dependence was then analyzed in a more nonlinear manner by investigating the behavior of storms under different $F_{10.7}$ conditions. The hypothesis being that solar activity would drive both geomagnetic storms and, consequently, \req. By separating storms into bins based on the median value of \f, then breaking those two bins into another two bins each separated by their respective medians, a profile of all storm behavior based on \f\ is obtained. Figure \ref{fig:HighLowF107rhoeq} shows the results of this across the events where \dst\ crossed below the $-50$~nT threshold. 
 
@@ -136,7 +143,7 @@ The dependence was then analyzed in a more nonlinear manner by investigating the
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107rhoeq-Dst50-GOES6-1983-1991}
 	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107Dst-Dst50-GOES6-1983-1991}	
-	\caption{\req\ and \dst\ of events binned by median \f\ values. \vinote{Literature search on \f\ and \dst. Temerin and Li \dst\ model. Bz seems to have little impact }}
+	\caption{\req\ and \dst\ of events binned by median \f\ values. \vinote{Literature search on \f\ and \dst. Temerin and Li \dst\ model. Bz seems to have little impact. }}
 	\label{fig:HighLowF107rhoeq}
 \end{figure}
 
@@ -148,7 +155,7 @@ Figure \ref{fig:HighLowF107rhoeq}.b shows that though all events are selected ba
 
 \section{$B_z$ Dependence}
 
-Similar to the \f\ dependence, tests were done to see if event behavior varied with the $z$-component of the interplanetary magnetic field (IMF). It's well established that the orientation of $B_z$ has a strong correlation with the strength geomagnetic storms \vinote{cite}, so events were found based on a threshold of $\req \geq 20~amu/cm^3$. These events were then binned by both the median $B_z$ at and four hours after threshold crossing, and $B_z$ at and four hours before threshold crossing. Figure \ref{fig:RhoBinnedBz} shows both cases.
+Similar to the \f\ dependence, tests were done to see if event behavior varied with the $z$-component of the interplanetary magnetic field (IMF). It's well established that the orientation of $B_z$ has a strong correlation with the strength of geomagnetic storms \citep{Takahashi2010SolarCycleVariation}, so events were found based on a threshold of $\req \geq 20~amu/cm^3$. These events were then binned by both the median $B_z$ at and four hours after threshold crossing, and $B_z$ at and four hours before threshold crossing. Figure \ref{fig:RhoBinnedBz} shows both cases.
 
 \begin{figure}[htp!]
 	\centering
@@ -159,3 +166,13 @@ Similar to the \f\ dependence, tests were done to see if event behavior varied w
 \end{figure}
 
 For each binning method, a two sample t-test was performed for each hour to determine if the samples in each bin had significantly different means from those of the other bin. As there are 73 hours to perform a t-test on, a 95\% confidence interval could be expected to have at least four randomly significant results. Because of this, the one significant t-test result for events binned by pre-onset $B_z$ can not confirm that such a division shows significantly different behaviors, whereas the 14 significant test results for post-onset $B_z$ can be said to show a significant division in behavior between the bins. This physically suggests that the further into a \req\ increase you get, the more $B_z$ orientation impacts the long-term recovery to normal conditions (and indeed moving the window further in time did continue to show significance, but weakly and with no obvious trend). If instead of splitting into equal-number bins, the division is based on positive or negative $B_z$, either time window produces seven or more significant results, but with the added complication that one bin has twice as many samples as the other and may be biased by averaging or the lack thereof. 
+
+\cite{Temerin2002NewModelPredictionDst} discuss the impact of $B_z$ on their model of \dst\ showing a seasonal variation of \dst. Figure \ref{fig:DoYDst} shows how \dst\ seems to vary with day of year (DoY) in our nonlinear models. It seems to support the idea of a seasonal variation, and weakly the idea that $B_z$ also plays a part in that relationship.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/NNDoY-Dst-GOES5}	
+	\includegraphics[width=0.7\linewidth]{Figures/NNDoY-Bz-Dst-GOES5}
+	\caption{\dst\ predicted by nonlinear model of day of year. Bottom: Same, but including a dimension for $B_z$. \vinote{Make non-model version? See/improve DoYDst}}
+	\label{fig:DoYDst}
+\end{figure}
