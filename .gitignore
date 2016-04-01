@@ -7,5 +7,6 @@
 *.bbl
 *.toc
 *.tks
+*.synctex.gz
 PDFs/
 Figures/*.pdf

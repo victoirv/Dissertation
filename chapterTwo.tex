@@ -10,16 +10,16 @@ Due to its simplicity and ease of application, linear models are used in practic
 
 \subsection{ARX}
 
-Impulse response systems are systems in which the output (a response) is driven by a linear sum of coefficients of an input (a series of impulses). A simple example would be making a loud noise in a concert hall. The response will be the unique echoes and reverberations created by the initial driving sound, and with enough signal, a statistical model can be generated that will map the input sound to a response echo. In the magnetosphere, the most used example is an impulse of $v_{B_s}$ driving the Auroral Electrojet (AE/AL) index \cite{VBzAL}, or the Disturbance Storm Time ($D_{st}$) index \cite{VBzDST}, also shown in Figure \ref{VBzIRplot}.
+Impulse response systems are systems in which the output (a response) is driven by a linear sum of coefficients of an input (a series of impulses). A simple example would be making a loud noise in a concert hall. The response will be the unique echoes and reverberations created by the initial driving sound, and with enough signal, a statistical model can be generated that will map the input sound to a response echo. In the magnetosphere, the most used example is an impulse of $v_{B_s}$ driving the Auroral Electrojet (AE/AL) index \citep{VBzAL}, or the Disturbance Storm Time ($D_{st}$) index \citep{VBzDST}, also shown in Figure \ref{VBzIRplot}.
 
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.40]{{Figures/VBzIR.png}}
-\caption{DST (black), nonlinear autoregressive exogenous (ARX) model (red), Burton et al 1975 model (green). (b) $v_{B_S}$ impulse as input.\cite{ARXEqn}}
+\caption{DST (black), nonlinear autoregressive exogenous (ARX) model (red), Burton et al 1975 model (green). (b) $v_{B_S}$ impulse as input \citep{ARXEqn}}
 \label{VBzIRplot}
 \end{figure}
 
-This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this proposal, what starts as a simple Box-Jenkins model of the form \cite{DOYvar}:
+This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this proposal, what starts as a simple Box-Jenkins model of the form \citep{DOYvar}:
 \begin{align*}
 x(t)&=c+\sum_{j=0}^{m}{a_j f(t-j\Delta t)}
 \end{align*}
@@ -61,7 +61,6 @@ A class of model known as an Auto-Regressive Moving Average with eXogenous input
 \hat{x}(t+\Delta t)&=\sum_{i=0}^la_i\cdot x(t-i\Delta t)+\sum_{j=0}^m b_j\cdot f(t-j\Delta t)+\sum_{k=0}^n c_k\cdot g(t-k\Delta t)+c_{t+\Delta t}
 \label{ARMAXEqn}
 \end{align}
-\vnote Clean up notation ($c_t$ or $c_n$? All go 0 to $t$?)
 
 
 \subsection{Applicability}
@@ -106,7 +105,7 @@ The question of whether to use means or medians for analysis is based on what fa
 Similarly to the mean vs median question, the decision on if/how much to average the data over time will affect the resulting time series to be biased against intermittent spikes in value. The more time added to any particular average, the less impact any short-term changes will have on the final value.
 
 \subsection{Summary}
-\vnote reitterate relevance
+Because linear models are simple, optimizable, and adequately model many physical systems, they're a good first choice for trying to determine the behavior of mass density in the plasmatrough. The relationships between solar wind, plasmatrough, and inner plasmasphere may also be detectable on the first order approximation by a linear model if not entirely linear in nature.
 
 
 \section{Nonlinear}
@@ -124,13 +123,17 @@ Another algorithm known as Principal Component Analysis (PCA) can be used to tak
 Nonlinear models are applicable when a system has more complexity than can be encapsulated by a linear model. Since they're usually a class of model that trains adaptive weights that can be tuned by known inputs and outputs, they're especially useful for systems where a large amount of training data are available.
 
 \subsection{Caveats and Biases}
-Nonlinear models can be susceptible to overfitting, since they inherently attempt to fit more complexity than a linear model, but can also be controlled via the number of inputs and weights used. They also may suggest more structure than might truly exist. Both of these problems are lessened by training with more data, if available. Figure \ref{NNvsLinear} shows a comparison of predicting equatorial mass density (\req) with the $F_{10.7}$ index and the disturbance storm time index (\dst). The neural net model shows much more structure than the linear model despite being given the same data. Whether that structure reflects any real physical phenomenon, however, is a difficult problem to answer, and so both models are often compared to attempt to ascertain what structure may be valid.
+Nonlinear models can be susceptible to overfitting, since they inherently attempt to fit more complexity than a linear model, but can also be controlled via the number of inputs and weights used. They also may suggest more structure than might truly exist. Both of these problems are lessened by training with more data, if available. Figure \ref{NNvsLinear} shows a comparison of predicting equatorial mass density (\req) with the $F_{10.7}$ index and the disturbance storm time index (\dst). The neural net models (left)  shows much more structure than the linear models (right) despite being given the same data. Whether that structure reflects any real physical phenomenon, however, is a difficult problem to answer, and so both models are often compared to attempt to ascertain what structure may be valid. 
+
+Sometimes, as in the top two plots of Figure \ref{NNvsLinear}, the structure seems to support the same conclusion where the nonlinear model just adds slight detail. Othertimes, as in the case of the lower two plots, the results seem discrepant. The linear model indicates increasing \req\ with increasing $B_z$ and increasing \f, while the nonlinear model shows a more nuanced structure with increased \req\ showing up with lower $B_z$ values, and at a range of \f\ values. Situations like these require further analysis to determine the true underlying structure.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.35]{Figures/{NNDst-F107-rhoeq-GOES6}.eps}
 		\includegraphics[scale=0.35]{Figures/{LinearDst-F107-rhoeq-GOES6}.eps}
-	\caption{Nonlinear model vs linear model of $\rho_{eq}$ \vinote{Also include plot with more non-linearity}}
+			\includegraphics[scale=0.35]{Figures/{NNBz-F107-rhoeq-GOES5}.eps}
+			\includegraphics[scale=0.35]{Figures/{LinearBz-F107-rhoeq-GOES5}.eps}
+	\caption{Nonlinear models (left) vs linear models (right) of $\rho_{eq}$}
 	\label{NNvsLinear}
 \end{figure}
 
@@ -141,7 +144,7 @@ Nonlinear models differ from linear models by incorporating some method for acco
 Nonlinear models can be compared to a linear model of the same data in order to assess the usefulness of accounting for nonlinear features. If both models result in similar correlation values, it can be said that the nonlinear model offers no extra insight into the structure of the system and the relationships therein. 
 
 \subsection{Summary}
-\vnote reitterate relevance
+Nonlinear models are a useful addition to linear models by allowing for better approximations to more complex physical systems, where the entire system may not fit a linear model or may have localized dependencies. 
 
 
 
