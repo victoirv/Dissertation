@@ -18,7 +18,7 @@ This dependence was further investigated, and extended, by creating a simple lin
 
 \begin{table}[h]
 	\small
-	\begin{tabular}{|L|LLLL|}
+ 	\begin{tabular}{|C|CCCC|}
 		\hline
 		& \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
 		DoY & -0.08\pm0.08 & +0.14\pm0.13 & -0.06\pm0.06 & +0.09\pm0.10 \\
@@ -41,23 +41,22 @@ This dependence was further investigated, and extended, by creating a simple lin
  	\small
  	\begin{tabular}{|L|LLLL|}
  		\hline
- 		T-Tr & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
- 		DoY & -0.16\pm+0.11 & -0.02\pm+0.16 & -0.12\pm+0.08 & +0.01\pm+0.12 \\
- 		MLT & -0.26\pm+0.25 & -0.16\pm+0.14 & -0.16\pm+0.26 & -0.11\pm+0.07 \\
- 		B_z & -0.06\pm+0.24 & -0.27\pm+0.18 & -0.05\pm+0.17 & -0.14\pm+0.08 \\
- 		V_{sw} & -0.11\pm+0.13 & -0.02\pm+0.13 & -0.03\pm+0.13 & -0.12\pm+0.08 \\
- 		D_{st} & -0.02\pm+0.21 & -0.01\pm+0.12 & -0.06\pm+0.16 & +0.00\pm+0.17 \\
- 		\rho_{sw} & -0.01\pm+0.29 & -0.01\pm+0.37 & -0.04\pm+0.22 & +0.03\pm+0.21 \\
- 		F_{10.7} & +0.01\pm+0.11 & -0.04\pm+0.16 & +0.00\pm+0.08 & -0.03\pm+0.08 \\
- 		B_z+V_{sw} & -0.15\pm+0.20 & -0.17\pm+0.20 & -0.08\pm+0.12 & -0.24\pm+0.08 \\
- 		D_{st}+F_{10.7} & -0.05\pm+0.12 & +0.02\pm+0.11 & -0.01\pm+0.10 & -0.03\pm+0.08 \\
- 		All & -0.64\pm+0.22 & -0.54\pm+0.28 & -0.16\pm+0.14 & -0.25\pm+0.13 \\
+ 		Tr-T & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
+ 		DoY & +0.16\pm0.11 & +0.02\pm0.16 & +0.12\pm0.08 & -0.01\pm0.12 \\
+ 		MLT & +0.26\pm0.25 & +0.16\pm0.14 & +0.16\pm0.26 & +0.11\pm0.07 \\
+ 		B_z & +0.06\pm0.24 & +0.27\pm0.18 & +0.05\pm0.17 & +0.14\pm0.08 \\
+ 		V_{sw} & +0.11\pm0.13 & +0.02\pm0.13 & +0.03\pm0.13 & +0.12\pm0.08 \\
+ 		D_{st} & +0.02\pm0.21 & +0.01\pm0.12 & +0.06\pm0.16 & +0.00\pm0.17 \\
+ 		\rho_{sw} & +0.01\pm0.29 & +0.01\pm0.37 & +0.04\pm0.22 & -0.03\pm0.21 \\
+ 		F_{10.7} & -0.01\pm0.11 & +0.04\pm0.16 & +0.00\pm0.08 & +0.03\pm0.08 \\
+ 		B_z+V_{sw} & +0.15\pm0.20 & +0.17\pm0.20 & +0.08\pm0.12 & +0.24\pm0.08 \\
+ 		D_{st}+F_{10.7} & +0.05\pm0.12 & -0.02\pm0.11 & +0.01\pm0.10 & +0.03\pm0.08 \\
+ 		All & +0.64\pm0.22 & +0.54\pm0.28 & +0.16\pm0.14 & +0.25\pm0.13 \\
  		\hline
  	\end{tabular}
- 	\caption{Table of differences in linear testing-training models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half} 
+ 	\caption{Table of differences in linear training-testing models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half} 
  	\label{CCdifftable}
  \end{table}
-
 
 
 
@@ -69,7 +68,7 @@ Similarly for a neural net model with the same input and target structure as the
 
  \begin{table}[h]
  	\small
- 	\begin{tabular}{|L|LLLL|}
+ 	\begin{tabular}{|C|CCCC|}
  		\hline
  		& \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
  		DoY & +0.05\pm0.31 & +0.31\pm0.30 & +0.32\pm0.22 & +0.12\pm0.17 \\
@@ -94,21 +93,21 @@ Similarly for a neural net model with the same input and target structure as the
  	\small
  	\begin{tabular}{|L|LLLL|}
  		\hline
- 		T-Tr & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
- 		DoY & -0.16\pm+0.11 & -0.02\pm+0.16 & -0.12\pm+0.08 & +0.01\pm+0.12 \\
- 		MLT & -0.26\pm+0.25 & -0.16\pm+0.14 & -0.16\pm+0.26 & -0.11\pm+0.07 \\
- 		B_z & -0.06\pm+0.24 & -0.27\pm+0.18 & -0.05\pm+0.17 & -0.14\pm+0.08 \\
- 		V_{sw} & -0.11\pm+0.13 & -0.02\pm+0.13 & -0.03\pm+0.13 & -0.12\pm+0.08 \\
- 		D_{st} & -0.02\pm+0.21 & -0.01\pm+0.12 & -0.06\pm+0.16 & +0.00\pm+0.17 \\
- 		\rho_{sw} & -0.01\pm+0.29 & -0.01\pm+0.37 & -0.04\pm+0.22 & +0.03\pm+0.21 \\
- 		F_{10.7} & +0.01\pm+0.11 & -0.04\pm+0.16 & +0.00\pm+0.08 & -0.03\pm+0.08 \\
- 		B_z+V_{sw} & -0.15\pm+0.20 & -0.17\pm+0.20 & -0.08\pm+0.12 & -0.24\pm+0.08 \\
- 		D_{st}+F_{10.7} & -0.05\pm+0.12 & +0.02\pm+0.11 & -0.01\pm+0.10 & -0.03\pm+0.08 \\
- 		All & -0.64\pm+0.22 & -0.54\pm+0.28 & -0.16\pm+0.14 & -0.25\pm+0.13 \\
+ 		Tr-T & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
+ 		DoY & +0.48\pm0.36 & +0.17\pm0.33 & +0.18\pm0.24 & +0.27\pm0.23 \\
+ 		MLT & +0.31\pm0.40 & +0.28\pm0.42 & +0.31\pm0.36 & +0.28\pm0.26 \\
+ 		B_z & +0.14\pm0.27 & +0.29\pm0.33 & +0.20\pm0.27 & +0.20\pm0.19 \\
+ 		V_{sw} & +0.27\pm0.31 & +0.22\pm0.31 & +0.20\pm0.27 & +0.24\pm0.19 \\
+ 		D_{st} & +0.37\pm0.32 & +0.27\pm0.32 & +0.18\pm0.21 & +0.21\pm0.24 \\
+ 		\rho_{sw} & +0.31\pm0.30 & +0.16\pm0.42 & +0.24\pm0.27 & +0.47\pm0.37 \\
+ 		F_{10.7} & +0.19\pm0.28 & +0.19\pm0.29 & +0.15\pm0.25 & +0.18\pm0.26 \\
+ 		B_z+V_{sw} & +0.28\pm0.31 & +0.26\pm0.32 & +0.28\pm0.22 & +0.23\pm0.19 \\
+ 		D_{st}+F_{10.7} & +0.30\pm0.29 & +0.20\pm0.32 & +0.14\pm0.19 & +0.20\pm0.16 \\
+ 		All & +0.51\pm0.58 & +0.47\pm0.60 & +0.41\pm0.36 & +0.46\pm0.43 \\
  		\hline
  	\end{tabular}
- 	\caption{Table of differences in linear testing-training models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half \vinote{No plus on error, do tr-t. Center headers.}} 
- 	\label{CCdifftable}
+ 	\caption{Table of differences in nonlinear training-testing models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half} 
+ 	\label{NNdifftable}
  \end{table}
 
   
@@ -131,7 +130,7 @@ It should be noted that nonlinear modeling is much more susceptible to overfitti
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.55\linewidth]{Figures/ccplot-GOES6}
+	\includegraphics[width=0.7\linewidth]{Figures/ccplot-GOES6}
 	\caption{\f\ and $log(\req)$ correlation at varying time scales}
 	\label{fig:ccplot}
 \end{figure}
