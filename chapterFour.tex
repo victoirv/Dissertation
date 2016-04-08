@@ -1,7 +1,7 @@
 \chapter[Analysis]{Analysis}
 
 \section{Overview}
-While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most pertinent variables used in this study, some further analysis was done to determine any potential biases introduced by specifics of the satellite motion or derivations used. For example, Figure \ref{fig:ByHourExample} shows that not only did data availability vary significantly with magnetic local time (MLT), but the values themselves vary significantly (e.g. AE models are better in the dawn sector and \dst\ models better at dusk \citep{OBrien2003EmpiricalPlasmapause}. \vinote{Go as far back as Carpenter 1967? http://adsabs.harvard.edu/abs/1967JGR....72.2969C Yes, but put earlier in paragraph}
+While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most pertinent variables used in this study, some further analysis was done to determine any potential biases introduced by specifics of the satellite motion or derivations used. For example, Figure \ref{fig:ByHourExample} shows that not only did data availability vary significantly with magnetic local time (MLT), a process that has been well established all the way back to whistler profiles of the plasmapause \citep{Carpenter1966WhistlerStudiesPlasmapause}, but the values themselves vary significantly (e.g. AE models are better in the dawn sector and \dst\ models better at dusk \citep{OBrien2003EmpiricalPlasmapause}. 
 
 \begin{figure}[htp!]
 \centering
@@ -39,7 +39,7 @@ This dependence was further investigated, and extended, by creating a simple lin
 
  \begin{table}[h]
  	\small
- 	\begin{tabular}{|L|LLLL|}
+ 	\begin{tabular}{|C|CCCC|}
  		\hline
  		Tr-T & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
  		DoY & +0.16\pm0.11 & +0.02\pm0.16 & +0.12\pm0.08 & -0.01\pm0.12 \\
@@ -166,12 +166,14 @@ Similar to the \f\ dependence, tests were done to see if event behavior varied w
 
 For each binning method, a two sample t-test was performed for each hour to determine if the samples in each bin had significantly different means from those of the other bin. As there are 73 hours to perform a t-test on, a 95\% confidence interval could be expected to have at least four randomly significant results. Because of this, the one significant t-test result for events binned by pre-onset $B_z$ can not confirm that such a division shows significantly different behaviors, whereas the 14 significant test results for post-onset $B_z$ can be said to show a significant division in behavior between the bins. This physically suggests that the further into a \req\ increase you get, the more $B_z$ orientation impacts the long-term recovery to normal conditions (and indeed moving the window further in time did continue to show significance, but weakly and with no obvious trend). If instead of splitting into equal-number bins, the division is based on positive or negative $B_z$, either time window produces seven or more significant results, but with the added complication that one bin has twice as many samples as the other and may be biased by averaging or the lack thereof. 
 
-\cite{Temerin2002NewModelPredictionDst} discuss the impact of $B_z$ on their model of \dst\ showing a seasonal variation of \dst. Figure \ref{fig:DoYDst} shows how \dst\ seems to vary with day of year (DoY) in our nonlinear models. It seems to support the idea of a seasonal variation, and weakly the idea that $B_z$ also plays a part in that relationship.
+\cite{Temerin2002NewModelPredictionDst} discuss the impact of $B_z$ on their model of \dst\ showing a seasonal variation of \dst. Figure \ref{fig:DoYDst} shows how \dst\ seems to vary with day of year (DoY) in our nonlinear models. These plots show a nonlinear model trained on all data, then predicted over a uniform grid of points to visualize the underlying structure of the model. The top panel predicts \dst\ using DoY as an input, showing the average model output over 40 ensemble models, along with the standard deviation at each point. The bottom panel predicts \dst\ using both DoY and $B_z$ as inputs, also using a 40-member ensemble average, but with the actual datapoints overlaid to give an idea of what the structure may be derived from. Marker size in this panel is based on the value of \dst\ at that point. It seems to support the idea of a seasonal variation, and weakly the idea that $B_z$ also plays a part in that relationship.
+
+\vinote{Moldwin 2014 long duration southward IMF Bz 10.1002/2013JA018937}
 
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/NNDoY-Dst-GOES5}	
 	\includegraphics[width=0.7\linewidth]{Figures/NNDoY-Bz-Dst-GOES5}
-	\caption{\dst\ predicted by nonlinear model of day of year. Bottom: Same, but including a dimension for $B_z$. \vinote{Make non-model version? See/improve DoYDst}}
+	\caption{\dst\ predicted by nonlinear model of day of year. Bottom: Same, but including a dimension for $B_z$. \vinote{See/improve DoYDst figure}}
 	\label{fig:DoYDst}
 \end{figure}
