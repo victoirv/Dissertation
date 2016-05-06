@@ -113,7 +113,7 @@ Similarly for a neural net model with the same input and target structure as the
   
  
 
-It should be noted that nonlinear modeling is much more susceptible to overfitting than linear modeling \vinote{cite?} due to the higher order of fitting done on training and validation data, as well as the lack of a straight-forward optimal error-minimization method such as least squares regression \vinote{(non-unique solution, non-guaranteed convergence, etc)}. This is why some models, such as that including every possible variable, correlate worse than models of just a few parts. Where a linear model can minimize error by zeroing out variables without useful information, the neural net will try to incorporate the information anyway and end up overfitting. Table \ref{NNdifftable} shows how significant the differences are between training data and testing data by subtracting the median correlations from both data sets from each other, and doing the root mean squared (RMS) error as the combination of the two constituent errors.
+It should be noted that nonlinear modeling is much more susceptible to overfitting than linear modeling \vinote{cite?} due to the higher order of fitting done on training and validation data, as well as the lack of a straight-forward optimal error-minimization method such as least squares regression. This is why some models, such as that including every possible variable, correlate worse than models of just a few parts. Where a linear model can minimize error by zeroing out variables without useful information, the neural net will try to incorporate the information anyway and end up overfitting. Table \ref{NNdifftable} shows how significant the differences are between training data and testing data by subtracting the median correlations from both data sets from each other, and doing the root mean squared (RMS) error as the combination of the two constituent errors.
 
 
 
@@ -142,7 +142,7 @@ The dependence was then analyzed in a more nonlinear manner by investigating the
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107rhoeq-Dst50-GOES6-1983-1991}
 	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107Dst-Dst50-GOES6-1983-1991}	
-	\caption{\req\ and \dst\ of events binned by median \f\ values. \vinote{Literature search on \f\ and \dst. Temerin and Li \dst\ model. Bz seems to have little impact. }}
+	\caption{\req\ and \dst\ of events binned by median \f\ values. \vinote{Temerin and Li \dst\ model. Bz seems to have little impact. }}
 	\label{fig:HighLowF107rhoeq}
 \end{figure}
 
