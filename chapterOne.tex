@@ -6,6 +6,8 @@
 
 \section{Background}
 
+\vnote Add introductory paragraph that summarizes each section and how they're all connected, and how they're related to thesis work (e.g. Plasmasphere is where the data is focused, but greater magnetosphere is still talked about because coupling)
+
 \subsection{Magnetosphere}
 
 \subsubsection{Discovery}
@@ -62,31 +64,16 @@ Geomagnetic storms and substorms can have significant impacts on Earth and space
 
 All of these processes are coupled to some degree with the plasmasphere, by transferring plasma and energy from the interplanetary medium to near Earth regions ($\lesssim 8 R_E$). 
 
-\subsection{Plasmasphere}
-
-\subsubsection{Discovery}
-The plasmasphere, shown in Figure \ref{fig:magnetosphereoverview}, was largely unknown until the beginning of the space age, being found both through analyses of very low frequency radio waves and in-situ spacecraft measurements. Previously, it was believed that electron density decreased continuously from the ionosphere to the interplanetary medium. These experiments showed that the Earth had an envelope of cold plasma around it that ended in an abrupt boundary, and varied in location and density gradient with geomagnetic activity \citep{Carpenter1966WhistlerStudiesPlasmapause,EarthsPlasmasphere}.
-
-\subsubsection{Processes}
-The plasmasphere is interconnected with the radiation belts and the ionosphere. While many of the specifics of this interaction are still not fully understood, some parts have been observed and explained to a reliable degree of accuracy. 
-
-At the lowest layer of the ionosphere, photoionization of oxygen produces excess electrons that are transferred up via polar wind into the plasmasphere along magnetic field lines bringing energy and heat along with it. There is also an upward daily ``refilling"  flux \inote{Why and what is process} until a saturation point is reached, bringing the lower bounds of the plasmasphere into equilibrium with the upper ionosphere. This flux also typically reverses on the night side, sending electrons back down into the ionosphere.
-
-During periods when the location of the plasmapause is quickly brought earthwards, or a new plasmapause is established, plasma outside the plasmapause is known to be magnetically convected outwards and sunwards \citep{ErosionRecoveryPlasmasphere}, termed ``eroding". \inote{Rewrite to be more clear. Look at lemaire textbook} 
-
-At times, the plasmasphere becomes distorted at the plasmapause due to dayside reconnection, causing bulges that can become elongated and detached during co-rotation, usually on the dusk side. These extended segments of plasma are known as ``plumes" and appear as a peak in density in a normally empty plasmatrough. These plumes also often occur with, and possibly because of, enhanced magnetospheric activity \citep{EvolutionPlasmasphericIons}.
-
-\note Need diagram for each paragraph in processes section
-
-\note Leave off with list of things that are not well understood and how work in thesis approaches them.
 
 \subsection{Radiation Belts}
+
+\vnote Add more detail as to why radiation belts are discussed and how they're connected to the plasmasphere, possibly also place before plasmasphere section. Add section on plasmatrough that shows figure like 3.5 of Lemaire.
 
 \subsubsection{Discovery}
 The radiation belts that surround Earth, known as the Van Allen Radiation Belts, are two (occasionally three \citep{LinksBetweenPlasmapauseRadiationBelt}) bands of energetic particles encircling the planet. The existence of such bands was theorized based on knowledge of magnetically trapped motion of charged particles; results from rocket soundings showed that more radiation exists in the auroral regions than at the equator.  The beginning of the space age allowed particle counters to be launched onboard Explorer 1 and Explorer 3, which found radiation far beyond what was anticipated and concentrated into bands of high density \citep{MagnetoHistory}.
 
 \subsubsection{Processes}
-The outer radiation belt is filled with particles (mostly electrons) pulled \inote{Clarify and verify} from the solar wind and trapped by the magnetosphere, and occasionally lost when the magnetopause moves back inward. The inner belt tends to be filled by heavier particles (electrons and protons) from the ionosphere, and is overall less variable than the outer belt \citep{LinksBetweenPlasmapauseRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere \citep{LongTermVariationsSlotRegion}.
+The outer radiation belt is filled with electrons captured from the solar wind by the magnetosphere and then injected into the radiation belts from the magnetotail, and occasionally lost when the magnetopause moves back Earthward. The inner belt tends to be filled by heavier particles (electrons and protons) from the ionosphere, and is overall less variable than the outer belt \citep{LinksBetweenPlasmapauseRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere \citep{LongTermVariationsSlotRegion}.
 
 \begin{figure}[htp]
 	\centering
@@ -114,9 +101,37 @@ Another source/sink of energy for particles in the radiation belts (or general m
 
 \vnote correlation with plasmasphere? Mention radiation belt in ring current section and how they're independent. 
 
+
+\subsection{Plasmasphere}
+
+\subsubsection{Discovery}
+The plasmasphere, shown in Figure \ref{fig:magnetosphereoverview}, was largely unknown until the beginning of the space age, being found both through analyses of very low frequency radio waves and in-situ spacecraft measurements. Previously, it was believed that electron density decreased continuously from the ionosphere to the interplanetary medium. These experiments showed that the Earth had an envelope of cold plasma around it that ended in an abrupt boundary, and varied in location and density gradient with geomagnetic activity \citep{Carpenter1966WhistlerStudiesPlasmapause,LemaireEarthsPlasmasphere}.
+
+\subsubsection{Processes}
+The plasmasphere is interconnected with the radiation belts and the ionosphere. While many of the specifics of this interaction are still not fully understood, some parts have been observed and explained to a reliable degree of accuracy. 
+
+In the ionosphere, during the daytime sunlight photoionizes oxygen which produces excess electrons that are transferred up via polar wind into the plasmasphere along magnetic field lines bringing energy and heat along with it. This daily ``refilling"  flux continues until a saturation point is reached, bringing the lower bounds of the plasmasphere into equilibrium with the upper ionosphere. This flux also typically reverses on the night side, sending electrons back down into the ionosphere \citep{LemaireEarthsPlasmasphere}.
+
+During periods when the location of the plasmapause is quickly brought earthwards, or the plasmapause is re-established in a new location, plasma left outside the plasmapause is known to be magnetically convected outwards and sunwards \citep{ErosionRecoveryPlasmasphere, LemaireEarthsPlasmasphere}, termed ``eroding" the plasmasphere. 
+
+At times, the plasmasphere becomes distorted at the plasmapause due to dayside reconnection, causing bulges that can become elongated and detached during co-rotation, usually on the dusk side. These extended segments of plasma are known as ``plumes" and appear as a peak in density in a normally empty plasmatrough. These plumes also often occur with, and possibly because of, enhanced magnetospheric activity \citep{EvolutionPlasmasphericIons}. This bulge, and the effects of geomagnetic activity on the bulge, is shown in Figure \ref{fig:plasmabulge}
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.3]{{Figures/LemairePlasmapauseRadius.png}}
+	\caption{Plasmasphere dusk-side bulge with and without geomagnetic activity \citep{LemaireEarthsPlasmasphere}. \vinote{What to do with existing caption?}}
+	\label{fig:plasmabulge}
+\end{figure}
+
+\note Need diagram for each paragraph in processes section
+
+\note Leave off with list of things that are not well understood and how work in thesis approaches them.
+
+
+
 \subsection{Statistical Modeling of Magnetosphere and Plasmasphere}
 
-Initial forecasts \inote{Of what?} were based on an observed time delay between sunspots and geomagnetic storms \citep{SunspotStorms}. It \inote{Specify what "it" is} then advanced to a basic theory involving electromagnetic interactions in the magnetosphere \citep{Chapman}. There now exist entire services dedicated to executing statistical and magnetohydrodynamic (MHD) based models of the magnetosphere \citep{CCMC}, as well as multi-year, multi-institution efforts to survey the general statistics of modeling and forecasting of extreme events \citep{ExtremeEvents}.
+Initial forecasts of geomagnetic disturbances were based on an observed time delay from sunspot sitings \citep{SunspotStorms}. The state of geomagnetic storm forecasting then advanced to a basic theory involving electromagnetic interactions in the magnetosphere \citep{Chapman}. There now exist entire services dedicated to executing statistical and magnetohydrodynamic (MHD) based models of the magnetosphere \citep{CCMC}, as well as multi-year, multi-institution efforts to survey the general statistics of modeling and forecasting of extreme events \citep{ExtremeEvents}.
 
 The convergence of the advancement in both statistical and MHD-based simulation has led to a situation where the scientific community has the capacity for monitoring and forecasting the near-Earth effects in real time.  There have been efforts to test the forecast performance of select models over a small number of geomagnetic events \citep{ANNforecast,StormModel,StatCompStorms,Yermolaev} \inote{Also CCMC papers (GEM challenge)}. However no research has been done that involves the analysis of long-term forecasting performance of these models and comparison of the results with existing methods.
 
