@@ -15,12 +15,14 @@ The dynamic processes of Earth's magnetosphere and their various impacts on the 
 
 It was not until Van Allen performed his rocket sounding and satellite measurements of high altitude cosmic rays, finding the eponymous Van Allen Radiation Belt, that the structure of the magnetosphere was generally accepted to be more complex than that of a basic dipole magnet \citep{MagnetoHistory}. \cite{Gold1959RingCurrent} showed that charged particles captured from the solar wind plasma are broken into constituent parts that drift in opposing directions around the Earth, leading to a deeper understanding of the behavior the magnetosphere and its interconnectivity with structures both inwards and outwards, which in turn allowed for better forecasting of ground-based effects based on solar wind conditions.
 
-The inner magnetosphere is composed of many constituent parts, such as the plasmasphere, the ring current, and the radiation belts, all of which are shown in Figure \ref{fig:magnetosphereoverview}.
+The inner magnetosphere is composed of three main constituent parts: the plasmasphere, the ring current, and the radiation belts, all of which are shown in Figure \ref{fig:magnetosphereoverview}.
+
+\vnote Find figure for entire magnetosphere, not just inner (maybe swap 1.2 and 1.1)
 
 \begin{figure}[htp]
 	\centering
 	\includegraphics[scale=0.3]{{Figures/innermag-2.jpg}}
-	\caption{Overview of inner magnetosphere \vinote{Make less ugly. Can't find citable creator of original. From https://www.nasa.gov/mission\_pages/sunearth/science/inner-mag-mos.html}}
+	\caption{Overview of inner magnetosphere \vinote{Make less ugly. From https://www.nasa.gov/mission\_pages/sunearth/science/inner-mag-mos.html}}
 	\label{fig:magnetosphereoverview}
 \end{figure}
 
@@ -28,9 +30,9 @@ The inner magnetosphere is composed of many constituent parts, such as the plasm
 
 \subsubsection{Processes}
 
-The complex structure of the magnetosphere and plasmasphere leads to a number of distinct behaviors and processes such as ring currents, geomagnetic storms, and magnetospheric substorms, all of which are driven by the solar wind.
+The complex structure of the magnetosphere and plasmasphere leads to a number of distinct behaviors and processes such as ring currents, and geomagnetic storms and  substorms, all of which are driven by the solar wind.
 
-The Ring Current, one of the major magnetospheric currents shown in Figure \ref{RingCurrentFigure}, is formed when charged particles interact with the magnetosphere causing the electrons captured from the solar wind to drift one direction around the Earth while the positive ions drift the opposite direction. A schematic of this from a top-down perspective is shown in Figure \ref{fig:Gold1960DriftMotion}. With enough energetic particles drifting together, a current is generated that can significantly affect the Earth's magnetic field and is labeled the ring current. These particles in the current are injected into the magnetosphere via conditions that cause the solar wind's magnetic field to connect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms.
+The Ring Current, one of the major magnetospheric currents shown in Figure \ref{RingCurrentFigure}, is composed of charged particles drifting opposite directions around the Earth based on their polarity. A schematic of this from a top-down perspective is shown in Figure \ref{fig:Gold1960DriftMotion}. With enough energetic particles drifting together, a current is generated that can significantly affect the magnetic field measured on Earth's surface. These particles in the current are energized into the magnetosphere via conditions that cause the solar wind's magnetic field to reconnect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms.
 
 \begin{figure}[htp]
 \centering
@@ -47,14 +49,14 @@ The Ring Current, one of the major magnetospheric currents shown in Figure \ref{
 \end{figure}
 
 
-Geomagnetic storms occur when the solar wind interacts with the Earth's magnetosphere in such a way as to produce significant disruptions in its normal, quiet-time, behavior. A geomagnetic storm is generally defined by a significant change to the magnetic field measured by multiple ground-based magnetometer measurements from stations spread around the world, in the case of the $K_P$ index, or around the geomagnetic equator in the case of the disturbance storm-time ($D_{st}$) index. By using these indices, storms can be classified into categories of severity \citep{NOAAScale}. The definition of storms in the literature varies slightly between authors \citep{Yermolaev}, but most agree that sustained and abnormally perturbed near-earth and mid to low geomagnetic latitude magnetic field strengths over several hours or more constitutes a geomagnetic storm \citep{StormDefinition}. 
+Geomagnetic storms occur when the solar wind interacts with the Earth's magnetosphere in such a way as to produce significant disruptions in its normal, quiet-time, behavior. A geomagnetic storm is generally defined by a significant change to the magnetic field measured by multiple ground-based magnetometer measurements from stations spread around the world, in the case of the $K_P$ index, or around the geomagnetic equator in the case of the disturbance storm-time ($D_{st}$) index. These indices are used to classify storms into categories of severity \citep{NOAAScale}. The definition of storms in the literature varies slightly between authors \citep{Yermolaev}, but most agree that sustained and abnormally perturbed near-earth and mid to low geomagnetic latitude magnetic field strengths over several hours or more constitutes a geomagnetic storm \citep{StormDefinition}. 
 
-Geomagnetic substorms, in contrast with storms, are much shorter; typically only lasting for an hour or two, and potentially happening soon after one another. They tend to have a less appreciable effect on the amount of particles/energy in the ring current, and are associated with sudden changes in energy coming from the tail of the magnetosphere rather than the dayside reconnections associated with storms \citep{Gonzalez1994WhatIsAStorm}. Figure \ref{fig:Gonzalez2012StormSubstorm} graphically shows this comparison, along with an example of high intensity, long duration, continuous AE activity (HILDCAA) events. \vinote{Briefly mention HILDCAA, explain that it's still being researched and not a definite thing (look at obrien and mcferren)}
+Geomagnetic substorms, in contrast with storms, are much shorter; typically only lasting for an hour or two, and potentially happening soon after one another. They tend to have a less appreciable effect on the amount of particles/energy in the ring current, and are associated with sudden changes in energy coming from the tail of the magnetosphere rather than the dayside reconnections associated with storms \citep{Gonzalez1994WhatIsAStorm}. Figure \ref{fig:Gonzalez2012StormSubstorm} graphically shows this comparison, along with an example of high intensity, long duration, continuous AE activity (HILDCAA) events. \vinote{Briefly mention HILDCAA, explain that it's still being researched and not a definite thing (look at obrien and mcpherron)}
 
 \begin{figure}[htp]
 	\centering
 	\includegraphics[scale=0.3]{{Figures/Gonzalez2012StormSubstorm.png}}
-	\caption{Comparison of $AE$ and \dst\ between storms and substorms \citep{Gonzalez1994WhatIsAStorm}}
+	\caption{\vinote{Find or make better figure. real data would be better. Possibly use 1989 storm} Comparison of $AE$ and \dst\ between storms and substorms \citep{Gonzalez1994WhatIsAStorm}}
 	\label{fig:Gonzalez2012StormSubstorm}
 \end{figure}
 
@@ -73,7 +75,7 @@ All of these processes are coupled to some degree with the plasmasphere, by tran
 The radiation belts that surround Earth, known as the Van Allen Radiation Belts, are two (occasionally three \citep{LinksBetweenPlasmapauseRadiationBelt}) bands of energetic particles encircling the planet. The existence of such bands was theorized based on knowledge of magnetically trapped motion of charged particles; results from rocket soundings showed that more radiation exists in the auroral regions than at the equator.  The beginning of the space age allowed particle counters to be launched onboard Explorer 1 and Explorer 3, which found radiation far beyond what was anticipated and concentrated into bands of high density \citep{MagnetoHistory}.
 
 \subsubsection{Processes}
-The outer radiation belt is filled with electrons captured from the solar wind by the magnetosphere and then injected into the radiation belts from the magnetotail, and occasionally lost when the magnetopause moves back Earthward. The inner belt tends to be filled by heavier particles (electrons and protons) from the ionosphere, and is overall less variable than the outer belt \citep{LinksBetweenPlasmapauseRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere \citep{LongTermVariationsSlotRegion}.
+The outer radiation belt is filled with electrons captured from the solar wind by the magnetosphere and then injected into the radiation belts from the magnetotail, and occasionally lost when the magnetopause moves back Earthward \inote{cite}. The inner belt tends to be filled by heavier species from the ionosphere, and is overall less variable than the outer belt \citep{LinksBetweenPlasmapauseRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere \citep{LongTermVariationsSlotRegion}.
 
 \begin{figure}[htp]
 	\centering
@@ -105,7 +107,7 @@ Another source/sink of energy for particles in the radiation belts (or general m
 \subsection{Plasmasphere}
 
 \subsubsection{Discovery}
-The plasmasphere, shown in Figure \ref{fig:magnetosphereoverview}, was largely unknown until the beginning of the space age, being found both through analyses of very low frequency radio waves and in-situ spacecraft measurements. Previously, it was believed that electron density decreased continuously from the ionosphere to the interplanetary medium. These experiments showed that the Earth had an envelope of cold plasma around it that ended in an abrupt boundary, and varied in location and density gradient with geomagnetic activity \citep{Carpenter1966WhistlerStudiesPlasmapause,LemaireEarthsPlasmasphere}.
+The plasmasphere, shown in Figure \ref{fig:magnetosphereoverview}, was largely unknown until the beginning of the space age, being found both through analyses of very low frequency radio waves and in-situ spacecraft measurements. Previously, it was believed that electron density decreased continuously from the ionosphere to the interplanetary medium \citep{LemaireEarthsPlasmasphere}. These experiments showed that the Earth had a sphere of cold plasma around it that ended in an abrupt boundary, and varied in location and density gradient with geomagnetic activity \citep{Carpenter1966WhistlerStudiesPlasmapause,LemaireEarthsPlasmasphere}.
 
 \subsubsection{Processes}
 The plasmasphere is interconnected with the radiation belts and the ionosphere. While many of the specifics of this interaction are still not fully understood, some parts have been observed and explained to a reliable degree of accuracy. 
@@ -123,6 +125,8 @@ At times, the plasmasphere becomes distorted at the plasmapause due to dayside r
 	\label{fig:plasmabulge}
 \end{figure}
 
+\vnote Include knee graph à la Lemaire 3.5
+
 \note Need diagram for each paragraph in processes section
 
 \note Leave off with list of things that are not well understood and how work in thesis approaches them.
@@ -137,7 +141,9 @@ The convergence of the advancement in both statistical and MHD-based simulation 
 
 Three main metrics of magnetospheric activity are seen throughout the literature; the $K_p$ index: a measure of magnetosphere convection caused by currents induced by a changing plasma sheet (and indirectly from the global convection field strength) \citep{Thomsen2004WhyKpSoGood}; the $AE$ index: a measure of electrojet activity based on the maximum and minimum field strength measurements from magnetometer stations at auroral latitudes \citep{DavisSugiura1966AE}; and the previously mentioned $D_{st}$ index based on magnetic field perturbations caused primarily by a changing ring current.
 
-Models specific to the plasmasphere and plasmatrough include Carpenter and Anderson's ISEE/Whistler Model of Equatorial Electron Density in the Magnetosphere, which use empirical data to determine the location and density of the saturated plasmasphere and plasmatrough \citep{Carpenter1992ISEEModel}. \cite{Carpenter1992ISEEModel} analyze ISEE 1 data for drops in number density of at least a factor of 5 across half an L-shell and state that the inner edge of the plasmapause is located at $L_{ppi}=5.6-0.46K_{p_{max}}$. Here $K_{p_{max}}$ is the maximum value of $K_p$ (an index averaging 11 mid-latitude stations in the previous 24 hours), and $L$ is the set of magnetic field lines at a distance of $L$ Earth radii at the magnetic equator. This specifies the outer boundary of the plasmasphere, and from there the density is modeled inwards as $n_e=n_{e_{L_{ppi}}}\cdot 10^{-(L-L_{ppi})/\Delta pp}$, where $n_{e_{L_{ppi}}}$ relates day number, sunspot number, whistler profiles, and multiple year-long perturbations in an exponential fashion shown as $n_e(L,d,\bar{R})=10^{\Sigma x_i}$. $L_{ppi}$ and $\Delta pp$ are empirically derived plasmapause location and width, respectively. $x_1$ is a whistler reference profile, and indices 2-4 represent perturbation values for annual, semiannual, and solar cycle variations. The exact numbers in the density profiles vary slightly between a midnight-06 MLT model, and a 06-15 MLT model, based on the passes selected for each section. \inote{Clarify last few sentences}
+\note Needs diagram showing how measurements are made
+
+Models specific to the plasmasphere and plasmatrough include Carpenter and Anderson's ISEE/Whistler Model of Equatorial Electron Density in the Magnetosphere, which use empirical data to determine the location and density of the saturated plasmasphere and plasmatrough \citep{Carpenter1992ISEEModel}. \cite{Carpenter1992ISEEModel} analyze ISEE 1 data for drops in number density of at least a factor of 5 across half an L-shell and state that the inner edge of the plasmapause is located at $L_{ppi}=5.6-0.46K_{p_{max}}$. Here $K_{p_{max}}$ is the maximum value of $K_p$ (an index averaging 11 mid-latitude stations in the previous 24 hours), and $L$ is the set of magnetic field lines at a distance of $L$ Earth radii at the magnetic equator. This specifies the outer boundary of the plasmasphere, and from there the density is modeled inwards as $n_e=n_{e_{L_{ppi}}}\cdot 10^{-(L-L_{ppi})/\Delta pp}$, where $n_{e_{L_{ppi}}}$ relates day number, sunspot number, whistler profiles, and multiple year-long perturbations in an exponential fashion shown as $n_e(L,d,\bar{R})=10^{\Sigma x_i}$. $L_{ppi}$ and $\Delta pp$ are empirically derived plasmapause location and width, respectively. $x_1$ is a whistler reference profile, and indices $i=2-4$ represent perturbation values for annual, semiannual, and solar cycle variations respectively. The exact numbers in the density profiles vary slightly between a midnight-06 MLT model, and a 06-15 MLT model, based on the specific passes used to fit the parameters for each section. 
 
 \cite{Gallagher2000GlobalCore} created a Global Core Plasma Model which combines empirically derived models of the ionosphere, plasmasphere, and magnetosphere. For the plasmasphere it links plasma density and magnetosphere conditions by fitting Carpenter's equation, but replacing their piecewise dependence on MLT with a sinusoidal term along with extra factors to account for the post-dusk bulge while still keeping the plasmasphere model continuous. At the most basic level, the plasmasphere component reduces to an exponential equation of the form $n_{ps}=10^{gh}-1$, where $g$ and $h$ are terms relating to the inner plasmasphere and plasmapause, combining sunspot number, day of year, and a plasmapause gradient term that accounts for the MLT dependence in the form of $\Delta_{pp}=0.036\cdot sin(\frac{2\pi (MLT-6)}{24})+0.14$. They also link plasmasphere filling time to $K_p$, stating it starts at 3.5 MLT and fills until a time of $\Phi_{TP}=0.145K_p^2-2.63K_p+21.86$ hours\cite{Gallagher1995AzimuthalVariation}.
 
@@ -155,4 +161,5 @@ Most of these studies focus on plasma density in the plasmapause and plasmaspher
 \vnote Takahashi (2010), Kondrashov 2014, Denton (2006, 2015), Min 2013, Tsyganenko models
 
 \note Make connection to each paper with a section in chapter 2.
+
 

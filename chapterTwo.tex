@@ -1,36 +1,38 @@
 \chapter[Models]{Methods}
 
-This work utilized a number of linear and nonlinear methods of analysis and modeling, including Auto-Regressive Moving Average models with eXogenous inputs (ARMAX) and neural net models. No single method is ideal, and using many methods is better for insight, especially for nonlinear/complex systems. The details of their application will be expanded upon in their respective sections.
+This work utilized both linear and nonlinear methods for analysis, modeling, and prediction, including Auto-Regressive Moving Average models with eXogenous inputs (ARMAX) and neural net models. No single method is ideal, and using many methods is better for insight, especially for nonlinear/complex systems. The details of their application will be expanded upon in their respective sections.
 
 \section{Linear}
 
 \subsection{Overview}
-Due to its simplicity and ease of application, linear models are used in practically all fields as a first attempt to discover information about the data and any potential relationships. In Space Physics, where the underlying behavior of a complex system is not theoretically known, and in-situ measurements are sparse, linear models are often the first step towards understanding what components are related and to what degree. Sometimes this leads to understanding unexpected complexities in a system.
+Due to its simplicity and ease of application, linear models are used in practically all fields as a first attempt to interpret data and any potential relationships. In Space Physics, where the underlying behavior of a complex system is not theoretically known, and in-situ measurements are sparse, linear models are often the first step towards understanding what components are related and to what degree. Sometimes this leads to understanding unexpected complexities in a system.
 \vnote Example. Lemaire p.183 heavier ions in outer plasmasphere than inner plasmasphere? Correlation between plasmapause and radiation belt boundary?
 
 \subsection{ARX}
 
-Impulse response systems are systems in which the output (a response) is driven by a linear sum of coefficients of an input (a series of impulses). A simple example would be making a loud noise in a concert hall. The response will be the unique echoes and reverberations created by the initial driving sound, and with enough signal, a statistical model can be generated that will map the input sound to a response echo. In the magnetosphere, the most used example is an impulse of $v_{B_s}$ driving the Auroral Electrojet (AE/AL) index \citep{VBzAL}, or the Disturbance Storm Time ($D_{st}$) index \citep{VBzDST}, also shown in Figure \ref{VBzIRplot}.
+Impulse response systems are systems in which the output (a response) is driven by a linear sum of coefficients of an input (a series of impulses). A simple example would be making a loud noise in a concert hall. The response will be the unique echoes and reverberations created by the initial driving sound, and with enough signal, a statistical model can be generated that will map the input sound to a response echo. In the magnetosphere, the most used example is an impulse of $v_{B_S}$ driving the Auroral Electrojet (AE/AL) index \citep{VBzAL}, or the Disturbance Storm Time ($D_{st}$) index \citep{VBzDST}. $v_{B_S}$ is a metric where solar wind velocity is multiplied by the southward component of the solar wind magnetic field (i.e. southward components keep their value, northward components are zeroed). This model is  shown in Figure \ref{VBzIRplot}
 
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.40]{{Figures/VBzIR.png}}
-\caption{DST (black), nonlinear autoregressive exogenous (ARX) model (red), Burton et al 1975 model (green). (b) $v_{B_S}$ impulse as input. From \cite{ARXEqn}}
+\caption{\dst\ (black), nonlinear autoregressive exogenous (ARX) model (red), Burton et al 1975 model (green). (b) $v_{B_S}$ impulse as input. From \cite{ARXEqn}}
 \label{VBzIRplot}
 \end{figure}
 
-This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this proposal, what starts as a simple Box-Jenkins model of the form \citep{DOYvar}:
+\note Replace figure with something better and of my own making
+
+This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this proposal, what starts as a Box-Jenkins model of the form \citep{DOYvar}:
 \begin{align*}
-x(t)&=c+\sum_{j=0}^{m}{a_j f(t-j\Delta t)}
+x(t)&=\sum_{j=1}^{m}{b_j \cdot f(t-j\Delta t)}+c_t
 \end{align*}
-can be modfied with an auto-regressive component to be an autoregressive model with exogenous inputs (ARX) such as that used in \cite{ARXEqn}, taking the form:
+can be modified to include an auto-regressive component to be an autoregressive model with exogenous inputs (ARX) such as that used in \cite{ARXEqn}, taking the form:
 \begin{align}
-\hat{x}(t+\Delta t)&=\sum_{i=0}^la_i\cdot x(t-i\Delta t)+\sum_{j=0}^m b_j\cdot f(t-j\Delta t)+c
+\hat{x}(t)&=\sum_{i=1}^la_i\cdot x(t-i\Delta t)+\sum_{j=1}^m b_j\cdot f(t-j\Delta t)+c_t
 \label{ARXEqn}
 \end{align}
 Where $m$ and $l$ are the number of coefficients desired for including previous data points in the prediction, and $c$ is a factor to remove the mean offset from the data. Note that in some cases the starting value of the iterators can be individually increased if there is a known delay in response time or there is a desire to predict further into the future. In \cite{ARXEqn}, second order equations ($m=2$) were used with anywhere from one to four driving coefficients, but in practice any number of coefficients and any number of driving variables can be used up to some fraction of the number of data points that allows the coefficient matrices to be solved for. 
 
-There generally is a limit to the usefulness of large-lag data \cite{ExtremeEvents}. By looking at a plot of the cross correlation relative to the number of coefficients, a limit will generally be seen where adding more coefficients no longer reduces error in the model. By creating a threshhold of change in fit per coefficient added (perhaps via a bootstrap method), the minimum number of coefficients needed to optimally model the system can be determined.
+There generally is a limit to the usefulness of large-lead-time forecasts \cite{ExtremeEvents}. By looking at a plot of the cross correlation relative to the number of coefficients, a limit will generally be seen where adding more coefficients no longer reduces error in the model. By creating a threshhold of change in fit per coefficient added (perhaps via a bootstrap method), the minimum number of coefficients needed to optimally model the system can be determined.
 
 By constructing a linear system of equations from Equation \ref{ARXEqn}, the coefficients can be solved for in a general matrix form (where, in this case, $l=m$):
 \[
@@ -57,8 +59,9 @@ This is a linear model for the behavior of a system. However, it has been shown 
 \subsection{ARMAX}
 
 A class of model known as an Auto-Regressive Moving Average with eXogenous inputs model (ARMAX) is often used in time series analysis to combine the effects of persistence, linear dependence, and an average that changes with time. It makes a slight change on the ARX model in Equation \ref{ARXEqn}, adding the moving average term:
+
 \begin{align}
-\hat{x}(t+\Delta t)&=\sum_{i=0}^la_i\cdot x(t-i\Delta t)+\sum_{j=0}^m b_j\cdot f(t-j\Delta t)+\sum_{k=0}^n c_k\cdot g(t-k\Delta t)+c_{t+\Delta t}
+\hat{x}(t)&=\sum_{i=1}^la_i\cdot x(t-i\Delta t)+\sum_{j=1}^m b_j\cdot f(t-j\Delta t)+\sum_{k=1}^n e_j\cdot c(t-k\Delta t)+c_t
 \label{ARMAXEqn}
 \end{align}
 
@@ -67,12 +70,12 @@ A class of model known as an Auto-Regressive Moving Average with eXogenous input
 As implied by the name, an ARMAX model is suitable for analysis of a time-dependent linear system where the value of a measurement is determined by its own persistence, an external variable, and some factor that contributes to a moving average with time. Most linear systems can be encapsulated by this framework, some even being overspecified with this level of accounting for variability.
 
 \subsection{Caveats and Biases}
-There will be a number of things that, ideally, must come together to make this kind of data prediction work. For one: ARX methods can often be heavily dependent on a concept known as "persistence", whereby the best prediction for a variable at any time is that same variable at the last measured time step. For example, if the high temperature today is $70^\circ$, it is fairly likely that the high temperature tomorrow will be near $70^\circ$. Too much reliance on persistence forecasting, though, and predictions can lose their usefulness. Figure \ref{persist}, for example, shows how a model can achieve high correlation with persistence, but be almost entirely useless for predicting events before they happen since the spikes are never anticipated, just modeled after they've already been seen. 
+There will be a number of things that, ideally, must come together to make this kind of data prediction work. For one: ARX methods can often be heavily dependent on a concept known as ``persistence", whereby the best prediction for a variable at any time is that same variable at the last measured time step. For example, if the high temperature today is $70^\circ$, it is fairly likely that the high temperature tomorrow will be near $70^\circ$. Too much reliance on persistence forecasting, though, and predictions can lose their usefulness. Figure \ref{persist}, for example, shows how a model can achieve high correlation with persistence, but be almost entirely useless for predicting events before they happen since the spikes are never anticipated, just modeled after they've already been seen. Also, if the time of interest is multiple time-steps ahead, a simple persistence forecast becomes less and less accurate with each step.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.45]{{Figures/GICExample/GIC1.eps}}
-	\caption{Persistence forecast; Data in blue, model in red}
+	\caption{Persistence forecast; Data in blue, model in red \inote{Add correlation coef}}
 	\label{persist}
 \end{figure}
 
@@ -80,6 +83,9 @@ In this case, it is clear that the most recent measurement has the most weight i
 \begin{align*}
 S=\frac{R-E}{T-E}
 \end{align*}
+
+\note Drop this part if not actually used 
+
 where $R$ is the number of correct forecasts, $T$ is the total number of forecasts, and $E$ is the number expected to be correct by, in this case, a persistence forecast. This can be adapted to either consider a range of "correctness", or a binary threshold to be met. It may also be desired to assign a cost-weighting to success rates. If, say, it costs \$1 million to prepare a power grid for a storm, 10 false alarms to every one storm gets costly unless successfully preparing for that one storm saves \$1 billion. To do this, a measure of the utility of a forecast can be quantified \cite{WeigelDecision}:
 \begin{align*}
 U_F\equiv BN_H-CN_{\bar{H}}>0
@@ -91,21 +97,21 @@ The other major problem in forecasting is that of lead time. Being able to forec
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.50]{{Figures/GICExample/GIClags.eps}}
-	\caption{Correlation vs time forecasted in advance}
+	\caption{Correlation between prediction and measurement vs lead time of forecast \inote{Replace red with thin black line}}
 	\label{Lags}
 \end{figure}
 
-Figure \ref{Lags} shows a set of predictions made for autocorrelation in geomagnetically-induced currents (GIC). This metric is a measure of how much electric currents in the magnetosphere induce currents in ground-based electrical systems. The predictions were made further and further in time from the current magnetic field and GIC measurements, with decreasing accuracy as the predicted time got further from the current time. While an accurate prediction can be made one minute in advance, a prediction 3 hours in advance has almost no correlation with what actually happens. This is the main problem that this dissertation hopes to address.
+Figure \ref{Lags} shows the correlation of a set of predictions made for autocorrelation in geomagnetically-induced currents (GIC) against the amount of lead time in the forecasts. This metric is a measure of how much electric currents in the magnetosphere induce currents in ground-based electrical systems. The predictions were made further and further in time from the current magnetic field and GIC measurements, with decreasing accuracy as the predicted time got further from the current time. While an accurate prediction can be made one minute in advance, a prediction 3 hours in advance has almost no correlation with what was measured. This is the main problem that this dissertation hopes to address.
 
 \subsubsection{Mean vs Median}
-The question of whether to use means or medians for analysis is based on what facets of the data are most important to the research. Since means biased towards outliers and medians biased against them, the decision rests on how much weight should be given to outliers (or extreme values) in a study. For example, when looking at long-term solar wind variables, intermittent spikes may not be relevant to the overall pattern of behavior being analyzed, but knowing that on a short time scale a certain day had a noticeable spike may be important. In the former case, using the median would likely be best, and using the mean for the latter. However, space physics often deals with skewed distributions and sparse data, leading to an uncertainty of which method is best, so both are and analyzed with their respective traits in mind.
-\note Numerically specific result
+The question of whether to use means or medians for analysis is based on what facets of the data are most important to the research. Since means are biased towards outliers and medians biased against them \inote{cite}, the decision rests on how much weight should be given to outliers (or extreme values) in a study. For example, when looking at long-term solar wind variables, intermittent spikes may not be relevant to the overall pattern of behavior being analyzed, but knowing that on a short time scale a certain day had a noticeable spike may be important. In the former case, using the median would likely be best, and using the mean for the latter. However, space physics often deals with skewed distributions and sparse data, leading to an uncertainty of which method is best, so both are and analyzed with their respective traits in mind.
+\note Numerically specific result. E.g. 27 day F10.7 vs \req\ with medians vs means
 
 \subsubsection{Effects of time averaging}
 Similarly to the mean vs median question, the decision on if/how much to average the data over time will affect the resulting time series to be biased against intermittent spikes in value. The more time added to any particular average, the less impact any short-term changes will have on the final value.
 
 \subsection{Summary}
-Because linear models are simple, optimizable, and adequately model many physical systems, they're a good first choice for trying to determine the behavior of mass density in the plasmatrough. The relationships between solar wind, plasmatrough, and inner plasmasphere may also be detectable on the first order approximation by a linear model if not entirely linear in nature.
+Because linear models are simple, optimizable, and adequately model many physical systems, they are a useful first choice for trying to determine the behavior of mass density in the plasmatrough. The relationships between solar wind, plasmatrough, and plasmasphere may also be detectable on the first order approximation by a linear model if not entirely linear in nature.
 
 
 \section{Nonlinear}
