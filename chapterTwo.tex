@@ -14,12 +14,10 @@ Impulse response systems are systems in which the output (a response) is driven 
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.40]{{Figures/VBzIR.png}}
-\caption{\dst\ (black), nonlinear autoregressive exogenous (ARX) model (red), Burton et al 1975 model (green). (b) $v_{B_S}$ impulse as input. From \cite{ARXEqn}}
+\includegraphics[scale=0.40]{{Figures/BasicModelExample-GOES6}}
+\caption{(a) \dst\ (black), persistence (red), 12-hour impulse response model (blue). (b) $v_{B_S}$ impulse as input.}
 \label{VBzIRplot}
 \end{figure}
-
-\note Replace figure with something better and of my own making
 
 This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this proposal, what starts as a Box-Jenkins model of the form \citep{DOYvar}:
 \begin{align*}
@@ -70,14 +68,7 @@ A class of model known as an Auto-Regressive Moving Average with eXogenous input
 As implied by the name, an ARMAX model is suitable for analysis of a time-dependent linear system where the value of a measurement is determined by its own persistence, an external variable, and some factor that contributes to a moving average with time. Most linear systems can be encapsulated by this framework, some even being overspecified with this level of accounting for variability.
 
 \subsection{Caveats and Biases}
-There will be a number of things that, ideally, must come together to make this kind of data prediction work. For one: ARX methods can often be heavily dependent on a concept known as ``persistence", whereby the best prediction for a variable at any time is that same variable at the last measured time step. For example, if the high temperature today is $70^\circ$, it is fairly likely that the high temperature tomorrow will be near $70^\circ$. Too much reliance on persistence forecasting, though, and predictions can lose their usefulness. Figure \ref{persist}, for example, shows how a model can achieve high correlation with persistence, but be almost entirely useless for predicting events before they happen since the spikes are never anticipated, just modeled after they've already been seen. Also, if the time of interest is multiple time-steps ahead, a simple persistence forecast becomes less and less accurate with each step.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.45]{{Figures/GICExample/GIC1.eps}}
-	\caption{Persistence forecast; Data in blue, model in red \inote{Add correlation coef}}
-	\label{persist}
-\end{figure}
+There will be a number of things that, ideally, must come together to make this kind of data prediction work. For one: ARX methods can often be heavily dependent on a concept known as ``persistence", whereby the best prediction for a variable at any time is that same variable at the last measured time step. For example, if the high temperature today is $70^\circ$, it is fairly likely that the high temperature tomorrow will be near $70^\circ$. Too much reliance on persistence forecasting, though, and predictions can lose their usefulness. Figure \ref{VBzIRplot}, for example, shows how a model can achieve high correlation with persistence, but be almost entirely useless for predicting events before they happen since the spikes are never anticipated, just modeled after they've already been seen. Also, if the time of interest is multiple time-steps ahead, a simple persistence forecast becomes less and less accurate with each step.
 
 In this case, it is clear that the most recent measurement has the most weight in a forecast. For day-to-day behavior, this is acceptable as being part of the behavior of the system. For the forecasting of extreme events, however, another metric must be used that measures the ability of the model to predict events at or before their actual occurrence, while simultaneously avoiding predicting events that do not happen. One method for comparing models in this fashion is by using the Heidke Skill Score \cite{Heidke,Brier}, which is based on the quantity:
 \begin{align*}
@@ -96,12 +87,12 @@ The other major problem in forecasting is that of lead time. Being able to forec
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.50]{{Figures/GICExample/GIClags.eps}}
-	\caption{Correlation between prediction and measurement vs lead time of forecast \inote{Replace red with thin black line}}
+	\includegraphics[scale=0.50]{{Figures/PersistentCorrelation.eps}}
+	\caption{Correlation between prediction and measurement vs lead time of forecast}
 	\label{Lags}
 \end{figure}
 
-Figure \ref{Lags} shows the correlation of a set of predictions made for autocorrelation in geomagnetically-induced currents (GIC) against the amount of lead time in the forecasts. This metric is a measure of how much electric currents in the magnetosphere induce currents in ground-based electrical systems. The predictions were made further and further in time from the current magnetic field and GIC measurements, with decreasing accuracy as the predicted time got further from the current time. While an accurate prediction can be made one minute in advance, a prediction 3 hours in advance has almost no correlation with what was measured. This is the main problem that this dissertation hopes to address.
+Figure \ref{Lags} shows the correlation of a set of predictions made for autocorrelation in the disturbance storm time index (\dst) against the amount of lead time in the forecasts. This metric is a measure of how much disturbances in the magnetosphere induce currents in ground-based electrical systems. The predictions were made further and further in time from the current magnetic field and \dst\ measurements, with decreasing accuracy as the predicted time got further from the current time. While an accurate prediction can be made one hour in advance, a prediction 3 days in advance has almost no correlation with what was measured. This is one of the main problems that this dissertation hopes to address.
 
 \subsubsection{Mean vs Median}
 The question of whether to use means or medians for analysis is based on what facets of the data are most important to the research. Since means are biased towards outliers and medians biased against them \inote{cite}, the decision rests on how much weight should be given to outliers (or extreme values) in a study. For example, when looking at long-term solar wind variables, intermittent spikes may not be relevant to the overall pattern of behavior being analyzed, but knowing that on a short time scale a certain day had a noticeable spike may be important. In the former case, using the median would likely be best, and using the mean for the latter. However, space physics often deals with skewed distributions and sparse data, leading to an uncertainty of which method is best, so both are and analyzed with their respective traits in mind.
