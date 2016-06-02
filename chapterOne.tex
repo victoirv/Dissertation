@@ -32,7 +32,7 @@ The inner magnetosphere is composed of three main constituent parts: the plasmas
 
 The complex structure of the magnetosphere and plasmasphere leads to a number of distinct behaviors and processes such as ring currents, and geomagnetic storms and substorms, all of which are driven by the solar wind.
 
-The Ring Current, one of the major magnetospheric currents shown in Figure \ref{RingCurrentFigure}, is composed of charged particles drifting opposite directions around the Earth based on their polarity. A schematic of this from a top-down perspective is shown in Figure \ref{fig:Gold1960DriftMotion}. With enough energetic particles drifting together, a current is generated that can significantly affect the magnetic field measured on Earth's surface. These particles in the current are energized into the magnetosphere via conditions that cause the solar wind's magnetic field to reconnect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms.
+The Ring Current, one of the major magnetospheric currents shown in Figure \ref{RingCurrentFigure}, is composed of charged particles drifting opposite directions around the Earth based on their polarity. A schematic of this from a top-down perspective is shown in Figure \ref{fig:Gold1960DriftMotion}. With enough energetic particles drifting together, a current is generated that can significantly affect the magnetic field measured on Earth's surface. These particles in the current are energized into the magnetosphere via conditions that cause the solar wind's magnetic field to reconnect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms. \inote{Storm time vs quiet time ring current http://onlinelibrary.wiley.com/doi/10.1002/2016GL068013/full  and ring current/radiation belt http://www.leif.org/EOS/JZ066i005p01321.pdf}
 
 \begin{figure}[htp]
 \centering
@@ -51,13 +51,13 @@ The Ring Current, one of the major magnetospheric currents shown in Figure \ref{
 
 Geomagnetic storms occur when the solar wind interacts with the Earth's magnetosphere in such a way as to produce significant disruptions in its normal, quiet-time, behavior. A geomagnetic storm is generally defined by a significant change to the magnetic field measured by multiple ground-based magnetometer measurements from stations spread around the world, in the case of the $K_P$ index, or around the geomagnetic equator in the case of the disturbance storm-time ($D_{st}$) index. These indices are used to classify storms into categories of severity \citep{NOAAScale}. The definition of storms in the literature varies slightly between authors \citep{Yermolaev}, but most agree that sustained and abnormally perturbed near-earth and mid to low geomagnetic latitude magnetic field strengths over several hours or more constitutes a geomagnetic storm \citep{StormDefinition}. 
 
-Geomagnetic substorms, in contrast with storms, are much shorter; typically only lasting for an hour or two, and potentially happening soon after one another. They tend to have a less appreciable effect on the amount of particles/energy in the ring current, and are associated with sudden changes in energy coming from the tail of the magnetosphere rather than the dayside reconnections associated with storms \citep{Gonzalez1994WhatIsAStorm}. Figure \ref{fig:Gonzalez2012StormSubstorm} graphically shows this comparison, along with an example of high intensity, long duration, continuous AE activity (HILDCAA) events. \vinote{Briefly mention HILDCAA, explain that it's still being researched and not a definite thing (look at obrien and mcpherron)}
+Geomagnetic substorms, in contrast with storms, are much shorter; typically only lasting for an hour or two, and potentially happening soon after one another. They tend to have a less appreciable effect on the amount of particles/energy in the ring current, and are associated with sudden changes in energy coming from the tail of the magnetosphere rather than the dayside reconnections associated with storms \citep{Gonzalez1994WhatIsAStorm}. Figure \ref{fig:alldata-GOES6-1989-1989} serves as an example of this, where a long, high-intensity storm is punctuated with a few small, short disturbances in both $B_z$ and \dst.
 
-\begin{figure}[htp]
+\begin{figure}[htp!]
 	\centering
-	\includegraphics[scale=0.3]{{Figures/Gonzalez2012StormSubstorm.png}}
-	\caption{\vinote{Find or make better figure. real data would be better. Possibly use 1989 storm} Comparison of $AE$ and \dst\ between storms and substorms \citep{Gonzalez1994WhatIsAStorm}}
-	\label{fig:Gonzalez2012StormSubstorm}
+	\includegraphics[width=1\linewidth]{Figures/alldata-GOES6-10Mar1989-18Mar1989.eps}%alldata-GOES6-1989-1989}
+	\caption{Data from GOES 6 around March 1989 geomagnetic storm}
+	\label{fig:alldata-GOES6-1989-1989}
 \end{figure}
 
 
@@ -69,13 +69,13 @@ All of these processes are coupled to some degree with the plasmasphere, by tran
 
 \subsection{Radiation Belts}
 
-\vnote Add more detail as to why radiation belts are discussed and how they're connected to the plasmasphere. Add section on plasmatrough that shows figure like 3.5 of Lemaire.
+\vnote Add more detail as to why radiation belts are discussed and how they're connected to the plasmasphere. 
 
 \subsubsection{Discovery}
 The radiation belts that surround Earth, known as the Van Allen Radiation Belts, are two (occasionally three \citep{LinksBetweenPlasmapauseRadiationBelt}) bands of energetic particles encircling the planet. The existence of such bands was theorized based on knowledge of magnetically trapped motion of charged particles; results from rocket soundings showed that more radiation exists in the auroral regions than at the equator.  The beginning of the space age allowed particle counters to be launched onboard Explorer 1 and Explorer 3, which found radiation far beyond what was anticipated and concentrated into bands of high density \citep{MagnetoHistory}.
 
 \subsubsection{Processes}
-The outer radiation belt is filled with electrons captured from the solar wind by the magnetosphere and then injected into the radiation belts from the magnetotail, and occasionally lost when the magnetopause moves back Earthward \inote{cite}. The inner belt tends to be filled by heavier species from the ionosphere, and is overall less variable than the outer belt \citep{LinksBetweenPlasmapauseRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere \citep{LongTermVariationsSlotRegion}.
+The outer radiation belt is filled with electrons captured from the solar wind by the magnetosphere and then injected into the radiation belts from the magnetotail, and occasionally lost when the magnetopause moves back Earthward \inote{cite}. The inner belt tends to be filled by heavier species from the ionosphere, and is overall less variable than the outer belt \citep{LinksBetweenPlasmapauseRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere \citep{LongTermVariationsSlotRegion}. In contrast to the ring current particles, the radiation belt particles tend to have much higher energy 
 
 \begin{figure}[htp]
 	\centering
@@ -85,8 +85,6 @@ The outer radiation belt is filled with electrons captured from the solar wind b
 \end{figure}
 
 The various forms of particle movement are shown in Figure \ref{BounceMotion}. The primary component being the drift motion leading to the ring current. As particles approach the ``Mirror point", a slight angle between the motion and the curvature of the magnetic field line leads to a force opposing the motion along the line, eventually mirroring the particle back in the opposite direction. Because this applies to all particles within a certain range of energies and pitch angles, the collective sum of trapped particles forms the radiation belts. By modeling the particle mass, momentum, and the magnetic field strength of a given dipole magnetic field, approximations can be made regarding what amount of particles will become trapped in the field, and what amount will be lost to scattering \citep{Young2008MagneticFieldLineCurvature}.
-
-The azimuthal (equatorial) drift of ions in the radiation belts is what leads to the ring current. When increased geomagnetic activity causes a change in energetic particles in the radiation belts, this leads to a change in the ring current, which perturbs the Earth's magnetic field noticeably. This perturbation is the basis for the $D_{st}$ index used to gauge magnetic activity. \inote{Verify. Ring currents are much lower energy than radiation belts}
 
 The radiation belts also have an impact on the plasmasphere by acting as an occasional source of low energy particles and a sink for high energy particles. The plasmasphere also acts on the radiation belts via the VLF waves, energizing electrons out of the plasmasphere and into the radiation belts, or providing particles already in the belts the energy needed to become untrapped \citep{LinksBetweenPlasmapauseRadiationBelt}. While the outer limits of the plasmasphere and the outer radiation belt often coincide and react similarly to geomagnetic activity, they can become separated during geomagnetically active times \citep{LinksBetweenPlasmapauseRadiationBelt}. An example of this variation in relative position is shown in Figure \ref{PlasmasphereRadiationBeltFig}.
 
@@ -101,8 +99,6 @@ Another source/sink of energy for particles in the radiation belts (or general m
 
 \vnote denton paper for plasmasphere bounce motion \citep{Young2008MagneticFieldLineCurvature} and density along field line (cite?)
 
-\vnote correlation with plasmasphere? Mention radiation belt in ring current section and how they're independent. 
-
 
 \subsection{Plasmasphere}
 
@@ -114,7 +110,17 @@ The plasmasphere is interconnected with the radiation belts and the ionosphere. 
 
 In the ionosphere, during the daytime sunlight photoionizes oxygen which produces excess electrons that are transferred up via polar wind into the plasmasphere along magnetic field lines bringing energy and heat along with it. This daily ``refilling"  flux continues until a saturation point is reached, bringing the lower bounds of the plasmasphere into equilibrium with the upper ionosphere. This flux also typically reverses on the night side, sending electrons back down into the ionosphere \citep{LemaireEarthsPlasmasphere}.
 
-During periods when the location of the plasmapause is quickly brought earthwards, or the plasmapause is re-established in a new location, plasma left outside the plasmapause is known to be magnetically convected outwards and sunwards \citep{ErosionRecoveryPlasmasphere, LemaireEarthsPlasmasphere}, termed ``eroding" the plasmasphere. 
+During periods when the location of the plasmapause is quickly brought earthwards, or the plasmapause is re-established in a new location, plasma left outside the plasmapause is known to be magnetically convected outwards and sunwards \citep{ErosionRecoveryPlasmasphere, LemaireEarthsPlasmasphere}, termed ``eroding" the plasmasphere. This is because the location of the plasmapause can vary greatly with geomagnetic conditions. Figure \ref{fig:LemaireKnee} shows how the L-shell distance varies with magnetic activity via the $Kp$ index.
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.35]{{Figures/LemairePlasmapauseKnee.png}}
+	\caption{Plasmapause position varying with $Kp$ \citep{LemaireEarthsPlasmasphere}}
+	\label{fig:LemaireKnee}
+\end{figure}
+
+Figure \ref{fig:LemaireKnee} also shows the plasmatrough; the low density region just outside the plasmapause where particle count often drops multiple orders of magnitude from the plasmasphere and continues out through the magnetosphere.
+
 
 At times, the plasmasphere becomes distorted at the plasmapause due to dayside reconnection, causing bulges that can become elongated and detached during co-rotation, usually on the dusk side. These extended segments of plasma are known as ``plumes" and appear as a peak in density in a normally empty plasmatrough. These plumes also often occur with, and possibly because of, enhanced magnetospheric activity \citep{EvolutionPlasmasphericIons}. This bulge, and the effects of geomagnetic activity on the bulge, is shown in Figure \ref{fig:plasmabulge}
 
@@ -124,8 +130,6 @@ At times, the plasmasphere becomes distorted at the plasmapause due to dayside r
 	\caption{Plasmasphere dusk-side bulge with and without geomagnetic activity \citep{LemaireEarthsPlasmasphere}. \vinote{What to do with existing caption?}}
 	\label{fig:plasmabulge}
 \end{figure}
-
-\vnote Include knee graph à la Lemaire 3.5
 
 \note Need diagram for each paragraph in processes section
 
