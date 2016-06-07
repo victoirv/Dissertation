@@ -10,3 +10,4 @@
 *.synctex.gz
 PDFs/
 Figures/*.pdf
+Figures/*/*.pdf

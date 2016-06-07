@@ -1,6 +1,32 @@
-\chapter[Conclusions]{Conclusions}
+\chapter[Onset Classification]{Onset Classification}
 
-\section{Conclusions}
+\section{Method}
+Since forecasting actual values for \req\ isn't always viable or accurate, an attempt was made to model \req\ event onsets as a classification problem whereby an onset timestep (the one in which the 20 $amu/cm^3$ threshold was crossed) was defined as a ``1", and any other time defined as a ``0". By then passing in relevant measurements such as KP, $F_{10.7}$, and $V_{SW}$, a predictive classification could be made based on these conditions.
+
+Two formats and two time scales were tested: one format consisting of passing in an entire timeseries, where each prediction was based on the current and previous three timesteps as one set of inputs. The other format only considered time periods at and three hours before onset, but treated each time step as its own input and classification. The two time scales were hourly and daily medians of values.
 
 
-\section{Future Work}
+\section{Results}
+
+Figure \ref{fig:OnsetEvents} shows that trying to predict events on an hourly timescale using only the onset hour and three hours before leads to a model that predicts no onsets. Using daily values, however, results in a model where almost a third of the onsets are correctly detected, but only half of the predicted onsets were actually onsets.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly.eps}
+	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily.eps}
+	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events}
+	\label{fig:OnsetEvents}
+\end{figure}
+
+Using the full data set where each prediction was based on the current and previous three hours of inputs returned two models (daily and hourly) both of which predicted no onsets for \req\ events.
+
+In an attempt to find out what conditions best lead to a correct prediction, histograms were made of the conditions associated with a correctly predicted onset vs those of an unpredicted onset. Figure \ref{fig:OnsetEventsHist} shows this for the three \vinote{Updated if more added} variables used.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Figures/CH5/NNBinaryOnset-daily-hist.eps}
+	\caption{Histogram of onset conditions for \req\ events binned by correctness of prediction}
+	\label{fig:OnsetEventsHist}
+\end{figure}
+
+It shows that the model tended to correctly predict onset more often when given a larger value of $F_{10.7}$, but that all other variables seemed to have a similar distribution between their correct and incorrect predictions. 
