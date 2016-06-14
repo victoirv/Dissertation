@@ -160,6 +160,27 @@ The idea here is that, if the days have equal medians, a large number of random 
 
 \vnote Find a better way to say this
 
+A few other forms of epoch analysis were done for exploratory purposes. Figure \ref{fig:EpochDst12Hour} shows \dst\ events where \dst\ remained below the $-50$~nT threshold for at least 12 hours. The same preceding drop in $B_z$ can be seen, but now also appears to sustain the more negative value for longer. Also of note is the large spike in \req, but it comes at a point with few available data points, and the uncertainty on each point is large, making it difficult to say anything conclusive about the behavior of density during sustained periods of highly negative \dst.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-dd12-GOES6}
+	\caption{Epoch analysis for \dst\ events lasting longer than 12 hours}
+	\label{fig:EpochDst12Hour}
+\end{figure}
+
+Looking at events defined as a period where \req\ crosses a threshold of 20 $amu/cm^3$ shows, in Figure \ref{fig:EpochRho}, that there are no apparent trends in the solar wind or solar variables coinciding with the increase in density.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-mass-gt20-GOES6}
+	\caption{Epoch analysis for \req\ events on an daily timescale}
+	\label{fig:EpochRho}
+\end{figure}
+
+
+
+
 \section{$F_{10.7}$ Dependence}
 \cite{Takahashi2010SolarCycleVariation} showed a strong correlation between the 27-day averaged $F_{10.7}$ index of solar activity and the averaged equatorial mass density (\req). This was chosen as a starting place for verifying the data analysis routines developed for this dataset, so as to show that data input, averaging, and interpolation were all done in a reasonable and reproducible manner. Figure \ref{fig:F107rhoeq27dcomparison}.a shows the strong correlation seen previously, and reasonably reproduces Figure 13.b from \cite{Takahashi2010SolarCycleVariation} for the years covered by GOES 6. Figure \ref{fig:ccplot} shows the effects of long-time-scale averaging on the overall correlation of the two variables, suggesting that the connection is more influential long-term.
 
