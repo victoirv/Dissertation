@@ -117,6 +117,49 @@ It should be noted that nonlinear modeling is much more susceptible to overfitti
 
 
 
+\section{Epoch Analyses}
+In an effort to determine the typical behavior of an event, analyses were done for a number of different conditions where all variables were averaged over a window surrounding the event onset. This should reduce the noise of individual events and show the overall trends inherent in the system during different types of events. For example, Figure \ref{fig:EpochDst} shows the data for \dst\ events where \dst\ dropped below $-50$~nT. This finds 668 such events over the span of time covered by GOES 6. Taking the median of each variable across all events for each time step (an hour, in this figure), the general trend is plotted for $B_z$, $V_{SW}$, \dst,\f, and \req. The red dashed lines indicate one standard deviation \vinote{Verify and specify if more complicated (e.g. sqrt(n) factor)} from all of the valid points used to compute the median, and the number of valid points (relevant only for \req) is plotted as green bars.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-dst}
+	\caption{Epoch analysis for \dst\ events on an hourly timescale}
+	\label{fig:EpochDst}
+\end{figure}
+
+Figure \ref{fig:EpochDst} shows that a \dst\ decrease is, on average and with little variation, preceded by a large drop in $B_z$. The other variables may have some trend, but appear to change on the time scale of days rather than hours. For this reason, the same analysis was done after binning all data to a daily time scale, and the results are shown in Figure \ref{fig:EpochDstDay}.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-dst-day-GOES6}
+	\caption{Epoch analysis for \dst\ events on an daily timescale}
+	\label{fig:EpochDstDay}
+\end{figure}
+
+This shows the same decrease of $B_z$ accompanying a decrease in \dst, but also more clearly shows that the solar wind velocity and \req\ both also differ significantly from the day before onset to onset (in the case of velocity) and the day of onset to the day after (in the case of density). 
+
+In an effort to replicate the results of \cite{Takahashi2010SolarCycleVariation}, the same epoch analysis was done on a daily timescale for just the years looked at in the paper (1989-1991), and a similar plot was created. This is shown in Figure \ref{fig:EpochDstDayTakahashi}, and finds results that are fairly similar, with slight differences possibly attributable to difference in data pruning. \vinote{Specifics. MLT, onset selection, etc}
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-dst-50-tak-GOES6}
+	\caption{Epoch analysis for \dst\ events on an daily timescale using only the years of 1989-1991}
+	\label{fig:EpochDstDayTakahashi}
+\end{figure}
+
+To verify that there was in fact a significant difference between the day of onset and the day to either side, a bootstrap significance test was performed where a number of samples equal to the number of events was selected at random with replacement, and the median values were calculated. This was done 1000 times, and a histogram was created showing the distribution of differences between median values, shown in Figure \ref{fig:DailyBootstrapDifferences}
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\linewidth]{Figures/DailyBootstrapDifferences-GOES6-case13}
+	\caption{Bootstrap differences between median daily value of events using only the years of 1989-1991}
+	\label{fig:DailyBootstrapDifferences}
+\end{figure}
+
+The idea here is that, if the days have equal medians, a large number of random samples for each day should on average have no difference. This shows that only when looking at the difference in median \req\ between the day of onset and the day following can you get a distribution where less than 5\% of the random samples lie beyond the hypothesized difference of 0, while the other two tests fail to reject the hypothesis of equal median daily values.  
+
+\vnote Find a better way to say this
+
 \section{$F_{10.7}$ Dependence}
 \cite{Takahashi2010SolarCycleVariation} showed a strong correlation between the 27-day averaged $F_{10.7}$ index of solar activity and the averaged equatorial mass density (\req). This was chosen as a starting place for verifying the data analysis routines developed for this dataset, so as to show that data input, averaging, and interpolation were all done in a reasonable and reproducible manner. Figure \ref{fig:F107rhoeq27dcomparison}.a shows the strong correlation seen previously, and reasonably reproduces Figure 13.b from \cite{Takahashi2010SolarCycleVariation} for the years covered by GOES 6. Figure \ref{fig:ccplot} shows the effects of long-time-scale averaging on the overall correlation of the two variables, suggesting that the connection is more influential long-term.
 
@@ -158,13 +201,15 @@ Similar to the \f\ dependence, tests were done to see if event behavior varied w
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/RhoBinnedBz-case24-t020-tf25-GOES6}
-	\includegraphics[width=0.7\linewidth]{Figures/RhoBinnedBz-case24-t025-tf30-GOES6}	
+	\includegraphics[width=0.7\linewidth]{Figures/RhoBinnedBzIMF-case24-t020-tf25-GOES6}
+	\includegraphics[width=0.7\linewidth]{Figures/RhoBinnedBzIMF-case24-t025-tf30-GOES6}	
 	\caption{\req\ events binned by median $B_z$ before and after event onset}
 	\label{fig:RhoBinnedBz}
 \end{figure}
 
 For each binning method, a two sample t-test was performed for each hour to determine if the samples in each bin had significantly different means from those of the other bin. As there are 73 hours to perform a t-test on, a 95\% confidence interval could be expected to have at least four randomly significant results. Because of this, the one significant t-test result for events binned by pre-onset $B_z$ can not confirm that such a division shows significantly different behaviors, whereas the 14 significant test results for post-onset $B_z$ can be said to show a significant division in behavior between the bins. This physically suggests that the further into a \req\ increase you get, the more $B_z$ orientation impacts the long-term recovery to normal conditions (and indeed moving the window further in time did continue to show significance, but weakly and with no obvious trend). If instead of splitting into equal-number bins, the division is based on positive or negative $B_z$, either time window produces seven or more significant results, but with the added complication that one bin has twice as many samples as the other and may be biased by averaging or the lack thereof. 
+
+\vnote Rewrite now that tests have been corrected
 
 \cite{Temerin2002NewModelPredictionDst} discuss the impact of $B_z$ on their model of \dst\ showing a seasonal variation of \dst. Figure \ref{fig:DoYDst} shows how \dst\ seems to vary with day of year (DoY) in our nonlinear models. These plots show a nonlinear model trained on all data, then predicted over a uniform grid of points to visualize the underlying structure of the model. The top panel predicts \dst\ using DoY as an input, showing the average model output over 40 ensemble models, along with the standard deviation at each point. The bottom panel predicts \dst\ using both DoY and $B_z$ as inputs, also using a 40-member ensemble average, but with the actual datapoints overlaid to give an idea of what the structure may be derived from. Marker size in this panel is based on the value of \dst\ at that point. It seems to support the idea of a seasonal variation, and weakly the idea that $B_z$ also plays a part in that relationship.
 
