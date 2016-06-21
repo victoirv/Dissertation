@@ -1,7 +1,7 @@
 \chapter[Onset Classification]{Onset Classification}
 
 \section{Method}
-Since forecasting actual values for \req\ isn't always viable or accurate, an attempt was made to model \req\ event onsets as a classification problem whereby an onset timestep (the one in which the 20 $amu/cm^3$ threshold was crossed) was defined as a ``1", and any other time defined as a ``0". By then passing in relevant measurements such as KP, $F_{10.7}$, and $V_{SW}$, a predictive classification could be made based on these conditions.
+Since forecasting actual values for \req\ isn't always viable or accurate, an attempt was made to model \req\ event onsets as a classification problem whereby an onset timestep (the one in which the 20 $amu/cm^3$ threshold was crossed) was defined as a ``1", and any other time defined as a ``0". By then passing relevant measurements such as KP, $F_{10.7}$, and $V_{SW}$ into a non-linear classification model such as \texttt{patternnet} \citep{MATLAB:2014}, a predictive classification could be made based on these conditions.
 
 Two formats and two time scales were tested: one format consisting of passing in an entire timeseries, where each prediction was based on the current and previous three timesteps as one set of inputs. The other format only considered time periods at and three hours before onset, but treated each time step as its own input and classification. The two time scales were hourly and daily medians of values.
 
@@ -30,3 +30,27 @@ In an attempt to find out what conditions best lead to a correct prediction, his
 \end{figure}
 
 It shows that the model tended to correctly predict onset more often when given a larger value of $F_{10.7}$, but that all other variables seemed to have a similar distribution between their correct and incorrect predictions. 
+
+The next test was to add more obvious indicators of an event onset, such as the data being used to define an onset, and see if the model could pick that up. By adding \req\ as a factor in classifying \req\ events, the model unsurprisingly does very well, as shown in Figure \ref{fig:OnsetWithreq}.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly-withreq.eps}
+	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily-withreq.eps}
+	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events, only looking at three hours before and including onset}
+	\label{fig:OnsetWithreq}
+\end{figure}
+
+With a successful true positive classification rate of 81\% and 69\% for hourly and daily 4-hour models respectively, it can be said that including \req\ information makes the models effective for classifying event onset, but considering the event onsets are defined as a threshold of \req, perhaps it is more concerning that the models don't have a 100\% success rate? \vinote{Not sure what to say about this}.
+
+It is also interesting that including \req\ raises the detection rate for the daily model where all timesteps are included from 0\% to 10\%, as shown in Figure \ref{fig:OnsetFullWithreq}.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-hourly-withreq.eps}
+	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq.eps}
+	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events, using entire timeseries}
+	\label{fig:OnsetFullWithreq}
+\end{figure}
+
+This seems to suggest that work needs to be done to more heavily weight a "1" classification, so onsets are not drowned out by the far more numerous timesteps without an event onset.

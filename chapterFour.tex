@@ -1,13 +1,12 @@
 \chapter[Analysis]{Analysis}
 
 \section{Overview}
-While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most pertinent variables used in this study, some further analysis was done to determine any potential biases introduced by specifics of the satellite motion or derivations used. For example, Figure \ref{fig:ByHourExample} shows that not only did data availability vary significantly with magnetic local time (MLT), a process that has been well established all the way back to whistler profiles of the plasmapause \citep{Carpenter1966WhistlerStudiesPlasmapause}, but the values themselves vary significantly (e.g. AE models are better in the dawn sector and \dst\ models better at dusk \citep{OBrien2003EmpiricalPlasmapause}. 
+While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most pertinent variables used in this study, some further analysis was done to determine any potential biases introduced by specifics of the satellite motion or derivations used. For example, where Figure \ref{fig:Takahashi2010Availability} shows that not only did data availability vary significantly with magnetic local time (MLT), Figure \ref{fig:ByHourExample} shows that the values themselves also vary significantly with MLT.  This leads to different models being better at particular times, such as AE models being better in the dawn sector and \dst\ models being better at dusk \citep{OBrien2003EmpiricalPlasmapause}. The concept of MLT having a strong effect on plasmospheric behavior has been well established all the way back to the initial whistler profiles of the plasmapause \citep{Carpenter1966WhistlerStudiesPlasmapause}.
 
 \begin{figure}[htp!]
 \centering
 \includegraphics[width=0.7\linewidth]{Figures/rhoMLT.eps}
-\includegraphics[width=0.7\linewidth]{Figures/nansbyhour.eps}
-\caption{Median \req\ binned by local time, and availability of \req\ with local time.}
+\caption{Median \req\ binned by magnetic local time}
 \label{fig:ByHourExample}
 \end{figure}
 
@@ -113,16 +112,16 @@ Similarly for a neural net model with the same input and target structure as the
   
  
 
-It should be noted that nonlinear modeling is much more susceptible to overfitting than linear modeling \vinote{cite?} due to the higher order of fitting done on training and validation data, as well as the lack of a straight-forward optimal error-minimization method such as least squares regression. This is why some models, such as that including every possible variable, correlate worse than models of just a few parts. Where a linear model can minimize error by zeroing out variables without useful information, the neural net will try to incorporate the information anyway and end up overfitting. Table \ref{NNdifftable} shows how significant the differences are between training data and testing data by subtracting the median correlations from both data sets from each other, and doing the root mean squared (RMS) error as the combination of the two constituent errors.
+It should be noted that nonlinear modeling is generally more susceptible to overfitting than linear modeling due to the higher order of fitting done on training and validation data, the use of more fit parameters for similarly structured models,  as well as the lack of a straight-forward optimal error-minimization method such as least squares regression. This is why some models, such as that including every possible variable, correlate worse than models of just a few parts. Where a linear model can minimize error by zeroing out variables without useful information, the neural net will try to incorporate the information anyway and end up overfitting. Table \ref{NNdifftable} shows how significant the differences are between training data and testing data by subtracting the median correlations from both data sets from each other, and doing the root mean squared (RMS) error as the combination of the two constituent errors.
 
 
 
 \section{Epoch Analyses}
-In an effort to determine the typical behavior of an event, analyses were done for a number of different conditions where all variables were averaged over a window surrounding the event onset. This should reduce the noise of individual events and show the overall trends inherent in the system during different types of events. For example, Figure \ref{fig:EpochDst} shows the data for \dst\ events where \dst\ dropped below $-50$~nT. This finds 668 such events over the span of time covered by GOES 6. Taking the median of each variable across all events for each time step (an hour, in this figure), the general trend is plotted for $B_z$, $V_{SW}$, \dst,\f, and \req. The red dashed lines indicate one standard deviation \vinote{Verify and specify if more complicated (e.g. sqrt(n) factor)} from all of the valid points used to compute the median, and the number of valid points (relevant only for \req) is plotted as green bars.
+In an effort to determine the typical behavior of an event, analyses were done for a number of different conditions where all variables were averaged over a window surrounding the event onset. This should reduce the noise of individual events and show the overall trends inherent in the system during different types of events. For example, Figure \ref{fig:EpochDst} shows the data for \dst\ events where \dst\ dropped below $-50$~nT. This finds 668 such events over the span of time covered by GOES 6. Taking the median of each variable across all events for each time step (an hour, in this figure), the general trend is plotted for $B_z$, $V_{SW}$, \dst,\f, and \req. The red dashed lines indicate one standard error of the mean from all of the valid points used to compute the median, and the number of valid points (relevant only for \req) is plotted as green bars.
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-dst}
+	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-dst}
 	\caption{Epoch analysis for \dst\ events on an hourly timescale}
 	\label{fig:EpochDst}
 \end{figure}
@@ -131,21 +130,30 @@ Figure \ref{fig:EpochDst} shows that a \dst\ decrease is, on average and with li
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-dst-day-GOES6}
+	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-dst-day-GOES6}
 	\caption{Epoch analysis for \dst\ events on an daily timescale}
 	\label{fig:EpochDstDay}
 \end{figure}
 
 This shows the same decrease of $B_z$ accompanying a decrease in \dst, but also more clearly shows that the solar wind velocity and \req\ both also differ significantly from the day before onset to onset (in the case of velocity) and the day of onset to the day after (in the case of density). 
 
-In an effort to replicate the results of \cite{Takahashi2010SolarCycleVariation}, the same epoch analysis was done on a daily timescale for just the years looked at in the paper (1989-1991), and a similar plot was created. This is shown in Figure \ref{fig:EpochDstDayTakahashi}, and finds results that are fairly similar, with slight differences possibly attributable to difference in data pruning. \vinote{Specifics. MLT, onset selection, etc}
+In an effort to replicate the results of \cite{Takahashi2010SolarCycleVariation}, shown in Figure \ref{fig:EpochTakahashi}, the same epoch analysis was done on a daily timescale for just the years looked at in the paper (1989-1991), and a similar plot was created. This is shown in Figure \ref{fig:EpochDstDayTakahashi}, and finds results that are fairly similar, with slight differences possibly attributable to difference in data pruning. \cite{Takahashi2010SolarCycleVariation} only looks at events happening between 0600 and 1200 MLT since their $f_{T3}$ detection rate was highest then, whereas this looks at all times. They also define "onset" as time corresponding to the minimum value in an event where \dst\ crossed the $-50$~nT threshold, whereas this considers the moment of crossing the threshold to be the onset.
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-dst-50-tak-GOES6}
+	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-Takahashi.png}
+	\caption{Epoch analysis for \dst\ events on an daily timescale using only the years of 1989-1991 from \citep{Takahashi2010SolarCycleVariation}}
+	\label{fig:EpochTakahashi}
+\end{figure}
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-dst-50-tak-GOES6}
 	\caption{Epoch analysis for \dst\ events on an daily timescale using only the years of 1989-1991}
 	\label{fig:EpochDstDayTakahashi}
 \end{figure}
+
+
 
 To verify that there was in fact a significant difference between the day of onset and the day to either side, a bootstrap significance test was performed where a number of samples equal to the number of events was selected at random with replacement, and the median values were calculated. This was done 1000 times, and a histogram was created showing the distribution of differences between median values, shown in Figure \ref{fig:DailyBootstrapDifferences}
 
@@ -164,7 +172,7 @@ A few other forms of epoch analysis were done for exploratory purposes. Figure \
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-dd12-GOES6}
+	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-dd12-GOES6}
 	\caption{Epoch analysis for \dst\ events lasting longer than 12 hours}
 	\label{fig:EpochDst12Hour}
 \end{figure}
@@ -173,11 +181,26 @@ Looking at events defined as a period where \req\ crosses a threshold of 20 $amu
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/StormAvs/stormavs-mass-gt20-GOES6}
+	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-mass-gt20-GOES6}
 	\caption{Epoch analysis for \req\ events on an daily timescale}
 	\label{fig:EpochRho}
 \end{figure}
 
+And finally, to test the amount of natural variance and for the sake of verification, a stack plot was made with random times selected as event onsets for both hourly and daily data. Figures \ref{fig:EpochRandom} and \ref{fig:EpochRandomDaily} show both examples, and that neither have any significant trends.
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-random-GOES6}
+	\caption{Epoch analysis for randomly selected events on an hourly timescale}
+	\label{fig:EpochRandom}
+\end{figure}
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-randomdaily-GOES6}
+	\caption{Epoch analysis for randomly selected events on a daily timescale}
+	\label{fig:EpochRandomDaily}
+\end{figure}
 
 
 
@@ -186,8 +209,8 @@ Looking at events defined as a period where \req\ crosses a threshold of 20 $amu
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.85\linewidth]{Figures/F107MD27d-GOES6}
-		\includegraphics[width=0.85\linewidth]{Figures/F107MD27d-all}
+	\includegraphics[width=0.95\linewidth]{Figures/F107MD27d-GOES6}
+	\includegraphics[width=0.95\linewidth]{Figures/F107MD27d-all}
 	\caption{Top: Comparing $F_{10.7\_27d}$ and $log(\rho_{eq\_27d})$ using GOES 6 data. Bottom: Same as top, but all available satellites}
 	\label{fig:F107rhoeq27dcomparison}
 \end{figure}
@@ -206,13 +229,23 @@ The dependence was then analyzed in a more nonlinear manner by investigating the
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107rhoeq-Dst50-GOES6-1983-1991}
 	\includegraphics[width=0.7\linewidth]{Figures/HighLowF107Dst-Dst50-GOES6-1983-1991}	
-	\caption{\req\ and \dst\ of events binned by median \f\ values. \vinote{Temerin and Li \dst\ model. Bz seems to have little impact. }}
+	\caption{\req\ and \dst\ of events binned by median \f\ values.}
 	\label{fig:HighLowF107rhoeq}
 \end{figure}
 
 Figure \ref{fig:HighLowF107rhoeq}.a shows that \req\ reacts to decreases in \dst, but seemingly only during periods of higher solar activity. Since higher \f\ also correlates with a higher baseline \req, this effect could be due to saturation of the plasmasphere from the increased solar activity. It should also be noted that this trend isn't seen as strongly for all satellites. GOES 2 and 6 show a significant spike and baseline shift, while GOES 7 and 5 lack the significant spike and shift respectively. 
 
 Figure \ref{fig:HighLowF107rhoeq}.b shows that though all events are selected based on a \dst\ threshold, the behavior before and after the storm is affected by \f. For low solar activity events, the \dst\ changes are more sudden and severe, coming from and going back to a more positive baseline. High solar activity events have a longer recovery period.
+
+One other method of testing dependence was done, where events were binned by the median value of the four hour leading up to event onset, and by the four hours at and following onset. Then the general trend of these two types of events is analyzed and a Wilcoxon rank-sum test (via \texttt{ranksum} \citep{MATLAB:2014}) is done at each hour to determine if the distributions of the two bins could come from the same population. Figure \ref{fig:RhoBinnedF107} shows that events are significant at a majority of the hours tested, with higher values of \f\ leading to higher values of \req\ both before and after event onset. 
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/RhoBinnedF107-case24-t020-tf25-GOES6}
+	\includegraphics[width=0.7\linewidth]{Figures/RhoBinnedF107-case24-t025-tf30-GOES6}	
+	\caption{\req\ events binned by median \f\ before and after event onset}
+	\label{fig:RhoBinnedF107}
+\end{figure}
 
 
 
@@ -228,13 +261,10 @@ Similar to the \f\ dependence, tests were done to see if event behavior varied w
 	\label{fig:RhoBinnedBz}
 \end{figure}
 
-For each binning method, a two sample t-test was performed for each hour to determine if the samples in each bin had significantly different means from those of the other bin. As there are 73 hours to perform a t-test on, a 95\% confidence interval could be expected to have at least four randomly significant results. Because of this, the one significant t-test result for events binned by pre-onset $B_z$ can not confirm that such a division shows significantly different behaviors, whereas the 14 significant test results for post-onset $B_z$ can be said to show a significant division in behavior between the bins. This physically suggests that the further into a \req\ increase you get, the more $B_z$ orientation impacts the long-term recovery to normal conditions (and indeed moving the window further in time did continue to show significance, but weakly and with no obvious trend). If instead of splitting into equal-number bins, the division is based on positive or negative $B_z$, either time window produces seven or more significant results, but with the added complication that one bin has twice as many samples as the other and may be biased by averaging or the lack thereof. 
-
-\vnote Rewrite now that tests have been corrected
+For each binning method, a two sample t-test was performed for each hour to determine if the samples in each bin had significantly different medians from those of the other bin. As there are 73 hours to perform a t-test on, a 95\% confidence interval could be expected to have at least four randomly significant results. Because of this, the six significant t-test result for events binned by pre-onset $B_z$ can only barely confirm that such a division shows significantly different behaviors, whereas the nine significant test results for post-onset $B_z$, six of which are consecutive hours, can be said to show a more significant division in behavior between the bins. This physically suggests that the further into a \req\ increase you get, the more $B_z$ orientation impacts the long-term recovery to normal conditions (and indeed moving the window further in time did continue to show significance, but weakly and with no obvious trend). If instead of splitting into equal-number bins, the division is based on positive or negative $B_z$, either time window produces seven or more significant results, but with the added complication that one bin has twice as many samples as the other and may be biased by averaging or the lack thereof. 
 
 \cite{Temerin2002NewModelPredictionDst} discuss the impact of $B_z$ on their model of \dst\ showing a seasonal variation of \dst. Figure \ref{fig:DoYDst} shows how \dst\ seems to vary with day of year (DoY) in our nonlinear models. These plots show a nonlinear model trained on all data, then predicted over a uniform grid of points to visualize the underlying structure of the model. The top panel predicts \dst\ using DoY as an input, showing the average model output over 40 ensemble models, along with the standard deviation at each point. The bottom panel predicts \dst\ using both DoY and $B_z$ as inputs, also using a 40-member ensemble average, but with the actual datapoints overlaid to give an idea of what the structure may be derived from. Marker size in this panel is based on the value of \dst\ at that point. It seems to support the idea of a seasonal variation, and weakly the idea that $B_z$ also plays a part in that relationship.
 
-\vinote{Moldwin 2014 long duration southward IMF Bz 10.1002/2013JA018937}
 
 \begin{figure}[htp!]
 	\centering
