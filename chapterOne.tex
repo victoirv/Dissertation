@@ -6,7 +6,7 @@
 
 \section{Background}
 
-\vnote Add introductory paragraph that summarizes each section and how they're all connected, and how they're related to thesis work (e.g. Plasmasphere is where the data is focused, but greater magnetosphere is still talked about because coupling)
+This dissertation investigates the behavior of the plasmasphere and tests the ability to forecast space weather events based on said behavior. This chapter introduces the major connections the plasmasphere has with the magnetosphere and radiation belts, as well as how their individual processes are interdependent.  It then explores previous attempts to statistically model the magnetosphere and plasmasphere.
 
 \subsection{Magnetosphere}
 
@@ -15,14 +15,22 @@ The dynamic processes of Earth's magnetosphere and their various impacts on the 
 
 It was not until Van Allen performed his rocket sounding and satellite measurements of high altitude cosmic rays, finding the eponymous Van Allen Radiation Belt, that the structure of the magnetosphere was generally accepted to be more complex than that of a basic dipole magnet \citep{MagnetoHistory}. \cite{Gold1959RingCurrent} showed that charged particles captured from the solar wind plasma are broken into constituent parts that drift in opposing directions around the Earth, leading to a deeper understanding of the behavior the magnetosphere and its interconnectivity with structures both inwards and outwards, which in turn allowed for better forecasting of ground-based effects based on solar wind conditions.
 
-The inner magnetosphere is composed of three main constituent parts: the plasmasphere, the ring current, and the radiation belts, all of which are shown in Figure \ref{fig:magnetosphereoverview}.
+The overall magnetospheric system is portrayed in Figure \ref{RingCurrentFigure}, showing where the solar wind interacts with the bow shock, the magnetopause, and finally the plasmasphere, as well as the overall structure this creates.
 
-\vnote Find figure for entire magnetosphere, not just inner (maybe swap 1.2 and 1.1)
+\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.5]{{Figures/MagnetoOverview.jpg}}
+	\caption{Overview of the magnetosphere and plasmasphere \citep{MagnetosphereOverallFigure}}
+	\label{RingCurrentFigure}
+\end{figure}
+
+The inner magnetosphere, where this dissertation is primarily focused, is composed of three main constituent parts: the plasmasphere, the ring current, and the radiation belts, all of which are shown in Figure \ref{fig:magnetosphereoverview}. This helps illustrate how the parts are not always spatially distinct and, depending on conditions, often overlap.
+
 
 \begin{figure}[htp]
 	\centering
 	\includegraphics[scale=0.3]{{Figures/innermag-2.jpg}}
-	\caption{Overview of inner magnetosphere \vinote{Make less ugly. From https://www.nasa.gov/mission\_pages/sunearth/science/inner-mag-mos.html}}
+	\caption{Overview of inner magnetosphere. Adapted from \citep{InnerMagNASA}}
 	\label{fig:magnetosphereoverview}
 \end{figure}
 
@@ -32,14 +40,15 @@ The inner magnetosphere is composed of three main constituent parts: the plasmas
 
 The complex structure of the magnetosphere and plasmasphere leads to a number of distinct behaviors and processes such as ring currents, and geomagnetic storms and substorms, all of which are driven by the solar wind.
 
-The Ring Current, one of the major magnetospheric currents shown in Figure \ref{RingCurrentFigure}, is composed of charged particles drifting opposite directions around the Earth based on their polarity. A schematic of this from a top-down perspective is shown in Figure \ref{fig:Gold1960DriftMotion}. With enough energetic particles drifting together, a current is generated that can significantly affect the magnetic field measured on Earth's surface. These particles in the current are energized into the magnetosphere via conditions that cause the solar wind's magnetic field to reconnect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms. \inote{Storm time vs quiet time ring current http://onlinelibrary.wiley.com/doi/10.1002/2016GL068013/full  and ring current/radiation belt http://www.leif.org/EOS/JZ066i005p01321.pdf}
+The Ring Current, one of the major magnetospheric currents shown in Figure \ref{RingCurrentFigure}, is composed of charged particles drifting opposite directions around the Earth based on their polarity. A schematic of this from a top-down perspective is shown in Figure \ref{fig:Gold1960DriftMotion}. With enough energetic particles drifting together, a current is generated that can significantly affect the magnetic field measured on Earth's surface. These particles in the current are energized into the magnetosphere via conditions that cause the solar wind's magnetic field to reconnect with that of Earth, which is often exacerbated by the surge of energy created by geomagnetic storms. 
 
 \begin{figure}[htp]
-\centering
-\includegraphics[scale=0.80]{{Figures/MagnetosphereCurrents.jpg}}
-\caption{Currents in/around the magnetosphere \citep{RingCurrentMapping}}
-\label{RingCurrentFigure}
+	\centering
+	\includegraphics[scale=0.25]{{Figures/magnetosphere.jpg}}
+	\caption{Currents in/around the magnetosphere. Adapted from \citep{MagnetosphereCurrentFigure}}
+	\label{RingCurrentFigure}
 \end{figure}
+
 
 \begin{figure}[htp]
 	\centering
@@ -69,13 +78,11 @@ All of these processes are coupled to some degree with the plasmasphere, by tran
 
 \subsection{Radiation Belts}
 
-\vnote Add more detail as to why radiation belts are discussed and how they're connected to the plasmasphere. 
-
 \subsubsection{Discovery}
 The radiation belts that surround Earth, known as the Van Allen Radiation Belts, are two (occasionally three \citep{LinksBetweenPlasmapauseRadiationBelt}) bands of energetic particles encircling the planet. The existence of such bands was theorized based on knowledge of magnetically trapped motion of charged particles; results from rocket soundings showed that more radiation exists in the auroral regions than at the equator.  The beginning of the space age allowed particle counters to be launched onboard Explorer 1 and Explorer 3, which found radiation far beyond what was anticipated and concentrated into bands of high density \citep{MagnetoHistory}.
 
 \subsubsection{Processes}
-The outer radiation belt is filled with electrons captured from the solar wind by the magnetosphere and then injected into the radiation belts from the magnetotail, and occasionally lost when the magnetopause moves back Earthward \inote{cite}. The inner belt tends to be filled by heavier species from the ionosphere, and is overall less variable than the outer belt \citep{LinksBetweenPlasmapauseRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere \citep{LongTermVariationsSlotRegion}. In contrast to the ring current particles, the radiation belt particles tend to have much higher energy 
+The outer radiation belt is filled with electrons captured from the solar wind by the magnetosphere and then injected into the radiation belts from the magnetotail, and occasionally lost when the magnetopause moves back Earthward \citep{Millan2007ReviewRadiationElectronLoss}. The inner belt tends to be filled by heavier species from the ionosphere, and is overall less variable than the outer belt \citep{LinksBetweenPlasmapauseRadiationBelt}. It gains particles from inward radial diffusion and loses them to the atmosphere via plasmaspheric hiss \citep{Lyons1973StructureRadiationBelt}. The slot region between the two is formed by the interaction of energetic particles with very low frequency (VLF) waves, leading to particle loss to the atmosphere \citep{LongTermVariationsSlotRegion}. In contrast to the ring current particles, the radiation belt particles tend to have much higher energy 
 
 \begin{figure}[htp]
 	\centering
@@ -86,7 +93,7 @@ The outer radiation belt is filled with electrons captured from the solar wind b
 
 The various forms of particle movement are shown in Figure \ref{BounceMotion}. The primary component being the drift motion leading to the ring current. As particles approach the ``Mirror point", a slight angle between the motion and the curvature of the magnetic field line leads to a force opposing the motion along the line, eventually mirroring the particle back in the opposite direction. Because this applies to all particles within a certain range of energies and pitch angles, the collective sum of trapped particles forms the radiation belts. By modeling the particle mass, momentum, and the magnetic field strength of a given dipole magnetic field, approximations can be made regarding what amount of particles will become trapped in the field, and what amount will be lost to scattering \citep{Young2008MagneticFieldLineCurvature}.
 
-The radiation belts also have an impact on the plasmasphere by acting as an occasional source of low energy particles and a sink for high energy particles. The plasmasphere also acts on the radiation belts via the VLF waves, energizing electrons out of the plasmasphere and into the radiation belts, or providing particles already in the belts the energy needed to become untrapped \citep{LinksBetweenPlasmapauseRadiationBelt}. While the outer limits of the plasmasphere and the outer radiation belt often coincide and react similarly to geomagnetic activity, they can become separated during geomagnetically active times \citep{LinksBetweenPlasmapauseRadiationBelt}. An example of this variation in relative position is shown in Figure \ref{PlasmasphereRadiationBeltFig}.
+The radiation belts have an impact on the plasmasphere by acting as an occasional source of low energy particles and a sink for high energy particles. The plasmasphere also acts on the radiation belts via the VLF waves, energizing electrons out of the plasmasphere and into the radiation belts, or providing particles already in the belts the energy needed to become untrapped \citep{LinksBetweenPlasmapauseRadiationBelt}. While the outer limits of the plasmasphere and the outer radiation belt often coincide and react similarly to geomagnetic activity, they can become separated during geomagnetically active times \citep{LinksBetweenPlasmapauseRadiationBelt}. An example of this variation in relative position is shown in Figure \ref{PlasmasphereRadiationBeltFig}.
 
 \begin{figure}[htp!]
 	\centering
@@ -95,9 +102,7 @@ The radiation belts also have an impact on the plasmasphere by acting as an occa
 	\label{PlasmasphereRadiationBeltFig}
 \end{figure}
 
-Another source/sink of energy for particles in the radiation belts (or general magnetospheric plasma) is via Alfvén waves \citep{Keling2009AlfvenWaves}. These waves are composed of oscillations of particles \inote{Not particles? Verify} traveling along magnetic field lines, carrying both energy and field-aligned currents as they propagate. By moving energy along the field lines, Alfvén waves also couple the various distinct sections of plasma around Earth. 
-
-\vnote denton paper for plasmasphere bounce motion \citep{Young2008MagneticFieldLineCurvature} and density along field line (cite?)
+Another source/sink of energy for particles in the radiation belts (or general magnetospheric plasma) is via Alfvén waves \citep{Keling2009AlfvenWaves}. These waves are composed of oscillating electromagnetic fields carrying both energy and field-aligned currents (via oscillating electrons) as they propagate. By moving energy along the field lines, Alfvén waves also couple the various distinct sections of plasma around Earth. 
 
 
 \subsection{Plasmasphere}
@@ -114,20 +119,20 @@ During periods when the location of the plasmapause is quickly brought earthward
 
 \begin{figure}[htp]
 	\centering
-	\includegraphics[scale=0.35]{{Figures/LemairePlasmapauseKnee.png}}
-	\caption{Plasmapause position varying with $Kp$ \citep{LemaireEarthsPlasmasphere}}
+	\includegraphics[scale=0.65]{{Figures/LemairePlasmapauseKnee.png}}
+	\caption{Plasmapause position varying with $Kp$ as represented by several particular plasmapause crossings made on outbound passes between local times of midnight and 0400 \citep{LemaireEarthsPlasmasphere}}
 	\label{fig:LemaireKnee}
 \end{figure}
 
-Figure \ref{fig:LemaireKnee} also shows the plasmatrough; the low density region just outside the plasmapause where particle count often drops multiple orders of magnitude from the plasmasphere and continues out through the magnetosphere.
+Figure \ref{fig:LemaireKnee} also shows the plasmatrough; the low density region just outside the plasmapause where particle count often drops multiple orders of magnitude from the plasmasphere and continues out through the magnetosphere. \vinote{More detail}
 
 
 At times, the plasmasphere becomes distorted at the plasmapause due to dayside reconnection, causing bulges that can become elongated and detached during co-rotation, usually on the dusk side. These extended segments of plasma are known as ``plumes" and appear as a peak in density in a normally empty plasmatrough. These plumes also often occur with, and possibly because of, enhanced magnetospheric activity \citep{EvolutionPlasmasphericIons}. This bulge, and the effects of geomagnetic activity on the bulge, is shown in Figure \ref{fig:plasmabulge}
 
 \begin{figure}[htp]
 	\centering
-	\includegraphics[scale=0.3]{{Figures/LemairePlasmapauseRadius.png}}
-	\caption{Plasmasphere dusk-side bulge with and without geomagnetic activity \citep{LemaireEarthsPlasmasphere}. \vinote{What to do with existing caption?}}
+	\includegraphics[scale=0.5]{{Figures/LemairePlasmapauseRadius.png}}
+	\caption{Plasmasphere dusk-side bulge with geomagnetic activity. The solid line is the average position of the plasmasphere knee during periods of $K_p=2-4$, while the dots indicate a specific instance of increasing magnetic activity, and the dashes a specific instance of decreasing activity \citep{LemaireEarthsPlasmasphere}.}
 	\label{fig:plasmabulge}
 \end{figure}
 
