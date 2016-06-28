@@ -113,18 +113,34 @@ The plasmasphere, shown in Figure \ref{fig:magnetosphereoverview}, was largely u
 \subsubsection{Processes}
 The plasmasphere is interconnected with the radiation belts and the ionosphere. While many of the specifics of this interaction are still not fully understood, some parts have been observed and explained to a reliable degree of accuracy. 
 
-In the ionosphere, during the daytime sunlight photoionizes oxygen which produces excess electrons that are transferred up via polar wind into the plasmasphere along magnetic field lines bringing energy and heat along with it. This daily ``refilling"  flux continues until a saturation point is reached, bringing the lower bounds of the plasmasphere into equilibrium with the upper ionosphere. This flux also typically reverses on the night side, sending electrons back down into the ionosphere \citep{LemaireEarthsPlasmasphere}.
+In the ionosphere, during the daytime sunlight photoionizes oxygen which produces excess electrons that are transferred up via polar wind into the plasmasphere along magnetic field lines bringing energy and heat along with it. This daily ``refilling"  flux continues until a saturation point is reached, bringing the lower bounds of the plasmasphere into equilibrium with the upper ionosphere. This flux also typically reverses on the night side, sending electrons back down into the ionosphere \citep{LemaireEarthsPlasmasphere}. Figure \ref{fig:PlasmasphereRefilling} shows one particular example of active geomagnetic conditions emptying the plasmasphere following by a quiet time refilling flux restoring density over a couple of days.
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.4]{{Figures/PlasmasphereRefillingT.png}}
+	\includegraphics[scale=0.4]{{Figures/PlasmasphereRefillingB.png}}
+	\caption{Plasmasphere ion density emptying and refilling as measured by GEO in 2007, along with coinciding solar wind conditions. From \citep{Denton2014ObservationsModelingRefilling}.}
+	\label{fig:PlasmasphereRefilling}
+\end{figure}
+
 
 During periods when the location of the plasmapause is quickly brought earthwards, or the plasmapause is re-established in a new location, plasma left outside the plasmapause is known to be magnetically convected outwards and sunwards \citep{ErosionRecoveryPlasmasphere, LemaireEarthsPlasmasphere}, termed ``eroding" the plasmasphere. This is because the location of the plasmapause can vary greatly with geomagnetic conditions. Figure \ref{fig:LemaireKnee} shows how the L-shell distance varies with magnetic activity via the $Kp$ index.
 
 \begin{figure}[htp]
 	\centering
 	\includegraphics[scale=0.65]{{Figures/LemairePlasmapauseKnee.png}}
-	\caption{Plasmapause position varying with $Kp$ as represented by several particular plasmapause crossings made on outbound passes between local times of midnight and 0400 \citep{LemaireEarthsPlasmasphere}}
+	\caption{Plasmapause position varying with $Kp$ as represented by several particular plasmapause crossings made on outbound passes between local times of midnight and 0400. From \citep{LemaireEarthsPlasmasphere}}
 	\label{fig:LemaireKnee}
 \end{figure}
 
-Figure \ref{fig:LemaireKnee} also shows the plasmatrough; the low density region just outside the plasmapause where particle count often drops multiple orders of magnitude from the plasmasphere and continues out through the magnetosphere. \vinote{More detail}
+Figure \ref{fig:LemaireKnee} also shows the plasmatrough; the low density region just outside the plasmapause where particle count often drops multiple orders of magnitude from the plasmasphere and continues out through the magnetosphere. The location of what is called the "plasmapause knee" varies with time and geomagnetic activity, where the dayside boundary is often less steep than the nightside boundary. It's also observed in Figure \ref{fig:LemaireNoKnee} that after multiple days of quiet geomagnetic conditions, the saturated plasmasphere smooths the knee out until the plasmapause is almost unidentifiable \citep{LemaireEarthsPlasmasphere}. 
+
+\begin{figure}[htp]
+	\centering occasional 
+	\includegraphics[scale=0.5]{{Figures/LemaireQuietPlasmapause.png}}
+	\caption{Multiple ISEE 1 passes made between 09-15 MLT during saturated plasmapause conditions. From \citep{LemaireEarthsPlasmasphere}}
+	\label{fig:LemaireNoKnee}
+\end{figure}
 
 
 At times, the plasmasphere becomes distorted at the plasmapause due to dayside reconnection, causing bulges that can become elongated and detached during co-rotation, usually on the dusk side. These extended segments of plasma are known as ``plumes" and appear as a peak in density in a normally empty plasmatrough. These plumes also often occur with, and possibly because of, enhanced magnetospheric activity \citep{EvolutionPlasmasphericIons}. This bulge, and the effects of geomagnetic activity on the bulge, is shown in Figure \ref{fig:plasmabulge}
@@ -132,21 +148,18 @@ At times, the plasmasphere becomes distorted at the plasmapause due to dayside r
 \begin{figure}[htp]
 	\centering
 	\includegraphics[scale=0.5]{{Figures/LemairePlasmapauseRadius.png}}
-	\caption{Plasmasphere dusk-side bulge with geomagnetic activity. The solid line is the average position of the plasmasphere knee during periods of $K_p=2-4$, while the dots indicate a specific instance of increasing magnetic activity, and the dashes a specific instance of decreasing activity \citep{LemaireEarthsPlasmasphere}.}
+	\caption{Plasmasphere dusk-side bulge with geomagnetic activity. The solid line is the average position of the plasmasphere knee during periods of $K_p=2-4$, while the dots indicate a specific instance of increasing magnetic activity, and the dashes a specific instance of decreasing activity. From \citep{LemaireEarthsPlasmasphere}.}
 	\label{fig:plasmabulge}
 \end{figure}
 
-\note Need diagram for each paragraph in processes section
-
-\note Leave off with list of things that are not well understood and how work in thesis approaches them.
-
+What's not particularly well studied or understood is the behavior of plasma mass density in the plasmatrough. Most studies focus on behavior inside the plasmapause where density is higher and easier to measure, but since this mass diffuses inwards from the solar wind and through the plasmatrough, and satellites are often located in the plasmatrough (geostationary equatorial orbit (GEO) is at about 6-7 $R_E$), it is worthwhile understanding the behavior of the region. This work takes a dataset specifically focused on mass density in the plasmatrough and attempts to understand, classify, and forecast behavior as it relates to solar wind and geophysical conditions.
 
 
 \subsection{Statistical Modeling of Magnetosphere and Plasmasphere}
 
 Initial forecasts of geomagnetic disturbances were based on an observed time delay from sunspot sitings \citep{SunspotStorms}. The state of geomagnetic storm forecasting then advanced to a basic theory involving electromagnetic interactions in the magnetosphere \citep{Chapman}. There now exist entire services dedicated to executing statistical and magnetohydrodynamic (MHD) based models of the magnetosphere \citep{CCMC}, as well as multi-year, multi-institution efforts to survey the general statistics of modeling and forecasting of extreme events \citep{ExtremeEvents}.
 
-The convergence of the advancement in both statistical and MHD-based simulation has led to a situation where the scientific community has the capacity for monitoring and forecasting the near-Earth effects in real time.  There have been efforts to test the forecast performance of select models over a small number of geomagnetic events \citep{ANNforecast,StormModel,StatCompStorms,Yermolaev} \inote{Also CCMC papers (GEM challenge)}. However no research has been done that involves the analysis of long-term forecasting performance of these models and comparison of the results with existing methods.
+The convergence of the advancement in both statistical and MHD-based simulation has led to a situation where the scientific community has the capacity for monitoring and forecasting the near-Earth effects in real time.  There have been efforts to test the forecast performance of select models over a small number of geomagnetic events \citep{ANNforecast,StormModel,StatCompStorms,Yermolaev, GEMPapers}. However no research has been done that involves the analysis of long-term forecasting performance of these models and comparison of the results with existing methods.
 
 Three main metrics of magnetospheric activity are seen throughout the literature; the $K_p$ index: a measure of magnetosphere convection caused by currents induced by a changing plasma sheet (and indirectly from the global convection field strength) \citep{Thomsen2004WhyKpSoGood}; the $AE$ index: a measure of electrojet activity based on the maximum and minimum field strength measurements from magnetometer stations at auroral latitudes \citep{DavisSugiura1966AE}; and the previously mentioned $D_{st}$ index based on magnetic field perturbations caused primarily by a changing ring current.
 

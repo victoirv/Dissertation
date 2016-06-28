@@ -16,7 +16,7 @@ Figure \ref{fig:OnsetEvents} is a confusion matrix, where onsets (class "1") and
 	\centering
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly.eps}
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily.eps}
-	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events}
+	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events using classification method}
 	\label{fig:OnsetEvents}
 \end{figure}
 
@@ -24,7 +24,7 @@ In an attempt to find out what conditions best lead to a correct prediction, his
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.8\linewidth]{Figures/CH5/NNBinaryOnset-daily-hist.eps}
+	\includegraphics[width=0.85\linewidth]{Figures/CH5/NNBinaryOnset-daily-hist.eps}
 	\caption{Histogram of onset conditions for \req\ events binned by correctness of prediction}
 	\label{fig:OnsetEventsHist}
 \end{figure}
@@ -37,7 +37,7 @@ The next test was to add more obvious indicators of an event onset, such as the 
 	\centering
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly-withreq.eps}
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily-withreq.eps}
-	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events, only looking at three hours before and including onset}
+	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events, including \req\ as an input variable, and only looking at three hours before and including onset}
 	\label{fig:OnsetWithreq}
 \end{figure}
 
@@ -47,7 +47,7 @@ With a successful true positive classification rate of 81\% and 69\% for hourly 
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\linewidth]{Figures/CH5/NNBinaryOnset-hourly-withreq-hist.eps}
-	\caption{Histogram of onset conditions for hourly \req\ events binned by correctness of prediction}
+	\caption{Histogram of onset conditions for hourly \req\ events including \req\ as an input, binned by correctness of prediction}
 	\label{fig:OnsetWithreq-hist}
 \end{figure}
 
@@ -63,7 +63,7 @@ It is also interesting that including \req\ raises the detection rate for the da
 	\centering
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-hourly-withreq.eps}
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq.eps}
-	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events, using entire timeseries}
+	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events, including \req\ as an input and using entire timeseries with a four hour sliding window}
 	\label{fig:OnsetFullWithreq}
 \end{figure}
 
