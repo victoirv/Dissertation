@@ -190,12 +190,20 @@ To verify that there was in fact a significant difference between the day of ons
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=1\linewidth]{Figures/DailyBootstrapDifferences-GOES6-case13}
+	\includegraphics[width=1\linewidth]{Figures/DailyBootstrapDifferences-GOES6-case10}
 	\caption{Bootstrap differences between median daily value of events using only the years of 1989-1991.}
 	\label{fig:DailyBootstrapDifferences}
 \end{figure}
 
-The idea here is that if the days have equal medians, a large number of random samples for each day should be equal on average. If the medians of two days are equal, the difference between those medians should be zero, so if a significant portion of differences have a skewed non-zero value, this suggests the days are not equal. Figure \ref{fig:DailyBootstrapDifferences} therefore shows that only when looking at the difference in median \req\ between the day of onset and the day following can you get a distribution where less than 5\% of the random samples lie beyond the hypothesized difference of 0, while the other two tests fail to reject the hypothesis of equal median daily values.  
+
+The idea here is that if the days have equal medians, a large number of random samples for each day should be equal on average. If the medians of two days are equal, the difference between those medians should be zero, so if a significant portion of differences have a skewed non-zero value, this suggests the days are not equal. Figure \ref{fig:DailyBootstrapDifferences} shows that for the time period of 1989-1991, no significance can be conclusively shown in this manner. However, if the entirety of data from GOES 6 is looked at, covering 1983-1991, as seen in Figure \ref{fig:DailyBootstrapDifferences-full}, the difference in median \req\ between the day of onset and the day following has a distribution where less than 5\% of the random samples lie beyond the hypothesized difference of 0, while the other two tests fail to reject the hypothesis of equal median daily values.  
+
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=1\linewidth]{Figures/DailyBootstrapDifferences-GOES6-case13}
+	\caption{Bootstrap differences between median daily value of events using the years of 1983-1991.}
+	\label{fig:DailyBootstrapDifferences-full}
+\end{figure}
 
 A few other forms of epoch analysis were done for exploratory purposes. Figure \ref{fig:EpochDst12Hour} shows \dst\ events where \dst\ remained below the $-50$~nT threshold for at least 12 hours. The same preceding drop in $B_z$ can be seen, but now also appears to sustain the more negative value for longer. Also of note is the large spike in \req, but it comes at a point with few available data points, and the uncertainty on each point is large, making it difficult to say anything conclusive about the behavior of density during sustained periods of highly negative \dst.
 
@@ -276,7 +284,7 @@ One other method of testing dependence was done, where events were binned by the
 	\label{fig:RhoBinnedF107}
 \end{figure}
 
-If we instead define events as when \dst\ crosses the threshold of -50$nT$, we find even more obvious distinction in \req\ binned by \f as shown in Figure \ref{fig:RhoBinnedF107-Dst}. This not only supports the idea of a significant dependence in \req\ behavior on \f, but also demonstrates other facets of the structure shown in Figure \ref{fig:HighLowF107rhoeq} such as the peak in density just after onset for high values of \f. 
+If we instead define events as when \dst\ crosses the threshold of $-50$~nT, we find even more obvious distinction in \req\ binned by \f\ as shown in Figure \ref{fig:RhoBinnedF107-Dst}. This not only supports the idea of a significant dependence in \req\ behavior on \f, but also demonstrates other facets of the structure shown in Figure \ref{fig:HighLowF107rhoeq} such as the peak in density just after onset for high values of \f. 
 
 \begin{figure}[htp!]
 	\centering
@@ -311,3 +319,10 @@ For each binning method, a two sample t-test was performed for each hour to dete
 	\caption{Top: \dst\ predicted by nonlinear model of day of year. Bottom: Same, but including a dimension for $B_z$.}
 	\label{fig:DoYDst}
 \end{figure}
+
+\section{Summary}
+This chapter explored a number of linear and nonlinear models, in an effort to determine which solar wind and geomagnetic variables are most connected to the behavior of \req. While it was found that \f\ is most linearly correlated, it was also found that the other linear variables were highly collinear, providing little new information to the model when combined with \f.  It was also found that the correlations varied between different GOES satellites, as well as had a large variation in the nonlinear testing models. 
+
+The epoch plots made to verify and extend the findings of \cite{Takahashi2010SolarCycleVariation} found that \req\ was not significantly enhanced by an increase in geomagnetic activity on an hourly timescale, but was on a daily timescale. It also appears that this enhancement does not depend on the current condition of the interplanetary magnetic field $B_z$, but that high solar activity (via \f) does significantly influence the behavior of \req\ before and after a geomagnetic event, whether defined as an increase in \req\ or a decrease in \dst.
+
+
