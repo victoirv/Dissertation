@@ -1,7 +1,7 @@
 \chapter[Onset Classification]{Onset Classification}
 
 \section{Method}
-Since forecasting actual values for \req\ isn't always viable or accurate, an attempt was made to model \req\ event onsets as a classification problem whereby an onset timestep (the one in which the 20 $amu/cm^3$ threshold was crossed) was defined as a ``1", and any other time defined as a ``0". \cite{Denton2016}, which also uses the inferred \req\ from GOES Alfvén waves, indicates that daily averaged Kp and \f\ both are involved in driving the behavior of \req. By then passing relevant measurements such as Kp, $F_{10.7}$, and $V_{SW}$ into a non-linear classification model such as \texttt{patternnet} \citep{MATLAB:2014}, a predictive classification could be made based on these conditions. 
+Since forecasting actual values for \req\ is not always viable or accurate, an attempt was made to model \req\ event onsets as a classification problem whereby an onset timestep (the one in which the 20 $amu/cm^3$ threshold was crossed) was defined as a ``1", and any other time defined as a ``0". \cite{Denton2016}, which also uses the inferred \req\ from GOES Alfvén waves, indicates that daily averaged Kp and \f\ both are involved in driving the behavior of \req. By then passing relevant measurements such as Kp, $F_{10.7}$, and $V_{SW}$ into a non-linear classification model such as \texttt{patternnet} \citep{MATLAB:2014}, a predictive classification could be made based on these conditions. 
 
 Two formats and two time scales were tested: one format consisting of passing in an entire timeseries, where each prediction was based on a sliding window of the current and previous three timesteps as one set of inputs. The other format only considered time periods at and three hours before onset, but treated each time step as its own input and classification. Both formats  are diagrammed in Figure \ref{fig:ClassifyDiagram}. The top diagram shows the classification method where the modeling window slides across one timestep at a time and only spans four timesteps at each onset. The bottom diagram depicts the prediction method where the window slides across all data, and each block of four timesteps attempts to predict an onset one step ahead. Both methods were used to make models for the two time scales of hourly and daily medians of values. 
 
@@ -27,7 +27,7 @@ Figure \ref{fig:OnsetEvents} is a confusion matrix, where onsets (class "1") and
 	\centering
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly.eps}
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily.eps}
-	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events using classification method}
+	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events using classification method.}
 	\label{fig:OnsetEvents}
 \end{figure}
 
@@ -36,7 +36,7 @@ In an attempt to find out what conditions best lead to a correct classification,
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.85\linewidth]{Figures/CH5/NNBinaryOnset-daily-hist.eps}
-	\caption{Histogram of onset conditions for daily-averaged \req\ events binned by correctness of prediction}
+	\caption{Histogram of onset conditions for daily-averaged \req\ events binned by correctness of prediction.}
 	\label{fig:OnsetEventsHist}
 \end{figure}
 
@@ -48,17 +48,17 @@ The next test was to add more obvious indicators of an event onset, such as the 
 	\centering
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly-withreq.eps}
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily-withreq.eps}
-	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events, including \req\ as an input variable, and only looking at three hours before and including onset}
+	\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events, including \req\ as an input variable, and only looking at three hours before and including onset.}
 	\label{fig:OnsetWithreq}
 \end{figure}
 
-With a successful true positive classification rate of 99\% and 84\% for hourly and daily 4-hour models respectively, it can be said that including \req\ information makes the models effective for classifying event onset, both validating the model as being able to determine our selection criteria as well as showing the extent to which daily averaging can obscure conditions attributed to an event. Since the \req\ events have a median duration of 14 hours above the $-20$~nT threshold, it's clear that they significantly impact the entire day enough to still be detectable. A histogram of these variables binned by true positive and false negative shows no particularly compelling trends, as seen in Figure \ref{fig:OnsetWithreq-hist}.
+With a successful true positive classification rate of 99\% and 84\% for hourly and daily 4-hour models respectively, it can be said that including \req\ information makes the models effective for classifying event onset, both validating the model as being able to determine our selection criteria as well as showing the extent to which daily averaging can obscure conditions attributed to an event. Since the \req\ events have a median duration of 14 hours above the $-20$~nT threshold, it is clear that they significantly impact the entire day enough to still be detectable. A histogram of these variables binned by true positive and false negative shows no particularly compelling trends, as seen in Figure \ref{fig:OnsetWithreq-hist}.
 
 
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\linewidth]{Figures/CH5/NNBinaryOnset-hourly-withreq-hist.eps}
-	\caption{Histogram of onset conditions for hourly \req\ events including \req\ as an input, binned by correctness of prediction}
+	\caption{Histogram of onset conditions for hourly \req\ events including \req\ as an input, binned by correctness of prediction.}
 	\label{fig:OnsetWithreq-hist}
 \end{figure}
 
@@ -75,16 +75,16 @@ Using the full data set where each prediction was based on the previous four tim
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-daily.eps}
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-hourly-withreq.eps}
 	\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq.eps}
-	\caption{Prediction confusion matrix for hourly (left column) and daily (right column) \req\ onset events, including \req\ as an input in the bottom row, and using entire timeseries with a four hour sliding window}
+	\caption{Prediction confusion matrix for hourly (left column) and daily (right column) \req\ onset events, including \req\ as an input in the bottom row, and using entire timeseries with a four hour sliding window.}
 	\label{fig:OnsetFullWithreq}
 \end{figure}
 
-It's seen that the selected weighting scheme is not sufficient to pick up hourly events without further tuning, but is overly aggressive with the daily values and ends up creating more false positives than truly correct predictions. That said, being able to predict 66\% of events a day in advance, at the cost of only half of the predicted onsets being accurate, is not completely useless. Again, the variables were broken down by value and correctness of prediction, this time taking the median value of each variable across the four-timestep bin. The resulting histograms are shown in Figure \ref{fig:OnsetWithreq-hist-full}.
+It is seen that the selected weighting scheme is not sufficient to pick up hourly events without further tuning, but is overly aggressive with the daily values and ends up creating more false positives than truly correct predictions. That said, being able to predict 66\% of events a day in advance, at the cost of only half of the predicted onsets being accurate, is not completely useless. Again, the variables were broken down by value and correctness of prediction, this time taking the median value of each variable across the four-timestep bin. The resulting histograms are shown in Figure \ref{fig:OnsetWithreq-hist-full}.
 
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq-hist.eps}
-	\caption{Histogram of onset conditions for daily \req\ events including \req\ as an input, binned by correctness of prediction}
+	\caption{Histogram of onset conditions for daily \req\ events including \req\ as an input, binned by correctness of prediction.}
 	\label{fig:OnsetWithreq-hist-full}
 \end{figure}
 

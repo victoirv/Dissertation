@@ -19,7 +19,7 @@ Impulse response systems are systems in which the output (a response) is driven 
 \label{VBzIRplot}
 \end{figure}
 
-This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this proposal, what starts as a Box-Jenkins model of the form \citep{DOYvar}:
+This plot shows how different models are used to predict magnetospheric variables with varying amounts of success. In this work, what starts as a Box-Jenkins model of the form \citep{DOYvar}:
 \begin{align*}
 x(t)&=\sum_{j=1}^{m}{b_j \cdot f(t-j\Delta t)}+c_t
 \end{align*}
@@ -75,7 +75,7 @@ The other major problem in forecasting is that of lead time. Being able to forec
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.50]{{Figures/PersistentCorrelation.eps}}
-	\caption{Correlation between prediction and measurement vs lead time of forecast}
+	\caption{Correlation between prediction and measurement vs lead time of forecast.}
 	\label{Lags}
 \end{figure}
 
@@ -114,7 +114,7 @@ Another algorithm known as Principal Component Analysis (PCA) can be used to tak
 \subsection{Neural Networks}
 
 \subsection{Applicability}
-Nonlinear models are applicable when a system has more complexity than can be encapsulated by a linear model. Since they're usually a class of model that trains adaptive weights that can be tuned by known inputs and outputs, they're especially useful for systems where a large amount of training data are available.
+Nonlinear models are applicable when a system has more complexity than can be encapsulated by a linear model. Since they are usually a class of model that trains adaptive weights that can be tuned by known inputs and outputs, they are especially useful for systems where a large amount of training data are available.
 
 \subsection{Caveats}
 Nonlinear models can be susceptible to overfitting, since they inherently attempt to fit more complexity than a linear model, but can also be controlled via the number of inputs and weights used. They also may suggest more structure than might truly exist. Both of these problems are lessened by training with more data, if available. Figure \ref{NNvsLinear} shows a comparison of predicting equatorial mass density (\req) with the $F_{10.7}$ index and the disturbance storm time index (\dst). The neural net models (left)  shows much more structure than the linear models (right) despite being given the same data. Whether that structure reflects any real physical phenomenon, however, is a difficult problem to answer, and so both models are often compared to attempt to ascertain what structure may be valid. 
@@ -127,7 +127,7 @@ Sometimes, as in the top two plots of Figure \ref{NNvsLinear}, the structure see
 		\includegraphics[scale=0.35]{Figures/{LinearDst-F107-rhoeq-GOES6}.eps}
 			\includegraphics[scale=0.35]{Figures/{NNBz-F107-rhoeq-GOES5}.eps}
 			\includegraphics[scale=0.35]{Figures/{LinearBz-F107-rhoeq-GOES5}.eps}
-	\caption{Nonlinear models (left) vs linear models (right) of $\rho_{eq}$}
+	\caption{Nonlinear models (left) vs linear models (right) of $\rho_{eq}$.}
 	\label{NNvsLinear}
 \end{figure}
 

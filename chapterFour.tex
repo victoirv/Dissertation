@@ -17,6 +17,7 @@ This dependence was further investigated, and extended, by creating a simple lin
 
 \begin{table}[h]
 	\small
+	\caption{Table of linear model correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
  	\begin{tabular}{|C|CCCC|}
 		\hline
 		& \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
@@ -32,12 +33,12 @@ This dependence was further investigated, and extended, by creating a simple lin
 		All & -0.03\pm0.19 & +0.34\pm0.27 & +0.61\pm0.11 & +0.40\pm0.12 \\
 		\hline
 	\end{tabular}
-	\caption{Table of linear model correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
 	\label{CCperltable}
 \end{table}
 
  \begin{table}[h]
  	\small
+ 	\caption{Table of differences in linear training-testing models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
  	\begin{tabular}{|C|CCCC|}
  		\hline
  		Tr-T & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
@@ -53,7 +54,6 @@ This dependence was further investigated, and extended, by creating a simple lin
  		All & +0.64\pm0.22 & +0.54\pm0.28 & +0.16\pm0.14 & +0.25\pm0.13 \\
  		\hline
  	\end{tabular}
- 	\caption{Table of differences in linear training-testing models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
  	\label{CCdifftable}
  \end{table}
 
@@ -69,6 +69,7 @@ Similarly for a neural net model with the same input and target structure as the
 
  \begin{table}[h]
  	\small
+ 	\caption{Table of nonlinear model test correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
  	\begin{tabular}{|C|CCCC|}
  		\hline
  		& \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
@@ -84,7 +85,6 @@ Similarly for a neural net model with the same input and target structure as the
  		All & +0.21\pm0.41 & +0.67\pm0.40 & +0.60\pm0.35 & +0.17\pm0.33 \\
  		\hline
  	\end{tabular}
- 	\caption{Table of nonlinear model test correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
  	\label{NNperltable}
  \end{table}
  
@@ -92,6 +92,7 @@ Similarly for a neural net model with the same input and target structure as the
  
  \begin{table}[h]
  	\small
+ 	\caption{Table of differences in nonlinear training-testing models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
  	\begin{tabular}{|L|LLLL|}
  		\hline
  		Tr-T & \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
@@ -107,7 +108,6 @@ Similarly for a neural net model with the same input and target structure as the
  		All & +0.51\pm0.58 & +0.47\pm0.60 & +0.41\pm0.36 & +0.46\pm0.43 \\
  		\hline
  	\end{tabular}
- 	\caption{Table of differences in nonlinear training-testing models, where each correlation is the median correlation of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
  	\label{NNdifftable}
  \end{table}
 
@@ -120,6 +120,7 @@ In an effort to combine the usefulness of linear models with the adaptability of
 
  \begin{table}[h]
  	\small
+ 	 	\caption{Table of ARX model correlations created from the mean of 100 bootstrap models. CC-1 models have one hour of time lag, and CC-24 have 24 hours of time lags.} 
  	\begin{tabular}{|C|CC|}
  		\hline
  		& \text{CC-1} & \text{CC-24} \\ \hline
@@ -139,12 +140,11 @@ In an effort to combine the usefulness of linear models with the adaptability of
  		All & +0.56 & +0.61 \\
  		\hline
  	\end{tabular}
- 	\caption{Table of ARX model correlations created from the mean of 100 bootstrap models. CC-1 models have one hour of time lag, and CC-24 have 24 hours of time lags.} 
  	\label{ARXTable}
  \end{table}
 
 
-It is interesting to note which variables correlate just as well on an hourly timescale as on a daily timescale (e.g. \f) compared to those which show significant improvement as more time is added to the model (e.g. Hour). The collinearity of some models is also interesting, such as how adding an hourly component doesn't aid the \f\ model much, but does significantly help the $B_z$ model. Also, adding one hour of persistence to the model increases the correlation to $0.88-0.91$ for all of the models.
+It is interesting to note which variables correlate just as well on an hourly timescale as on a daily timescale (e.g. \f) compared to those which show significant improvement as more time is added to the model (e.g. Hour). The collinearity of some models is also interesting, such as how adding an hourly component does not aid the \f\ model much, but does significantly help the $B_z$ model. Also, adding one hour of persistence to the model increases the correlation to $0.88-0.91$ for all of the models.
 
 
 \section{Epoch Analyses}
@@ -196,7 +196,7 @@ To verify that there was in fact a significant difference between the day of ons
 \end{figure}
 
 
-The idea here is that if the days have equal medians, a large number of random samples for each day should be equal on average. If the medians of two days are equal, the difference between those medians should be zero, so if a significant portion of differences have a skewed non-zero value, this suggests the days are not equal. Figure \ref{fig:DailyBootstrapDifferences} shows that for the time period of 1989-1991, no significance can be conclusively shown in this manner. However, if the entirety of data from GOES 6 is looked at, covering 1983-1991, as seen in Figure \ref{fig:DailyBootstrapDifferences-full}, the difference in median \req\ between the day of onset and the day following has a distribution where less than 5\% of the random samples lie beyond the hypothesized difference of 0, while the other two tests fail to reject the hypothesis of equal median daily values.  
+The idea here is that if the days have equal medians, a large number of random samples for each day should be equal on average. If the medians of two days are equal, the difference between those medians should be zero, so if a significant portion of differences have a skewed to non-zero value, this suggests the days are not equal. Figure \ref{fig:DailyBootstrapDifferences} shows that for the time period of 1989-1991, no significance can be conclusively shown in this manner. However, if the entirety of data from GOES 6 is looked at, covering 1983-1991, as seen in Figure \ref{fig:DailyBootstrapDifferences-full}, the difference in median \req\ between the day of onset and the day following has a distribution where less than 5\% of the random samples lie beyond the hypothesized difference of 0, while the other two tests fail to reject the hypothesis of equal median daily values.  
 
 \begin{figure}[htp!]
 	\centering
@@ -228,14 +228,14 @@ And finally, to test the amount of natural variance and for the sake of verifica
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-random-GOES6}
-	\caption{Epoch analysis for randomly selected events on an hourly timescale.}
+	\caption{Epoch analysis for randomly selected "events" between 1983-1991 on an hourly timescale.}
 	\label{fig:EpochRandom}
 \end{figure}
 
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-randomdaily-GOES6}
-	\caption{Epoch analysis for randomly selected events on a daily timescale.}
+	\caption{Epoch analysis for randomly selected "events" between 1983-1991 on a daily timescale.}
 	\label{fig:EpochRandomDaily}
 \end{figure}
 
@@ -248,7 +248,7 @@ And finally, to test the amount of natural variance and for the sake of verifica
 	\centering
 	\includegraphics[width=0.95\linewidth]{Figures/F107MD27d-GOES6}
 	\includegraphics[width=0.95\linewidth]{Figures/F107MD27d-all}
-	\caption{Top: Comparing $F_{10.7\_27d}$ and $log(\rho_{eq\_27d})$ using GOES 6 data. Bottom: Same as top, but all available satellites.}
+	\caption{Top: Comparing $F_{10.7\_27d}$ and $\log_{10}(\rho_{eq\_27d})$ using GOES 6 data. Bottom: Same as top, but all available satellites.}
 	\label{fig:F107rhoeq27dcomparison}
 \end{figure}
 
@@ -270,7 +270,7 @@ The dependence was then analyzed in a more nonlinear manner by investigating the
 	\label{fig:HighLowF107rhoeq}
 \end{figure}
 
-The top panel of Figure \ref{fig:HighLowF107rhoeq} shows that \req\ reacts to decreases in \dst, but seemingly only during periods of higher solar activity. Since higher \f\ also correlates with a higher baseline \req, this effect could be due to saturation of the plasmasphere from the increased solar activity. It should also be noted that this trend isn't seen as strongly for all satellites. GOES 2 and 6 show a significant spike and baseline shift, while GOES 7 and 5 lack the significant spike and shift respectively. 
+The top panel of Figure \ref{fig:HighLowF107rhoeq} shows that \req\ reacts to decreases in \dst, but seemingly only during periods of higher solar activity. Since higher \f\ also correlates with a higher baseline \req, this effect could be due to saturation of the plasmasphere from the increased solar activity. It should also be noted that this trend is not seen as strongly for all satellites. GOES 2 and 6 show a significant spike and baseline shift, while GOES 7 and 5 lack the significant spike and shift respectively. 
 
 The bottom panel of Figure \ref{fig:HighLowF107rhoeq} shows that though all events are selected based on a \dst\ threshold, the behavior before and after the storm is affected by \f. For low solar activity events, the \dst\ changes are more sudden and severe, coming from and going back to a more positive baseline. High solar activity events have a longer recovery period.
 
@@ -297,7 +297,7 @@ If we instead define events as when \dst\ crosses the threshold of $-50$~nT, we 
 
 \section{$B_z$ Dependence}
 
-Similar to the \f\ dependence, tests were done to see if event behavior varied with the $z$-component of the interplanetary magnetic field (IMF). It's well established that the orientation of $B_z$ has a strong correlation with the strength of geomagnetic storms \citep{Takahashi2010SolarCycleVariation}, so events were found based on a threshold of $\req \geq 20~amu/cm^3$. These events were then binned by both the median $B_z$ at and four hours after threshold crossing, and $B_z$ at and four hours before threshold crossing. Figure \ref{fig:RhoBinnedBz} shows both cases.
+Similar to the \f\ dependence, tests were done to see if event behavior varied with the $z$-component of the interplanetary magnetic field (IMF). It is well established that the orientation of $B_z$ has a strong correlation with the strength of geomagnetic storms \citep{Takahashi2010SolarCycleVariation}, so events were found based on a threshold of $\req \geq 20~amu/cm^3$. These events were then binned by both the median $B_z$ at and four hours after threshold crossing, and $B_z$ at and four hours before threshold crossing. Figure \ref{fig:RhoBinnedBz} shows both cases.
 
 \begin{figure}[htp!]
 	\centering
