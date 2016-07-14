@@ -19,7 +19,7 @@ In order to aid the model in finding event onsets despite being numerically over
 
 \section{Results}
 
-\subsection{Classification}
+\subsection{Classification} \label{sec:ClassifyResults}
 
 Figure \ref{fig:OnsetEvents} is a confusion matrix, where onsets (class "1") and non-onsets (class "0") are categorized based on their real value labeled "Target Class", and the value categorized by the model labeled "Output Class". So for example, on a daily timescale, there were 582 event onsets (sum of Target class 1), and the model correctly classified 473 of them (intersection of target class 1 and output class 1). Since this classification model is primarily concerned with correctly classifying onsets, the percentage values given will be for the percent of correctly classified onsets out of the total number of onsets, shown as the green value in the bottom of column 2. This specific figure shows that trying to classify events on an hourly timescale using only the onset hour and three hours before leads to a model that classifies almost no onsets. Using daily values, however, results in a model where a full 80\% of the onsets are correctly detected and classified, but only half of the predicted onsets were actually onsets.
 
@@ -65,7 +65,7 @@ With a successful true positive classification rate of 99\% and 84\% for hourly 
 
 \clearpage
 
-\subsection{Forecasting}
+\subsection{Forecasting} \label{sec:ForecastResults}
 
 Using the full data set where each prediction was based on the previous four timesteps of inputs (\f, $K_p$, \dst, and $V_{SW}$) returned two models (daily and hourly). Both were tested with and without \req\ included as an input variable due to its more limited availability. All four confusion matrices are shown in Figure \ref{fig:OnsetFullWithreq}.
 

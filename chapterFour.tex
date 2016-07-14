@@ -6,7 +6,7 @@ While Figure \ref{fig:alldata-GOES6-1983-1991} shows an overview of the most per
 \begin{figure}[htp!]
 \centering
 \includegraphics[width=0.7\linewidth]{Figures/rhoMLT.eps}
-\caption{Median \req\ binned by magnetic local time}
+\caption{Median \req\ binned by magnetic local time.}
 \label{fig:ByHourExample}
 \end{figure}
 
@@ -144,10 +144,10 @@ In an effort to combine the usefulness of linear models with the adaptability of
  \end{table}
 
 
-It is interesting to note which variables correlate just as well on an hourly timescale as on a daily timescale (e.g. \f) compared to those which show significant improvement as more time is added to the model (e.g. Hour). The collinearity of some models is also interesting, such as how adding an hourly component does not aid the \f\ model much, but does significantly help the $B_z$ model. Also, adding one hour of persistence to the model increases the correlation to $0.88-0.91$ for all of the models.
+It is interesting to note which variables correlate just as well on an hourly timescale as on a daily timescale (e.g. \f) compared to those which show significant improvement as more time is added to the model (e.g. Hour). The collinearity of some models is also interesting, such as how adding an hourly component does not aid the \f\ model much, but does significantly help the $B_z$ model. Also, adding one hour of persistence to the model increases the correlation to $0.88-0.91$ for all of the models. 
 
 
-\section{Epoch Analyses}
+\section{Epoch Analyses} \label{sec:epochs}
 In an effort to determine the typical behavior of an event, analyses were done for a number of different conditions where all variables were averaged over a window surrounding the event onset. This should reduce the noise of individual events and show the overall trends inherent in the system during different types of events. For example, Figure \ref{fig:EpochDst} shows the data for \dst\ events where \dst\ dropped below $-50$~nT. This finds 668 such events over the span of time covered by GOES 6. Taking the median of each variable across all events for each time step (an hour, in this figure), the general trend is plotted for $B_z$, $V_{SW}$, \dst,\f, and \req. The red dashed lines indicate one standard error of the mean from all of the valid points used to compute the median, and the number of valid points (relevant only for \req) is plotted as green bars.
 
 \begin{figure}[htp!]
@@ -241,8 +241,8 @@ And finally, to test the amount of natural variance and for the sake of verifica
 
 
 
-\section{$F_{10.7}$ Dependence}
-\cite{Takahashi2010SolarCycleVariation} showed a strong correlation between the 27-day averaged $F_{10.7}$ index of solar activity and the averaged equatorial mass density (\req). This was chosen as a starting place for verifying the data analysis routines developed for this dataset, so as to show that data input, averaging, and interpolation were all done in a reasonable and reproducible manner. Figure \ref{fig:F107rhoeq27dcomparison}.a shows the strong correlation seen previously, and reasonably reproduces Figure 13.b from \cite{Takahashi2010SolarCycleVariation} for the years covered by GOES 6. Figure \ref{fig:ccplot} shows the effects of long-time-scale averaging on the overall correlation of the two variables, suggesting that the connection is more influential long-term.
+\section{$F_{10.7}$ Dependence} \label{sec:f107dep}
+\cite{Takahashi2010SolarCycleVariation} showed a strong correlation between the 27-day averaged $F_{10.7}$ index of solar activity and the averaged equatorial mass density (\req). This was chosen as a starting place for verifying the data analysis routines developed for this dataset, so as to show that data input, averaging, and interpolation were all done in a reasonable and reproducible manner. Figure \ref{fig:F107rhoeq27dcomparison} shows the strong correlation seen previously, and reasonably reproduces Figure 13.b from \cite{Takahashi2010SolarCycleVariation} for the years covered by GOES 6. Figure \ref{fig:ccplot} shows the effects of long-time-scale averaging on the overall correlation of the two variables, suggesting that the connection is more influential long-term.
 
 \begin{figure}[htp!]
 	\centering
@@ -295,7 +295,7 @@ If we instead define events as when \dst\ crosses the threshold of $-50$~nT, we 
 \end{figure}
 
 
-\section{$B_z$ Dependence}
+\section{$B_z$ Dependence} \label{sec:bzdep}
 
 Similar to the \f\ dependence, tests were done to see if event behavior varied with the $z$-component of the interplanetary magnetic field (IMF). It is well established that the orientation of $B_z$ has a strong correlation with the strength of geomagnetic storms \citep{Takahashi2010SolarCycleVariation}, so events were found based on a threshold of $\req \geq 20~amu/cm^3$. These events were then binned by both the median $B_z$ at and four hours after threshold crossing, and $B_z$ at and four hours before threshold crossing. Figure \ref{fig:RhoBinnedBz} shows both cases.
 
@@ -314,8 +314,8 @@ For each binning method, a two sample t-test was performed for each hour to dete
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/NNDoY-Dst-GOES5}	
-	\includegraphics[width=0.7\linewidth]{Figures/NNDoY-Bz-Dst-GOES5}
+	\includegraphics[width=0.7\linewidth]{Figures/NNDoY-Dst-GOES6}	
+	\includegraphics[width=0.7\linewidth]{Figures/NNDoY-Bz-Dst-GOES6}
 	\caption{Top: \dst\ predicted by nonlinear model of day of year. Bottom: Same, but including a dimension for $B_z$.}
 	\label{fig:DoYDst}
 \end{figure}
@@ -323,6 +323,6 @@ For each binning method, a two sample t-test was performed for each hour to dete
 \section{Summary}
 This chapter explored a number of linear and nonlinear models, in an effort to determine which solar wind and geomagnetic variables are most connected to the behavior of \req. While it was found that \f\ is most linearly correlated, it was also found that the other linear variables were highly collinear, providing little new information to the model when combined with \f.  It was also found that the correlations varied between different GOES satellites, as well as had a large variation in the nonlinear testing models. 
 
-The epoch plots made to verify and extend the findings of \cite{Takahashi2010SolarCycleVariation} found that \req\ was not significantly enhanced by an increase in geomagnetic activity on an hourly timescale, but was on a daily timescale. It also appears that this enhancement does not depend on the current condition of the interplanetary magnetic field $B_z$, but that high solar activity (via \f) does significantly influence the behavior of \req\ before and after a geomagnetic event, whether defined as an increase in \req\ or a decrease in \dst.
+The epoch plots made to verify and extend the findings of \cite{Takahashi2010SolarCycleVariation} found that \req\ was not significantly enhanced by an increase in geomagnetic activity on an hourly timescale, but was on a daily timescale. It also appears that this enhancement does not depend on the current condition of the interplanetary magnetic field $B_z$, but that high solar activity (via \f) does significantly influence the behavior of \req\ before and after a geomagnetic event, whether defined as an increase in \req\ or a decrease in \dst. Physically this suggests that active solar conditions significantly raise the baseline amount of plasma mass around Earth during all detectable time periods.
 
 
