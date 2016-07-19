@@ -119,7 +119,7 @@
 
 \begin{frame}
 	\subheader
-	Data come from three sources:
+	Data used come from three sources:
 	\small
 	\begin{itemize}
 		\item Denton (2007) for \req, MLT, and $AE$ \\
@@ -505,6 +505,91 @@ Three main methods of analysis used:
 	\end{figure}
 \end{frame}
 
+
+\subsection{Classification and Forecasting}
+\begin{frame}
+	\subheader
+	Two main questions:
+	\begin{itemize}
+		\item Can event onsets be distinguished from the hours or days before onset?
+		\item Can event onsets be forecasted using the hours or days before?
+	\end{itemize}
+	Utilizing MATLAB's \texttt{patternnet} neural network toolbox, classifying onsets as ``1" and all other times as ``0". Weighting ``1"s more heavily based on timescale.
+\end{frame}
+
+\begin{frame}
+Is an onset distinguishable using just the variables provided?
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/CH5/ClassifyGraphic2.png}
+		\caption{Diagram of classification method.}
+		\label{fig:ClassifyDiagram}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly.eps}
+		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily.eps}
+		\caption{Classification confusion matrix for hourly (left) and daily (right) \req\ onset.}
+		\label{fig:OnsetEvents}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily-hist.eps}
+		\caption{Histogram of onset conditions for daily-averaged \req\ events binned by correctness of prediction.}
+		\label{fig:OnsetEventsHist}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	Including \req\ as a variable should make classification near perfect:
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly-withreq.eps}
+		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily-withreq.eps}
+		\caption{Classification confusion matrix for hourly (left) and daily (right) \req\ onset events, including \req\ as an input variable.}
+		\label{fig:OnsetWithreq}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}
+	Can an onset be forecasted using the previous four hours or days?
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/CH5/FullGraphic.png}
+		\caption{Diagram of prediction method.}
+		\label{fig:ClassifyDiagram}
+	\end{figure}
+	
+	
+\end{frame}
+
+\begin{frame}
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-hourly-withreq.eps}
+		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq.eps}
+		\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events.}
+		\label{fig:OnsetFullWithreq}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq-hist.eps}
+		\caption{Histogram of onset conditions for daily \req\ events including \req\ as an input, binned by correctness of prediction.}
+		\label{fig:OnsetWithreq-hist-full}
+	\end{figure}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  _____                  _           _                 
 % /  __ \                | |         (_)                
@@ -514,20 +599,30 @@ Three main methods of analysis used:
 % \_____/\___/|_| |_|\___|_|\__,_|___|_|\___/|_| |_|___/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-
+\subsection{Conclusions}
+\begin{frame}
+	\subheader
+	\begin{itemize}
+		\item Drop in \dst\ does not significantly influence \req\ on an hourly timescale, but does over the following day.
+		\item \req\ increases do not correlate, on average, with significant changes in \dst, \f, or $B_z$.
+		\item \dst\ most affects \req\ during periods of high solar activity (via \f)
+		\item Classifying or forecasting the day of an event onset are possible but both prone to false positives
+	\end{itemize}
+\end{frame}
 
 
 \subsection{Future work}
 \begin{frame}
+	\subheader
 	Many things could be done to improve:
 	\begin{itemize}
-		\item Find new description of Lax-Wendroff scheme to check for inconsistencies
-		\item Try higher order finite-difference scheme for derivatives
-		\item Start from steady state magnetosphere
-		\item Attempt 3D simulation
-		\item Use non-discontinuous near-Earth model without fixed state
+		\item Exploring remaining signal after all collinear variables removed
+		\item Adding model complexity and extra information
+		\item Use new satellites and/or new Alfvén wave detection methods
+		\item Extend time period of analysis
 	\end{itemize}
 \end{frame}
+
 
 \begin{frame}[c]
 	\begin{center}
