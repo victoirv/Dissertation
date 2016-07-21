@@ -14,6 +14,9 @@
   \setbeamertemplate{enumerate items}[default]
   \setbeamertemplate{itemize items}{$\sim$}
   
+ \expandafter\def\expandafter\insertshorttitle\expandafter{%
+ 	\insertshorttitle\hfill%
+ 	\insertframenumber\,/\,\inserttotalframenumber}
   \AtBeginSection[]{
   	\begin{frame}
   		\vfill
@@ -24,7 +27,6 @@
   		\vfill
   	\end{frame}
   }
-  
   
   \newcommand{\subheader}{    		\begin{center}
   	\begin{beamercolorbox}[sep=4pt,center,shadow=true,rounded=true]{title}
@@ -49,7 +51,10 @@
 \titlepage
 \end{frame}
 
-
+\setbeamertemplate{section in toc}{\inserttocsection}
+\begin{frame}
+	\tableofcontents
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  _____      _                 _            _   _             
@@ -67,7 +72,7 @@
 \begin{figure}[htp]
 	\centering
 	\includegraphics[scale=0.35]{{Figures/MagnetoOverview.jpg}}
-	\caption{Overview of the magnetosphere and plasmasphere \cite{MagnetosphereOverallFigure}.}
+	\caption{Overview of the magnetosphere and plasmasphere [Russel (2007)].}
 	\label{RingCurrentFigure}
 \end{figure}
 
@@ -77,7 +82,7 @@
 	\begin{figure}[htp]
 		\centering
 		\includegraphics[scale=0.2]{{Figures/innermag-2.jpg}}
-		\caption{Overview of inner magnetosphere. Adapted from \cite{InnerMagNASA}.}
+		\caption{Overview of inner magnetosphere. Adapted from NASA.}
 		\label{fig:magnetosphereoverview}
 	\end{figure}
 \end{frame}
@@ -87,21 +92,13 @@
 	\begin{figure}[htp]
 		\centering
 		\includegraphics[scale=0.12]{{Figures/magnetosphere.jpg}}
-		\caption{Currents in/around the magnetosphere. Adapted from \cite{MagnetosphereCurrentFigure}.}
+		\caption{Currents in/around the magnetosphere. Adapted from Maus (2010).}
 		\label{RingCurrentFigure}
 	\end{figure}
 \end{frame}
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%___  ___      _   _            _   _             
-%|  \/  |     | | (_)          | | (_)            
-%| .  . | ___ | |_ ___   ____ _| |_ _  ___  _ __  
-%| |\/| |/ _ \| __| \ \ / / _` | __| |/ _ \| '_ \ 
-%| |  | | (_) | |_| |\ V | (_| | |_| | (_) | | | |
-%\_|  |_/\___/ \__|_| \_/ \__,_|\__|_|\___/|_| |_|
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Motivation}
 \begin{frame}
 	\begin{figure}
@@ -139,6 +136,26 @@
 
 
 \begin{frame}
+	How we measure geomagnetic activity:
+	\begin{figure}[htp]
+		\centering
+		\includegraphics[scale=0.25]{{Figures/StationMap.eps}}
+		\caption{Map of ground stations used to measure the $K_p$, $AE$, and \dst\ indices [Allen (1982)].}
+		\label{fig:GroundStations}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=0.95\linewidth]{Figures/F107MD27d-all}
+		\caption{Comparing $F_{10.7\_27d}$ and $\log_{10}(\rho_{eq\_27d})$ using all available satellites.}
+		\label{fig:F107rhoeq27dcomparison}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}
 	\begin{figure}[htp!]
 		\centering
 		\includegraphics[width=0.5\linewidth]{Figures/alldata-GOES6-1983-1991}
@@ -148,12 +165,12 @@
 \end{frame}
 
 \begin{frame}
-	\req\ is derived from toroidal harmonic frequencies in plasmatrough. Harmonics are not always detectable.
+	\req\ is derived from toroidal harmonic frequencies in the plasmatrough. Harmonics are not always detectable.
 	\begin{figure}[htp!]
 		\centering
 		\includegraphics[width=0.4\linewidth]{Figures/Takahashi2010Availability.png}
 		\includegraphics[width=0.4\linewidth]{Figures/databyMLT}
-		\caption{Left: Detection rate of $f_{T3\_30m}$ for magnetic latitudes of 5, 9, and 11 degrees (curves A, B, and C respectively) [Takahashi (2010)]. Right: MLT of all available data.}
+		\caption{Left: Detection rate of $f_{T3\_30m}$ for magnetic latitudes of 5, 9, and 11 degrees (curves A, B, and C respectively) [Takahashi (2010)]. Right: MLT of all available \req\ data.}
 		\label{fig:Takahashi2010Availability}
 	\end{figure}
 \end{frame}
@@ -167,15 +184,6 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}
-	\begin{figure}[htp]
-		\centering
-		\includegraphics[scale=0.35]{{Figures/StationMap.eps}}
-		\caption{Map of ground stations used to measure the $K_p$, $AE$, and \dst\ indices \cite{CommonMagneticIndices}.}
-		\label{fig:GroundStations}
-	\end{figure}
-\end{frame}
-
 
 
 \begin{frame}
@@ -183,7 +191,7 @@
 		\centering
 		\includegraphics[width=0.45\linewidth]{Figures/idl_798387073825_050215_2_20140506_000000_before}
 		\includegraphics[width=0.45\linewidth]{Figures/idl_798605093993_050215_2_20140509_235900_after}
-		\caption{Model of magnetopause/plasmasphere before and after geomagnetic activity, showing location of GOES satellites in geosynchronous orbit \cite{CCMC}.}
+		\caption{Model of magnetopause/plasmasphere before and after geomagnetic activity, showing location of GOES satellites in geosynchronous orbit [CCMC].}
 		\label{fig:PlasmapauseLocation}
 	\end{figure}
 \end{frame}
@@ -196,7 +204,7 @@
 	\begin{figure}[htp!]
 		\centering
 		\includegraphics[width=0.9\linewidth]{Figures/PlasmapauseLocation.png}
-		\caption{Model of plasmapause location as it varies with geomagnetic activity where the symbols indicate the local time of maximum plasmapause location \cite{OBrien2003EmpiricalPlasmapause}.}
+		\caption{Model of plasmapause location as it varies with geomagnetic activity where the symbols indicate the local time of maximum plasmapause location [O'Brien and Moldwin (2003).}
 		\label{fig:PlasmapauseLocation}
 	\end{figure}
 \end{frame}
@@ -205,27 +213,58 @@
 	\begin{figure}[htp]
 		\centering
 		\includegraphics[scale=0.2]{{Figures/LemairePlasmapauseKnee.png}}
-		\caption{Plasmapause position varying with $K_p$ as represented by several particular plasmapause crossings made on outbound passes between local times of midnight and 0400 \cite{LemaireEarthsPlasmasphere}.}
+		\caption{Plasmapause position varying with $K_p$ as represented by several particular plasmapause crossings made on outbound passes between local times of midnight and 0400 [Lemaire (1998)].}
 		\label{fig:LemaireKnee}
 	\end{figure}
 \end{frame}
 
 
+\subsection{Questions}
+\begin{frame}
+	\subheader
+	Questions addressed by this dissertation:
+	\begin{itemize}
+		\item What enhances \req\ in the plasmatrough? Solar wind (via geomagnetic storms) or internal processes (e.g. ionospheric outflow)?
+		\item Does a \req\ enhancement depend on current IMF conditions?
+		\item Can a \req\ enhancement be classified or forecasted?
+	\end{itemize}
+\end{frame}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%___  ___     _   _               _       _                   
+%|  \/  |    | | | |             | |     | |                  
+%| .  . | ___| |_| |__   ___   __| | ___ | | ___   __ _ _   _ 
+%| |\/| |/ _ \ __| '_ \ / _ \ / _` |/ _ \| |/ _ \ / _` | | | |
+%| |  | |  __/ |_| | | | (_) | (_| | (_) | | (_) | (_| | |_| |
+%\_|  |_/\___|\__|_| |_|\___/ \__,_|\___/|_|\___/ \__, |\__, |
+%											       __/ | __/ |
+%										          |___/ |___/ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Methodology}
 \begin{frame}
-Three main methods of analysis used:
+Four main methods of analysis used:
 \begin{enumerate}
 	\item Linear/Auto-Regressive with exogenous inputs (ARX) 
 	\item Nonlinear Neural Network
 	\item Epoch
+	\item Nonlinear Classification and Prediction
 \end{enumerate}
 \end{frame}
 
 \subsection{Linear and ARX}
 
 \begin{frame}
-\subheader
-	Start with Box-Jenkins model:
+	\subheader
+	Linear uses Ordinary Least Squares on model of form $y=AX+c+\varepsilon$ with median of four hours before onset as X. 
+\newline
+
+	ARX starts with Box-Jenkins model:
 	\begin{align*}
 	x(t)&=\sum_{j=1}^{m}{b_j \cdot f(t-j\Delta t)}+c + \varepsilon_t
 	\end{align*}
@@ -275,7 +314,7 @@ Three main methods of analysis used:
 	Neural Network model benefits:
 	\begin{enumerate}
 		\item Can model nonlinear effects
-		\item 
+		\item Easily adaptable to binary classification
 	\end{enumerate}
 	Neural Network model disadvantages:
 	\begin{enumerate}
@@ -287,6 +326,7 @@ Three main methods of analysis used:
 
 
 \begin{frame}
+	Example nonlinear effect:
 	\begin{figure}[htp!]
 		\centering
 		\includegraphics[width=0.7\linewidth]{Figures/NNDoY-Dst-GOES6}	
@@ -311,6 +351,32 @@ Three main methods of analysis used:
 
 
 
+\subsection{Classification and Prediction}
+
+\begin{frame}
+	\subheader
+	Is an onset distinguishable using just the variables provided?
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/CH5/ClassifyGraphic2.png}
+		\caption{Diagram of classification method.}
+		\label{fig:ClassifyDiagram}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}
+	Can an onset be forecasted using the previous four hours or days?
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/CH5/FullGraphic.png}
+		\caption{Diagram of prediction method.}
+		\label{fig:ClassifyDiagram}
+	\end{figure}
+	
+	
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %______               _ _       
 %| ___ \             | | |      
@@ -320,24 +386,26 @@ Three main methods of analysis used:
 %\_| \_\___|___/\__,_|_|\__|___/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
-\subsection{Linear and ARX}
+\subsection{Traditional Models}
+
 \begin{frame}
 	\subheader
 	\begin{table}[h]
 		\footnotesize
-		\begin{tabular}{|C|CCCC|}
+		\begin{tabular}{|C|CCC|}
 			\hline
-			& \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
-			DoY & -0.08\pm0.08 & +0.14\pm0.13 & -0.06\pm0.06 & +0.09\pm0.10 \\
-			MLT & -0.10\pm0.21 & -0.07\pm0.12 & +0.01\pm0.23 & -0.06\pm0.05 \\
-			B_z & +0.16\pm0.21 & -0.13\pm0.15 & +0.08\pm0.14 & -0.07\pm0.06 \\
-			V_{sw} & -0.04\pm0.10 & +0.27\pm0.09 & +0.06\pm0.11 & -0.06\pm0.06 \\
-			D_{st} & +0.26\pm0.17 & +0.66\pm0.08 & +0.06\pm0.13 & +0.23\pm0.14 \\
-			\rho_{sw} & +0.35\pm0.24 & +0.63\pm0.31 & +0.12\pm0.19 & +0.36\pm0.17 \\
-			F_{10.7} & +0.43\pm0.08 & +0.12\pm0.12 & +0.51\pm0.06 & +0.40\pm0.06 \\
-			B_z+V_{sw} & +0.11\pm0.17 & +0.20\pm0.17 & +0.12\pm0.10 & -0.12\pm0.06 \\
-			D_{st}+F_{10.7} & +0.44\pm0.09 & +0.71\pm0.08 & +0.54\pm0.07 & +0.47\pm0.06 \\
-			All & -0.03\pm0.19 & +0.34\pm0.27 & +0.61\pm0.11 & +0.40\pm0.12 \\
+                         &  Linear & Nonlinear  & ARX_{24} \\ \hline
+                         DoY  &  -0.06\pm0.06  & +0.32\pm0.22 & +0.04 \\
+                         MLT  &  +0.01\pm0.23  & +0.40\pm0.32 & +0.27 \\
+                         \rowcolor{lightgray} B_z  &  +0.08\pm0.14  & +0.17\pm0.19 & +0.22 \\
+                         V_{sw}  &  +0.06\pm0.11  & +0.19\pm0.24 & +0.21 \\
+                         D_{st}  &  +0.06\pm0.13  & +0.02\pm0.17 & +0.05 \\
+                         \rho_{sw}  &  +0.12\pm0.19  & +0.20\pm0.22 & +0.08 \\
+                         \rowcolor{lightgray}F_{10.7}  &  +0.51\pm0.06  & +0.48\pm0.25 & +0.45 \\
+                         B_z+V_{sw}  &  +0.12\pm0.10  & +0.15\pm0.21 & +0.29 \\
+                         \rowcolor{lightgray}B_z+\f & +0.56\pm0.16 & +0.46\pm0.21 &  +0.49 \\
+                         D_{st}+F_{10.7}  &  +0.54\pm0.07  & +0.47\pm0.15 & +0.46 \\
+                         \rowcolor{lightgray}All  &  +0.61\pm0.11  & +0.60\pm0.35 & +0.61 \\
 			\hline
 		\end{tabular}
 		\caption{Table of linear model test-set correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
@@ -346,64 +414,16 @@ Three main methods of analysis used:
 \end{frame}
 
 \begin{frame}
-	\subheader
-	\begin{table}[h]
-		\footnotesize
-		\begin{tabular}{|C|CC>{\columncolor[RGB]{200, 212, 225}}CC|}
-			\hline
-			& \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
-			DoY & -0.08\pm0.08 & +0.14\pm0.13 & -0.06\pm0.06 & +0.09\pm0.10 \\
-			MLT & -0.10\pm0.21 & -0.07\pm0.12 & +0.01\pm0.23 & -0.06\pm0.05 \\
-			B_z & +0.16\pm0.21 & -0.13\pm0.15 & +0.08\pm0.14 & -0.07\pm0.06 \\
-			V_{sw} & -0.04\pm0.10 & +0.27\pm0.09 & +0.06\pm0.11 & -0.06\pm0.06 \\
-			\rowcolor{lightgray} D_{st} & +0.26\pm0.17 & +0.66\pm0.08 & +0.06\pm0.13 & +0.23\pm0.14 \\
-			\rho_{sw} & +0.35\pm0.24 & +0.63\pm0.31 & +0.12\pm0.19 & +0.36\pm0.17 \\
-			\rowcolor{lightgray}F_{10.7} & +0.43\pm0.08 & +0.12\pm0.12 & +0.51\pm0.06 & +0.40\pm0.06 \\
-			B_z+V_{sw} & +0.11\pm0.17 & +0.20\pm0.17 & +0.12\pm0.10 & -0.12\pm0.06 \\
-			\rowcolor{lightgray}D_{st}+F_{10.7} & +0.44\pm0.09 & +0.71\pm0.08 & +0.54\pm0.07 & +0.47\pm0.06 \\
-			\rowcolor{lightgray}All & -0.03\pm0.19 & +0.34\pm0.27 & +0.61\pm0.11 & +0.40\pm0.12 \\
-			\hline
-		\end{tabular}
-		\caption{Table of linear model test-set correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
-		\label{CCperltable}
-	\end{table}
+	\begin{itemize}
+		\item Nonlinear has more variation in samples, and between test and training sets, but does well for nonlinear variables such as DoY and MLT
+		\item Can see that \f\ is the dominant source of correlation for all models
+		\item Other variables are highly collinear 
+		\item Even using a model of all variables barely accounts for half of \req.
+		\item Previous studies make more complex models or focus on fewer events; this dissertation attempts epoch analysis
+	\end{itemize}
+
 \end{frame}
 
-
-\begin{frame}
-\begin{figure}[htp!]
-	\centering
-	\includegraphics[width=0.95\linewidth]{Figures/F107MD27d-all}
-	\caption{Comparing $F_{10.7\_27d}$ and $\log_{10}(\rho_{eq\_27d})$ using all available satellites.}
-	\label{fig:F107rhoeq27dcomparison}
-\end{figure}
-\end{frame}
-
-
-\subsection{Neural Network}
-\begin{frame}
-	\subheader
-	 \begin{table}[h]
-	 	\footnotesize
-	 	\begin{tabular}{|C|CCCC|}
-	 		\hline
-	 		& \text{GOES 2} & \text{GOES 5} & \text{GOES 6} & \text{GOES 7}\\ \hline
-	 		DoY & +0.05\pm0.31 & +0.31\pm0.30 & +0.32\pm0.22 & +0.12\pm0.17 \\
-	 		MLT & +0.29\pm0.41 & +0.15\pm0.34 & +0.40\pm0.32 & +0.17\pm0.21 \\
-	 		B_z & +0.24\pm0.23 & +0.21\pm0.28 & +0.17\pm0.19 & -0.00\pm0.20 \\
-	 		V_{sw} & +0.20\pm0.25 & +0.36\pm0.19 & +0.19\pm0.24 & +0.06\pm0.18 \\
-	 		D_{st} & +0.08\pm0.27 & +0.18\pm0.25 & +0.02\pm0.17 & +0.18\pm0.24 \\
-	 		\rho_{sw} & +0.02\pm0.29 & +0.25\pm0.42 & +0.20\pm0.22 & +0.12\pm0.29 \\
-	 		F_{10.7} & +0.26\pm0.27 & +0.32\pm0.29 & +0.48\pm0.25 & +0.36\pm0.15 \\
-	 		B_z+V_{sw} & +0.11\pm0.25 & +0.20\pm0.38 & +0.15\pm0.21 & +0.02\pm0.17 \\
-	 		D_{st}+F_{10.7} & +0.17\pm0.25 & +0.21\pm0.32 & +0.47\pm0.15 & +0.35\pm0.17 \\
-	 		All & +0.21\pm0.41 & +0.67\pm0.40 & +0.60\pm0.35 & +0.17\pm0.33 \\
-	 		\hline
-	 	\end{tabular}
-		\caption{Table of nonlinear model test correlations showing the median of 100 random samples. Each sample trained on half of the data (via randomly selected rows of the least squares matrix) and tested on the other half.} 
-	 	\label{NNperltable}
-	 \end{table}
-\end{frame}
 
 
 \subsection{Epoch}
@@ -413,41 +433,13 @@ Three main methods of analysis used:
 	Epoch Analysis performed on two types of events:
 	\begin{itemize}
 		\item $\req >$ 20 amu/cm$^3$
-		\item $\dst <$ -40 nT
+		\item $\dst <$ -50 nT
 	\end{itemize}
-	Threshold crossings for events considered at an hourly timescale. First wanted to verify results of Takahashi (2010), looking at \dst\ events from 1989-1991 hitting a minimum between 06-12 MLT.
+	Threshold crossings for events considered at an hourly timescale.
+	\newline
+	
+	Linear interpolation done on \req\ to approximate event onsets when lacking data, but left as fill-values for analysis. 
 \end{frame}
-
-\begin{frame}
-	\begin{figure}[htp!]
-		\centering
-		\includegraphics[width=0.3\linewidth]{Figures/StormAvs/stormavs-Takahashi.png}
-		\includegraphics[width=0.45\linewidth]{Figures/StormAvs/stormavs-dst-50-tak-GOES6}
-		\caption{Epoch analysis for \dst\ events on an daily timescale using only the years of 1989-1991 from Takahashi (2010).}
-		\label{fig:EpochTakahashi}
-	\end{figure}
-\end{frame}
-
-\begin{frame}
-	To verify whether events were significantly different between day of onset and the surrounding days, a bootstrap test of differences was performed:
-	\begin{figure}[htp!]
-		\centering
-		\includegraphics[width=0.6\linewidth]{Figures/DailyBootstrapDifferences-GOES6-case10}
-		\caption{Bootstrap differences between median daily value of events using only the years of 1989-1991.}
-		\label{fig:DailyBootstrapDifferences}
-	\end{figure}
-\end{frame}
-
-\begin{frame}
-	Using all of GOES 6's 1983-1991 range instead:
-	\begin{figure}[htp!]
-		\centering
-		\includegraphics[width=0.6\linewidth]{Figures/DailyBootstrapDifferences-GOES6-case13}
-		\caption{Bootstrap differences between median daily value of events using the years of 1983-1991.}
-		\label{fig:DailyBootstrapDifferences-full}
-	\end{figure}
-\end{frame}
-
 
 
 \begin{frame}
@@ -460,13 +452,24 @@ Three main methods of analysis used:
 	\end{figure}
 \end{frame}
 
+\begin{frame}
+	To verify whether events were significantly different between day of onset and the surrounding days, a bootstrap test of differences was performed:
+	\begin{figure}[htp!]
+		\centering
+		\includegraphics[width=0.6\linewidth]{Figures/DailyBootstrapDifferences-GOES6-case13}
+		\caption{Bootstrap differences between median daily value of events using the years of 1983-1991.}
+		\label{fig:DailyBootstrapDifferences-full}
+	\end{figure}
+	
+\end{frame}
+
 
 \begin{frame}
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.4\linewidth]{Figures/StormAvs/stormavs-dd12-GOES6}
 	\includegraphics[width=0.4\linewidth]{Figures/StormAvs/stormavs-mass-gt20-GOES6}
-	\caption{Left: \dst\ events lasting longer than 12 hours. Right: \req\ events on hourly timescale.}
+	\includegraphics[width=0.4\linewidth]{Figures/StormAvs/stormavs-diffden-5amu-GOES6}
+	\caption{Left: \req\ events on hourly timescale. Right: \req\ events where \req\ increased by at least 5 amu during onset hour. Daily averages showed similar lack of significance and median northward $B_z$.}
 	\label{fig:EpochDst12Hour}
 \end{figure}
 \end{frame}
@@ -484,27 +487,36 @@ Three main methods of analysis used:
 \end{frame}
 
 \begin{frame}
-	Verifying that distribution of \req\ is significantly different per \f\ bin before and after \req\ event onset.
+	Verifying that distribution of \req\ is significantly different per \f\ bin before \req\ or \dst\ event onset.
 	\begin{figure}[htp!]
 		\centering
 		\includegraphics[width=0.5\linewidth]{Figures/RhoBinnedF_{10.7}-case24-t020-tf25-GOES6}
-		\includegraphics[width=0.5\linewidth]{Figures/RhoBinnedF_{10.7}-case24-t025-tf30-GOES6}	
-		\caption{\req\ events binned by median \f\ before (left) and after (right) event onset.}
+		\includegraphics[width=0.5\linewidth]{Figures/RhoBinnedF_{10.7}-case1-t020-tf25-GOES6}
+		\caption{\req\ events (left) and \dst\ events (right) binned by median \f\ before event onset.}
 		\label{fig:RhoBinnedF107}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
-	Verifying that distribution of \req\ is also significantly different per \f\ bin before and after \dst\ event onset.
-	\begin{figure}[htp!]
-		\centering
-		\includegraphics[width=0.5\linewidth]{Figures/RhoBinnedF_{10.7}-case1-t020-tf25-GOES6}
-		\includegraphics[width=0.5\linewidth]{Figures/RhoBinnedF_{10.7}-case1-t025-tf30-GOES6}	
-		\caption{\dst\ events binned by median \f\ before (left) and after (right) event onset.}
-		\label{fig:RhoBinnedF107}
-	\end{figure}
+	Attempting to bin by IMF following event:
+		\begin{figure}[htp!]
+			\centering
+			\includegraphics[width=0.5\linewidth]{Figures/RhoBinnedB_z-case24-t025-tf30-GOES6}
+			\includegraphics[width=0.5\linewidth]{Figures/RhoBinnedB_z-case1-t025-tf30-GOES6}
+			\caption{\req\ events (left) and \dst\ events (right) binned by median $B_z$ after event onset.}
+			\label{fig:RhoBinnedF107}
+		\end{figure}
 \end{frame}
 
+\begin{frame}
+	Can conclude:
+	\begin{itemize}
+		\item \req\ decreases significantly between the day of a \dst\ event and the day following
+		\item Elevated \f\ coincides with elevated \req\ before and after \req\ events
+		\item Elevated \f\ coincides with a short, multi-hour spike in \req\ following a \dst\ event
+		\item \req\ largely unaffected by north-south component of IMF around events.
+	\end{itemize}
+\end{frame}
 
 \subsection{Classification and Forecasting}
 \begin{frame}
@@ -514,20 +526,14 @@ Three main methods of analysis used:
 		\item Can event onsets be distinguished from the hours or days before onset?
 		\item Can event onsets be forecasted using the hours or days before?
 	\end{itemize}
-	Utilizing MATLAB's \texttt{patternnet} neural network toolbox, classifying onsets as ``1" and all other times as ``0". Weighting ``1"s more heavily based on timescale.
+	\vspace{1em}
+	Utilizing MATLAB's \texttt{patternnet} neural network toolbox, classifying onsets as ``1" and all other times as ``0". Weighting ``1"s more heavily based on timescale since events are much less frequent than non-events.
 \end{frame}
 
-\begin{frame}
-Is an onset distinguishable using just the variables provided?
-	\begin{figure}[htp!]
-		\centering
-		\includegraphics[width=1\linewidth]{Figures/CH5/ClassifyGraphic2.png}
-		\caption{Diagram of classification method.}
-		\label{fig:ClassifyDiagram}
-	\end{figure}
-\end{frame}
+
 
 \begin{frame}
+	Classifying \req\ events using \f, Kp, \dst, and $V_{SW}$:
 	\begin{figure}[htp!]
 		\centering
 		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly.eps}
@@ -541,37 +547,20 @@ Is an onset distinguishable using just the variables provided?
 \begin{frame}
 	\begin{figure}[htp!]
 		\centering
-		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily-hist.eps}
-		\caption{Histogram of onset conditions for daily-averaged \req\ events binned by correctness of prediction.}
+		\begin{columns}
+			\column{.6\linewidth}
+		\includegraphics[width=0.85\linewidth]{Figures/CH5/NNBinaryOnset-daily-hist.eps}
+		\column{.4\linewidth}
+		\caption{Histogram of onset conditions for daily-averaged \req\ events binned by correctness of prediction. Appears that model failures are distributed equally to model successes.}
+		\end{columns}
 		\label{fig:OnsetEventsHist}
 	\end{figure}
 \end{frame}
 
-\begin{frame}
-	Including \req\ as a variable should make classification near perfect:
-	\begin{figure}[htp!]
-		\centering
-		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly-withreq.eps}
-		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily-withreq.eps}
-		\caption{Classification confusion matrix for hourly (left) and daily (right) \req\ onset events, including \req\ as an input variable.}
-		\label{fig:OnsetWithreq}
-	\end{figure}
-\end{frame}
 
 
 \begin{frame}
-	Can an onset be forecasted using the previous four hours or days?
-	\begin{figure}[htp!]
-		\centering
-		\includegraphics[width=1\linewidth]{Figures/CH5/FullGraphic.png}
-		\caption{Diagram of prediction method.}
-		\label{fig:ClassifyDiagram}
-	\end{figure}
-	
-	
-\end{frame}
-
-\begin{frame}
+	Predicting \req\ onsets using \f, Kp, \dst, $V_{SW}$, and \req:
 	\begin{figure}[htp!]
 		\centering
 		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-hourly-withreq.eps}
@@ -584,8 +573,13 @@ Is an onset distinguishable using just the variables provided?
 \begin{frame}
 	\begin{figure}[htp!]
 		\centering
-		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq-hist.eps}
-		\caption{Histogram of onset conditions for daily \req\ events including \req\ as an input, binned by correctness of prediction.}
+		\begin{columns}
+			
+\column{.6\linewidth}
+		\includegraphics[width=0.85\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq-hist.eps}
+		\column{.4\linewidth}
+		\caption{Histogram of onset conditions for daily \req\ events including \req\ as an input, binned by correctness of prediction. Appears low \f\ leads to false negatives suggesting high \f\ is an indicator of a likely event.}
+				\end{columns}
 		\label{fig:OnsetWithreq-hist-full}
 	\end{figure}
 \end{frame}
@@ -601,12 +595,22 @@ Is an onset distinguishable using just the variables provided?
 \section{Conclusions}
 \subsection{Conclusions}
 \begin{frame}
-	\subheader
+	To reitterate the initial questions:	
+	\begin{itemize}
+		\item What enhances \req\ in the plasmatrough? Solar wind (via geomagnetic storms) or internal processes (e.g. ionospheric outflow)?
+		\item[] \textbf{Geomagnetic storms not nearly as impactful as internal processes, such as outflow driven by \f.}
+		\item Does a \req\ enhancement depend on current IMF conditions?
+		\item[] \textbf{Weakly. Northward IMF supports higher \req\ after either type of event.}
+		\item Can a \req\ enhancement be classified or forecasted?
+		\item[] \textbf{Not well using most common solar wind and geomagnetic variables. Suggests something else needed.}
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	Further conclusions:
 	\begin{itemize}
 		\item Drop in \dst\ does not significantly influence \req\ on an hourly timescale, but does over the following day.
 		\item \req\ increases do not correlate, on average, with significant changes in \dst, \f, or $B_z$.
-		\item \dst\ most affects \req\ during periods of high solar activity (via \f)
-		\item Classifying or forecasting the day of an event onset are possible but both prone to false positives
+		\item Classifying or forecasting the day of an event onset are possible but both prone to false positives or false negatives, depending on weighting.
 	\end{itemize}
 \end{frame}
 
@@ -627,25 +631,16 @@ Is an onset distinguishable using just the variables provided?
 \begin{frame}[c]
 	\begin{center}
 		\huge
+		\begin{beamercolorbox}[sep=18pt,center,shadow=true,rounded=true]{title}
+			\usebeamerfont{title}Thank you for your time.\par%
+		\end{beamercolorbox}
+		\vspace{2em}
 		Questions?
 	\end{center}
-	\small
-	\begin{itemize}
-		\item Do I need to explain F10.7? How about geomagnetic indices, and to what depth?
-		\item References page? Fine to fill out by hand?
-		\item Too many tables? Fine to drop extra satellites to fit L, ARX, and NL on one slide?
-	\end{itemize}
+
 \end{frame}
 
 
-
-
-
-\begin{frame}
-	\tiny
-	\bibliographystyle{plainnat-lastnamefirst}
-	\bibliography{bibfile}
-\end{frame}
 
 
 
