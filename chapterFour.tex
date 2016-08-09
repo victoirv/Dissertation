@@ -148,16 +148,16 @@ It is interesting to note which variables correlate just as well on an hourly ti
 
 
 \section{Epoch Analyses} \label{sec:epochs}
-In an effort to determine the typical behavior of an event, analyses were done for a number of different conditions where all variables were averaged over a window surrounding the event onset. This should reduce the noise of individual events and show the overall trends inherent in the system during different types of events. For example, Figure \ref{fig:EpochDst} shows the data for \dst\ events where \dst\ dropped below $-50$~nT. This finds 668 such events over the span of time covered by GOES 6. Taking the median of each variable across all events for each time step (an hour, in this figure), the general trend is plotted for $B_z$, $V_{SW}$, \dst,\f, and \req. The red dashed lines indicate one standard error of the mean from all of the valid points used to compute the median, and the number of valid points (relevant only for \req) is plotted as green bars.
+In an effort to determine the typical behavior of an event, analyses were done for a number of different conditions where all variables were averaged over a window surrounding the event onset. This should reduce the noise of individual events and show the overall trends inherent in the system during different types of events. For example, Figure \ref{fig:EpochDst} shows the data for \dst\ events where \dst\ dropped below $-50$~nT. This finds 333 such events over the span of time covered by GOES 6. Taking the median of each variable across all events for each time step (an hour, in this figure), the general trend is plotted for $B_z$, $V_{SW}$, \dst,\f, and \req. The red dashed lines indicate one standard error of the mean from all of the valid points used to compute the median, and the number of valid points (relevant only for \req) is plotted as green bars.
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-dst}
+	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-dst-GOES6}
 	\caption{Epoch analysis for \dst\ events on an hourly timescale.}
 	\label{fig:EpochDst}
 \end{figure}
 
-Figure \ref{fig:EpochDst} shows that a \dst\ decrease is, on average and with little variation, preceded by a large drop in $B_z$. The other variables may have some trend, but appear to change on the time scale of days rather than hours. For this reason, the same analysis was done after binning all data to a daily time scale, and the results are shown in Figure \ref{fig:EpochDstDay}.
+Figure \ref{fig:EpochDst} shows that a \dst\ decrease is, on average and with little variation, preceded by a large drop in $B_z$, a slightly faster solar wind, and a spike in \req. To see if there were also significant changes over a longer period, the same analysis was done after binning all data to a daily time scale, and the results are shown in Figure \ref{fig:EpochDstDay}.
 
 \begin{figure}[htp!]
 	\centering
@@ -168,7 +168,7 @@ Figure \ref{fig:EpochDst} shows that a \dst\ decrease is, on average and with li
 
 This shows the same decrease of $B_z$ accompanying a decrease in \dst, but also more clearly shows that the solar wind velocity and \req\ both also differ significantly from the day before onset to onset (in the case of velocity) and the day of onset to the day after (in the case of density). 
 
-In an effort to replicate the results of \cite{Takahashi2010SolarCycleVariation}, shown in Figure \ref{fig:EpochTakahashi}, the same epoch analysis was done on a daily timescale for just the years looked at in the paper (1989-1991), and a similar plot was created. This is shown in Figure \ref{fig:EpochDstDayTakahashi}, and finds results that are fairly similar, with slight differences possibly attributable to difference in data pruning. \cite{Takahashi2010SolarCycleVariation} only looks at events happening between 0600 and 1200 MLT since their $f_{T3}$ detection rate was highest then, whereas this looks at all times. They also define "onset" as time corresponding to the minimum value in an event where \dst\ crossed the $-50$~nT threshold, whereas this considers the moment of crossing the threshold to be the onset.
+In an effort to replicate the results of \cite{Takahashi2010SolarCycleVariation}, shown in Figure \ref{fig:EpochTakahashi}, the same epoch analysis was done on a daily timescale for just the years looked at in the paper (1989-1991), and a similar plot was created. This is shown in Figure \ref{fig:EpochDstDayTakahashi}, and finds results that are fairly similar, with slight differences possibly attributable to difference in data pruning. \cite{Takahashi2010SolarCycleVariation} only looks at events happening between 0600 and 1200 MLT since their $f_{T3}$ detection rate was highest then and also defines "onset" as time corresponding to the minimum value in an event where \dst\ crossed the $-50$~nT threshold. These adjustments  were added to this analysis to both verify the results of \cite{Takahashi2010SolarCycleVariation}, and verify that the data handling and analysis routines being used were accurate and repeatable with respect to the results from other researchers.
 
 \begin{figure}[htp!]
 	\centering
@@ -196,7 +196,7 @@ To verify that there was in fact a significant difference between the day of ons
 \end{figure}
 
 
-The idea here is that if the days have equal medians, a large number of random samples for each day should be equal on average. If the medians of two days are equal, the difference between those medians should be zero, so if a significant portion of differences have a skewed to non-zero value, this suggests the days are not equal. Figure \ref{fig:DailyBootstrapDifferences} shows that for the time period of 1989-1991, no significance can be conclusively shown in this manner. However, if the entirety of data from GOES 6 is looked at, covering 1983-1991, as seen in Figure \ref{fig:DailyBootstrapDifferences-full}, the difference in median \req\ between the day of onset and the day following has a distribution where less than 5\% of the random samples lie beyond the hypothesized difference of 0, while the other two tests fail to reject the hypothesis of equal median daily values.  
+The idea here is that if the days have equal medians, a large number of random samples for each day should be equal on average. If the medians of two days are equal, the difference between those medians should be zero, so if a significant portion of differences have a skewed to non-zero value, this suggests the days are not equal. Figure \ref{fig:DailyBootstrapDifferences} shows that for the time period of 1989-1991, no significance can be conclusively shown in this manner. Looking the entirety of data from GOES 6, covering 1983-1991, as seen in Figure \ref{fig:DailyBootstrapDifferences-full}, this trend remains similar in distributions.  
 
 \begin{figure}[htp!]
 	\centering
@@ -205,7 +205,7 @@ The idea here is that if the days have equal medians, a large number of random s
 	\label{fig:DailyBootstrapDifferences-full}
 \end{figure}
 
-A few other forms of epoch analysis were done for exploratory purposes. Figure \ref{fig:EpochDst12Hour} shows \dst\ events where \dst\ remained below the $-50$~nT threshold for at least 12 hours. The same preceding drop in $B_z$ can be seen, but now also appears to sustain the more negative value for longer. Also of note is the large spike in \req, but it comes at a point with few available data points, and the uncertainty on each point is large, making it difficult to say anything conclusive about the behavior of density during sustained periods of highly negative \dst.
+A few other forms of epoch analysis were done for exploratory purposes. Figure \ref{fig:EpochDst12Hour} shows \dst\ events where \dst\ remained below the $-50$~nT threshold for at least 12 hours. The same preceding drop in $B_z$ can be seen, but now also appears to sustain the more negative value for longer. Also of note is the large spike in \req, but it comes at a point with few available data points, and the uncertainty on each point is large, making it difficult to say anything conclusive about the behavior of density during sustained periods of highly negative \dst other than that it follows the general trend of hourly \req\ increases in response to geomagnetic activity.
 
 \begin{figure}[htp!]
 	\centering
@@ -223,7 +223,7 @@ Looking at events defined as a period where \req\ crosses a threshold of 20 $amu
 	\label{fig:EpochRho}
 \end{figure}
 
-And finally, to test the amount of natural variance and for the sake of verification, a stack plot was made with random times selected as event onsets for both hourly and daily data. Figures \ref{fig:EpochRandom} and \ref{fig:EpochRandomDaily} show both examples, and that neither have any significant trends.
+And finally, to test the amount of natural variance and for the sake of verification, a stack plot was made with random times selected as event onsets for both hourly and daily data. Figure \ref{fig:EpochRandom} shows the hourly example, and neither have any significant trends, as expected.
 
 \begin{figure}[htp!]
 	\centering
@@ -232,12 +232,7 @@ And finally, to test the amount of natural variance and for the sake of verifica
 	\label{fig:EpochRandom}
 \end{figure}
 
-\begin{figure}[htp!]
-	\centering
-	\includegraphics[width=1\linewidth]{Figures/StormAvs/stormavs-randomdaily-GOES6}
-	\caption{Epoch analysis for randomly selected "events" between 1983-1991 on a daily timescale.}
-	\label{fig:EpochRandomDaily}
-\end{figure}
+\clearpage
 
 
 
@@ -270,7 +265,7 @@ The dependence was then analyzed in a more nonlinear manner by investigating the
 	\label{fig:HighLowF107rhoeq}
 \end{figure}
 
-The top panel of Figure \ref{fig:HighLowF107rhoeq} shows that \req\ reacts to decreases in \dst, but seemingly only during periods of higher solar activity. Since higher \f\ also correlates with a higher baseline \req, this effect could be due to saturation of the plasmasphere from the increased solar activity. It should also be noted that this trend is not seen as strongly for all satellites. GOES 2 and 6 show a significant spike and baseline shift, while GOES 7 and 5 lack the significant spike and shift respectively. 
+The top panel of Figure \ref{fig:HighLowF107rhoeq} shows that \req\ reacts significantly on an hourly timescale to decreases in \dst, but seemingly only during periods of higher solar activity. Since higher \f\ also correlates with a higher baseline \req, this effect could be due to saturation of the plasmasphere from the increased solar activity. It should also be noted that this trend is not seen as strongly for all satellites. GOES 2 and 6 show a significant spike and baseline shift, while GOES 5 lacks the baseline shift, and GOES 7 has large variability throughout all hours and all bins.
 
 The bottom panel of Figure \ref{fig:HighLowF107rhoeq} shows that though all events are selected based on a \dst\ threshold, the behavior before and after the storm is affected by \f. For low solar activity events, the \dst\ changes are more sudden and severe, coming from and going back to a more positive baseline. High solar activity events have a longer recovery period.
 
@@ -323,6 +318,6 @@ For each binning method, a two sample t-test was performed for each hour to dete
 \section{Summary}
 This chapter explored a number of linear and nonlinear models, in an effort to determine which solar wind and geomagnetic variables are most connected to the behavior of \req. While it was found that \f\ is most linearly correlated, it was also found that the other linear variables were highly collinear, providing little new information to the model when combined with \f.  It was also found that the correlations varied between different GOES satellites, as well as had a large variation in the nonlinear testing models. 
 
-The epoch plots made to verify and extend the findings of \cite{Takahashi2010SolarCycleVariation} found that \req\ was not significantly enhanced by an increase in geomagnetic activity on an hourly timescale, but was weakly significant on a daily timescale. It also appears that this enhancement does not depend on the current condition of the interplanetary magnetic field $B_z$, but that high solar activity (via \f) does significantly influence the behavior of \req\ before and after a geomagnetic event, whether defined as an increase in \req\ or a decrease in \dst. Physically this suggests that active solar conditions act as a significant pre-requisite for processes that enhance plasma mass density around Earth during all detectable time periods.
+The epoch plots made to verify and extend the findings of \cite{Takahashi2010SolarCycleVariation} found that \req\ was significantly enhanced by an increase in geomagnetic activity on an hourly timescale, but was only weakly significant on a daily timescale. It also appears that this enhancement does not depend on the current condition of the interplanetary magnetic field $B_z$, but that high solar activity (via \f) does significantly influence the behavior of \req\ before and after a geomagnetic event, whether defined as an increase in \req\ or a decrease in \dst. Physically this suggests that active solar conditions act as a significant pre-requisite for processes that enhance plasma mass density around Earth during all detectable time periods.
 
 

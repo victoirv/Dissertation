@@ -59,13 +59,21 @@ The data come from \cite{Takahashi2010SolarCycleVariation}, which takes data fro
 
 \subsection{Coverage}
 \label{DataSparsity}
-The GOES satellites used in this study cover the years from 1980 to the end of 1991, often with overlapping years between satellites. The satellites themselves held a geostationary orbit at around 6.62 $R_E$ and collected data on a roughly 3-second cadence \citep{GOESDataSource}, which was then transformed onto a 10-minute cadence. Their radial position means they are almost always measuring properties of the plasmatrough, the region devoid of dense plasma located just outside the plasmasphere. Figure \ref{fig:PlasmapauseLocation} shows the location of the GOES satellites relative to the magnetopause in the top panel, while also showing that the plasmapause location tends to vary from 2-6 $R_E$ depending on magnetic activity.
+The GOES satellites used in this study cover the years from 1980 to the end of 1991, often with overlapping years between satellites. The satellites themselves held a geostationary orbit at around 6.62 $R_E$ and collected data on a roughly 3-second cadence \citep{GOESDataSource}, which was then transformed onto a 10-minute cadence. Their radial position means they are almost always measuring properties of the plasmatrough, the region devoid of dense plasma located just outside the plasmasphere. Figure \ref{fig:PlasmapauseLocationCCMC} shows the location of the GOES satellites relative to the magnetopause and plasmasphere as both vary with geomagnetic activity, while Figure \ref{fig:PlasmapauseLocation} also shows that the plasmapause location tends to vary from 2-6 $R_E$ depending on magnetic activity. 
+
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.9\linewidth]{Figures/iSWACygnetStreamer.jpg}
+	\includegraphics[width=0.7\linewidth]{Figures/idl_798387073825_050215_2_20140506_000000_before}
+	\includegraphics[width=0.7\linewidth]{Figures/idl_798605093993_050215_2_20140509_235900_after}
+	\caption{Top: Model of magnetopause location showing location of GOES satellites in geosynchronous orbit, taken during a period beginning at $K_p$=1 and ending after a day of $K_p$=4 \citep{CCMC}. }
+	\label{fig:PlasmapauseLocationCCMC}
+\end{figure}
+
+\begin{figure}[htp!]
+	\centering
 	\includegraphics[width=0.9\linewidth]{Figures/PlasmapauseLocation.png}
-	\caption{Top: Model of magnetopause location showing location of GOES satellites in geosynchronous orbit \citep{CCMC}, taken during a period of $K_p$=4. Bottom: Model of plasmapause location as it varies with geomagnetic activity where the symbols indicate the local time of maximum plasmapause location \citep{OBrien2003EmpiricalPlasmapause}.}
+	\caption{Model of plasmapause location as it varies with geomagnetic activity where the symbols indicate the local time of maximum plasmapause location \citep{OBrien2003EmpiricalPlasmapause}.}
 	\label{fig:PlasmapauseLocation}
 \end{figure}
 
@@ -81,7 +89,7 @@ The data were prepared by replacing fill values of 9999 with NaN and then narrow
 \end{figure}
 
 
-In order to align the GOES data with the OMNI 1-hour cadence, the median of all existing 10-minute values within an hour was treated as the value for that hour (i.e. the median of all values from 7:00-7:59 was the value for 7:00). This was done to match the OMNI standard, and showed no significant difference on our timescales as using a centered median. For hours with no existing values, a NaN was inserted to keep the cadence uniform. 
+In order to align the GOES data with the OMNI 1-hour cadence, the median of all existing 10-minute values within an hour was treated as the value for that hour (e.g. the median of all values from 7:00-7:59 was the value for 7:00). This was done to match the OMNI standard, and showed no significant difference on our timescales as using a centered median. For hours with no existing values, a NaN was inserted to keep the cadence uniform. 
 
 \section{Plasmasphere and Plasmatrough}
 Plasmasphere data covers the inner regions of the magnetosphere, bounded by the plasmapause on the outer edge and the ionosphere on the inner edge. This puts it at a typical distance of $L=3-5R_E$ \citep{Carpenter1992ISEEModel}. 

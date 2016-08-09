@@ -143,12 +143,12 @@ Nonlinear models are a useful addition to linear models by allowing for better a
 
 
 \section{Epoch Analysis}
-Epoch Analysis is the act of taking a number of time intervals all centered around some common selection criteria, and looking at the average behavior of those time intervals. In this case, the averaging is done via a median to find the typical behavior of the system without significant influence from the more extreme cases. As an example, Figure \ref{fig:epochexample} shows what this process typically looks like.
+Epoch Analysis is the act of taking a number of time intervals all centered around some common selection criteria, and looking at the average behavior of those time intervals. This allows for the analysis of the behavior of systems with a lot of noise or variability by only retaining features that exist in a majority of sampled events. In this case, the averaging is done via a median to find the typical behavior of the system without significant influence from the more extreme cases. As an example, Figure \ref{fig:epochexample} shows what this process typically looks like.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.75]{Figures/{epochexample}.eps}
-	\caption{Example epoch analysis. Individual events in blue, averaged value in red.}
+	\caption{Example epoch analysis. Individual events in blue, median value in red.}
 	\label{fig:epochexample}
 \end{figure}
 
