@@ -1,11 +1,11 @@
 \chapter[Models]{Methods}
 
-This work utilized both linear and nonlinear methods for analysis, modeling, and prediction, including Auto-Regressive Moving Average models with eXogenous inputs (ARMAX) and neural net models. No single method is ideal, and using many methods is better for insight, especially for nonlinear/complex systems. The details of their application will be expanded upon in their respective sections.
+This work utilized both linear and nonlinear methods for analysis, modeling, and prediction, including Auto-Regressive Moving Average models with eXogenous inputs (ARMAX) and neural net models. No single method is ideal, and using many methods is better for insight, especially for nonlinear/complex systems. The details of their application will be expanded upon in their respective sections in this chapter.
 
 \section{Linear}
 
 \subsection{Overview}
-Due to its simplicity and ease of application, linear models are used in practically all fields as a first attempt to interpret data and any potential relationships. In Space Physics, where the underlying behavior of a complex system is not theoretically known, and in-situ measurements are sparse, linear models are often the first step towards understanding what components are related and to what degree. Sometimes this leads to understanding unexpected complexities in a system.
+Due to its simplicity and ease of application, linear models are used in practically all fields as a first attempt to interpret data and any potential relationships. In Space Physics, where the underlying behavior of a complex system is often not theoretically known, and in-situ measurements are sparse, linear models are often the first step towards understanding what components are related and to what degree. Sometimes this leads to understanding unexpected complexities in a system.
 
 
 \subsection{ARX}
@@ -25,10 +25,10 @@ x(t)&=\sum_{j=1}^{m}{b_j \cdot f(t-j\Delta t)}+c_t
 \end{align*}
 can be modified to include an auto-regressive component to be an autoregressive model with exogenous inputs (ARX) such as that used in \cite{ARXEqn}, taking the form:
 \begin{align}
-\hat{x}(t)&=\sum_{i=1}^la_i\cdot x(t-i\Delta t)+\sum_{j=1}^m b_j\cdot f(t-j\Delta t)+c_t
+\hat{x}(t)&=\sum_{i=1}^la_i\cdot x(t-i\Delta t)+\sum_{j=1}^m b_j\cdot f(t-j\Delta t)+c
 \label{ARXEqn}
 \end{align}
-Where $m$ and $l$ are the number of coefficients desired for including previous data points in the prediction, and $c$ is a factor to remove the mean offset from the data. Note that in some cases the starting value of the iterators can be individually increased if there is a known delay in response time or there is a desire to predict further into the future. In \cite{ARXEqn}, second order equations ($m=2$) were used with anywhere from one to four driving coefficients, but in practice any number of coefficients and any number of driving variables can be used up to some fraction of the number of data points that allows the coefficient matrices to be solved for. 
+Where $m$ and $l$ are the number of coefficients desired for including previous data points in the prediction, and $c$ is a factor that corresponds to the mean of the input data. Note that in some cases the starting value of the iterators can be individually increased if there is a known delay in response time or there is a desire to predict further into the future. In \cite{ARXEqn}, second order equations ($m=2$) were used with anywhere from one to four driving coefficients, but in practice any number of coefficients and any number of driving variables can be used up to some fraction of the number of data points that allows the coefficient matrices to be solved for. 
 
 There generally is a limit to the usefulness of large-lead-time forecasts \cite{ExtremeEvents}. By looking at a plot of the cross correlation relative to the number of coefficients, a limit will generally be seen where adding more coefficients no longer reduces error in the model. By creating a threshhold of change in fit per coefficient added (perhaps via a bootstrap method), the minimum number of coefficients needed to optimally model the system can be determined.
 
@@ -65,7 +65,7 @@ A class of model known as an Auto-Regressive Moving Average with eXogenous input
 
 
 \subsection{Applicability}
-As implied by the name, an ARMAX model is suitable for analysis of a time-dependent linear system where the value of a measurement is determined by its own persistence, an external variable, and some factor that contributes to a moving average with time. Most linear systems can be encapsulated by this framework, some even being overspecified with this level of accounting for variability.
+As implied by the name, an ARMAX model is suitable for analysis of a time-dependent linear system where the value of a measurement is determined by its own persistence, an external variable, and some factor that contributes to a moving average with time. Most linear systems can be encapsulated by this framework.
 
 \subsection{Caveats and Biases}
 There will be a number of things that, ideally, must come together to make this kind of data prediction work. For one: ARX methods can often be heavily dependent on a concept known as ``persistence", whereby the best prediction for a variable at any time is that same variable at the last measured time step. For example, if the high temperature today is $70^\circ$, it is fairly likely that the high temperature tomorrow will be near $70^\circ$. Too much reliance on persistence forecasting, though, and predictions can lose their usefulness. Figure \ref{VBzIRplot}, for example, shows how a model can achieve high correlation with persistence, but be almost entirely useless for predicting events before they happen since the spikes are never anticipated, just modeled after they have been observed. Also, if the time of interest is multiple time-steps ahead, a simple persistence forecast becomes less and less accurate with each step.
@@ -75,16 +75,16 @@ The other major problem in forecasting is that of lead time. Being able to forec
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.50]{{Figures/PersistentCorrelation.eps}}
-	\caption{Correlation between prediction and measurement vs lead time of forecast.}
+	\caption{Correlation between prediction and measurement versus lead time of forecast.}
 	\label{Lags}
 \end{figure}
 
-Figure \ref{Lags} shows the correlation of a set of predictions made for autocorrelation in the disturbance storm time index (\dst) against the amount of lead time in the forecasts. This metric is a measure of how much disturbances in the magnetosphere induce currents in ground-based electrical systems. The predictions were made further and further in time from the current magnetic field and \dst\ measurements, with decreasing accuracy as the predicted time got further from the current time. While an accurate prediction can be made one hour in advance, a prediction 3 days in advance has almost no correlation with what was measured. This is one of the main problems that this dissertation hopes to address.
+Figure \ref{Lags} shows the correlation of a set of predictions made for autocorrelation in the disturbance storm time index (\dst) against the amount of lead time in the forecasts. This metric is a measure of how much disturbances in the magnetosphere induce currents that cause ground-based magnetic field perturbations. The predictions were made further and further in time from the current magnetic field and \dst\ measurements, with decreasing accuracy as the predicted time got further from the current time. While an accurate prediction can be made one hour in advance, a prediction 3 days in advance has almost no correlation with what was measured. 
 
-\subsubsection{Mean vs Median}
-The question of whether to use means or medians for analysis is based on what facets of the data are most important to the research. Since means are biased towards outliers and medians biased against them, the decision rests on how much weight should be given to outliers (or extreme values) in a study. For example, when looking at long-term solar wind variables, intermittent spikes may not be relevant to the overall pattern of behavior being analyzed, but knowing that on a short time scale a certain day had a noticeable spike may be important. In the former case, using the median would likely be best, and using the mean for the latter. However, space physics often deals with skewed distributions and sparse data, leading to an uncertainty of which method is best, so both are and analyzed with their respective traits in mind.
+\subsubsection{Mean versus Median}
+The question of whether to use means or medians for analysis is based on what facets of the data are most important to the research. Since means are biased towards outliers and medians biased against them, the decision rests on how much weight should be given to outliers (or extreme values) in a study. For example, when looking at long-term solar wind variables, intermittent spikes may not be relevant to the overall pattern of behavior being analyzed, but knowing that on a short time scale a certain day had a noticeable spike may be important. In the former case, using the median would likely be best, whereas a mean would be best for the latter. However, space physics often deals with skewed distributions and sparse data, leading to an uncertainty of which method is best, so both are and analyzed with their respective traits in mind.
 
-As an example, Figure \ref{fig:MeanMedian} shows a plot where data for multiple events is split into bins based on the average value of a binning variable, and then significance tests performed for each hour of the event to determine if the variable behaves differently based on bin. In this case, where the same events is used for both methods, when using means as the method of averaging the hours have far more variability and are thus seen to have less significance, whereas using medians finds over twice as many significant hours, as well as a clearly more divisive behavior. 
+As an example, Figure \ref{fig:MeanMedian} shows a plot where data for multiple events is split into bins based on the average value of a binning variable, and then significance tests performed for each hour of the event to determine if the variable behaves differently based on bin. In this case, where the same events are used for both methods, when using means as the method of averaging the hours have far more variability and are thus seen to have less significance, whereas using medians finds over twice as many significant hours, as well as a clearly more divisive behavior. The events and analysis used to generate these plots are described in Chapter 4.
 
 \begin{figure}[h!]
 	\centering
@@ -96,17 +96,17 @@ As an example, Figure \ref{fig:MeanMedian} shows a plot where data for multiple 
 
 
 \subsubsection{Effects of time averaging}
-Similarly to the mean vs median question, the decision on if/how much to average the data over time will affect the resulting time series to be biased against intermittent spikes in value. The more time added to any particular average, the less impact any short-term changes will have on the final value.
+Similarly to the mean versus median question, the decision on if or how much to average the data over time will affect the resulting time series to be biased against intermittent spikes in value. The more time added to any particular average, the less impact any short-term changes will have on the final value.
 
 \subsection{Summary}
-Because linear models are simple, optimizable, and adequately model many physical systems, they are a useful first choice for trying to determine the behavior of mass density in the plasmatrough. The relationships between solar wind, plasmatrough, and plasmasphere may also be detectable on the first order approximation by a linear model if not entirely linear in nature.
+Because linear models are simple to develop and optimize and adequately model many physical systems, they are a useful first choice for trying to determine the behavior of mass density in the plasmatrough. The relationships between solar wind, plasmatrough, and plasmasphere may also be detectable on the first order approximation by a linear model even if they are not entirely linear in nature.
 
 
 \section{Nonlinear}
 
 \subsection{Overview}
 
-While many nonlinear systems are approximated by a number of localized linear models for the sake of simplicity and ease of interpretation, the design and implementation of nonlinear models has become greatly simplified in recent years. Their use allows for determining nonlinear structure without pre-assuming any localization of the data, and as such were used to attempt forecasting in this dissertation. The first choice was a model based on neural networks \citep{NNARMA,ANNforecast} which approximates a non-linear system given a set of training data. The usefulness of this is apparent in a few key points: the weights of contribution of any particular variable to a system will likely be nonlinear in some fashion (e.g. a ground station's measurements will depend on sunlight heating the ionosphere which depends on latitude, time of year, and time of day), and allowing for the non-linear effects of saturation where perhaps the magnetosphere will behave differently after reaching certain levels of particle density or electric potential, rather than directly scaling regardless of limits.
+While many nonlinear systems are approximated by a number of localized linear models for the sake of simplicity and ease of interpretation, the design and implementation of nonlinear models has become greatly simplified in recent years. Their use allows for determining nonlinear structure without pre-assuming any localization of the data, and as such were used to attempt forecasting in this dissertation. The first choice was a model based on neural networks \citep{NNARMA,ANNforecast} which approximates a non-linear system given a set of training data. The usefulness of this is apparent in a few key points: the weights of contribution of any particular variable to a system will likely be nonlinear in some fashion (e.g. a ground station's measurements will depend on sunlight heating the ionosphere which depends on latitude, time of year, and time of day), and the method allows for the non-linear effects of saturation where perhaps the magnetosphere will behave differently after reaching certain levels of particle density or electric potential, rather than directly scaling regardless of limits.
 
 Another algorithm known as Principal Component Analysis (PCA) can be used to take the large number of possible variables and define an orthogonal set of vectors that most efficiently encapsulate the variance in the data. By doing this, the number of variables needed for computing any linear or non-linear algorithm can be reduced and optimized, making predictions quicker while maintaining most of the predictive benefits of using all possible data, as well as indicating which variables contain the most information relevant to the predictions.
 
@@ -117,9 +117,9 @@ Another algorithm known as Principal Component Analysis (PCA) can be used to tak
 Nonlinear models are applicable when a system has more complexity than can be encapsulated by a linear model. Since they are usually a class of model that trains adaptive weights that can be tuned by known inputs and outputs, they are especially useful for systems where a large amount of training data are available.
 
 \subsection{Caveats}
-Nonlinear models can be susceptible to overfitting, since they inherently attempt to fit more complexity than a linear model, but can also be controlled via the number of inputs and weights used. They also may suggest more structure than might truly exist. Both of these problems are lessened by training with more data, if available. Figure \ref{NNvsLinear} shows a comparison of predicting equatorial mass density (\req) with the $F_{10.7}$ index and the disturbance storm time index (\dst). The neural net models (left)  shows much more structure than the linear models (right) despite being given the same data. Whether that structure reflects any real physical phenomenon, however, is a difficult problem to answer, and so both models are often compared to attempt to ascertain what structure may be valid. 
+Nonlinear models can be susceptible to overfitting, since they inherently attempt to fit more complexity than a linear model, but this can be controlled via the number of inputs and weights used. They also may suggest more structure than might truly exist. Both of these problems are lessened by training with more data, if available. Figure \ref{NNvsLinear} shows a comparison of predicting equatorial mass density (\req) with the $F_{10.7}$ index and the disturbance storm time index (\dst). The neural net models (left)  shows much more structure than the linear models (right) despite being given the same data. Whether that structure reflects any real physical phenomenon, however, is a difficult problem to answer, and so both models are often compared to attempt to ascertain what structure may be valid. 
 
-Sometimes, as in the top two plots of Figure \ref{NNvsLinear}, the structure seems to support the same conclusion where the nonlinear model just adds slight detail. Othertimes, as in the case of the lower two plots, the results seem discrepant. The linear model indicates increasing \req\ with increasing $B_z$ and increasing \f, while the nonlinear model shows a more nuanced structure with increased \req\ showing up with lower $B_z$ values, and at a range of \f\ values. Situations like these require further analysis to determine the true underlying structure.
+Sometimes, as in the top two plots of Figure \ref{NNvsLinear}, the structure seems to support the same conclusion where the nonlinear model just adds slight detail. Othertimes, as in the case of the lower two plots, the results seem discrepant. The linear model indicates increasing \req\ with increasing $B_z$ and increasing \f, while the nonlinear model shows a more nuanced structure with increased \req\ showing up with lower $B_z$ values, and at a range of \f\ values. Situations like these require further analysis and validation to determine the true underlying structure.
 
 \begin{figure}[h!]
 	\centering
@@ -127,7 +127,7 @@ Sometimes, as in the top two plots of Figure \ref{NNvsLinear}, the structure see
 		\includegraphics[scale=0.35]{Figures/{LinearDst-F107-rhoeq-GOES6}.eps}
 			\includegraphics[scale=0.35]{Figures/{NNBz-F107-rhoeq-GOES5}.eps}
 			\includegraphics[scale=0.35]{Figures/{LinearBz-F107-rhoeq-GOES5}.eps}
-	\caption{Nonlinear models (left) vs linear models (right) of $\rho_{eq}$.}
+	\caption{Nonlinear models (left) versus linear models (right) of $\rho_{eq}$.}
 	\label{NNvsLinear}
 \end{figure}
 
@@ -135,7 +135,7 @@ Sometimes, as in the top two plots of Figure \ref{NNvsLinear}, the structure see
 \subsection{Comparison to Linear Model}
 Nonlinear models differ from linear models by incorporating some method for accounting for effects within a domain that are not seen across the entire domain. Though both models can be given the same inputs, and trained on the same outputs, the models themselves can fundamentally differ. Linear models are also generally simple to interpret (e.g. $y=2*x$ means for every change in $x$, $y$ changes by double that amount.) Nonlinear models, on the other hand, often have no simple interpretation and must be approached by testing for a range of parameters in the model to map out resulting outputs and make some interpretation of the underlying structure.
 
-Nonlinear models can be compared to a linear model of the same data in order to assess the usefulness of accounting for nonlinear features. If both models result in similar correlation values, it can be said that the nonlinear model offers no extra insight into the structure of the system and the relationships therein. 
+Nonlinear models can be compared to a linear model using the same data in order to assess the usefulness of accounting for nonlinear features. If both models result in similar correlation values, it can be said that the nonlinear model offers no extra insight into the structure of the system and the relationships therein. 
 
 \subsection{Summary}
 Nonlinear models are a useful addition to linear models by allowing for better approximations to more complex physical systems, where the entire system may not fit a linear model or may have localized dependencies. 
@@ -143,7 +143,7 @@ Nonlinear models are a useful addition to linear models by allowing for better a
 
 
 \section{Epoch Analysis}
-Epoch Analysis is the act of taking a number of time intervals all centered around some common selection criteria, and looking at the average behavior of those time intervals. This allows for the analysis of the behavior of systems with a lot of noise or variability by only retaining features that exist in a majority of sampled events. In this case, the averaging is done via a median to find the typical behavior of the system without significant influence from the more extreme cases. As an example, Figure \ref{fig:epochexample} shows what this process typically looks like.
+Epoch Analysis involves taking a number of time intervals centered around some common selection criteria, and looking at the average behavior of those time intervals. This allows for the analysis of the behavior of systems with a lot of noise or variability by only retaining features that exist in a majority of sampled events. In this case, the averaging is done via a median to find the typical behavior of the system without significant influence from the more extreme cases. As an example, Figure \ref{fig:epochexample} shows what this process typically looks like.
 
 \begin{figure}[h!]
 	\centering
@@ -152,7 +152,7 @@ Epoch Analysis is the act of taking a number of time intervals all centered arou
 	\label{fig:epochexample}
 \end{figure}
 
-In this particular case, the centering point (called the "onset" of the event) was selected as when the \dst\ index crossed a threshold of $-50$~nT. All values between 24 hours before and 48 hours after this crossing were aligned and then averaged per timestep. In the figure, each blue line represents one event, and the red line represents the resulting median for each hour of the 10 sampled events. This process makes the underlying behavior more obvious than it would otherwise be looking at individual events, and indeed shows that a drop in \dst\ is, on average, preceded by a drop in $B_z$. 
+In this particular case, the centering point (called the "onset" of the event) was selected as when the \dst\ index crossed below a threshold of $-50$~nT. All values between 24 hours before and 48 hours after this crossing were aligned and then averaged per timestep. In the figure, each blue line represents one event, and the red line represents the resulting median for each hour of the 10 sampled events. This process makes the underlying behavior more obvious than it would otherwise be looking at individual events, and indeed shows that a drop in \dst\ is, on average, preceded by a drop in $B_z$. This sort of plot will be explained in more detail in Chapter 4.
 
 
 

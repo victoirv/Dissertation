@@ -1,7 +1,7 @@
 \chapter[Measurements]{Measurements}
 
 
-The measurements can, to a certain extent, be broken into three main components: those pertaining to the solar wind and solar corona, those from the magnetosphere in general, and those specific to the plasmasphere. The combined data sources used in this dissertation are shown in Figure \ref{fig:alldata-GOES6-1983-1991}, providing solar wind variables $B_z$ and $V_{SW}$, solar variable $F_{10.7}$, plasmatrough variable \req, and magnetosphere variable \dst.
+The measurements used in this dissertation can, to a certain extent, be broken into three main components: those pertaining to the solar wind and solar corona, those from the magnetosphere in general, and those specific to the plasmasphere. The combined data sources used in this dissertation are shown in Figure \ref{fig:alldata-GOES6-1983-1991}, providing solar wind variables $B_z$ and $V_{SW}$, solar variable $F_{10.7}$, plasmatrough variable \req, and magnetosphere variable \dst.
 
 \begin{figure}[htp!]
 	\centering
@@ -12,7 +12,7 @@ The measurements can, to a certain extent, be broken into three main components:
 
 Similarly, Figure \ref{fig:alldata-GOES6-1989-1989} earlier showed the same variables before, during, and after the March 1989 geomagnetic storm as seen by GOES 6. This makes it clearer how the variables are interrelated, notably how short-timescale effects such as drops in $B_z$ and \dst\ are connected, or longer time scale changes in $F_{10.7}$ and $V_{SW}$ are related. It also shows how the sparse availability of \req\ created challenges for this study, which is discussed in more detail later in Section \ref{DataSparsity} . 
 
-Figure \ref{fig:alldata-examples} shows four more selected examples of short time periods with interesting characteristics. They all show, to a varying degree, an elevated solar wind velocity coinciding with a drop in \dst, and almost always also an enhancement in southward $B_z$. The bottom right panel also appears to show how an extended period of no activity allows the plasmasphere to refill.
+Figure \ref{fig:alldata-examples} shows four more selected examples of short time periods with interesting characteristics. They all show, to a varying degree, an elevated solar wind velocity coinciding with a drop in \dst, and almost always also an enhancement in southward $B_z$. The bottom right panel also appears to show how an extended period of no activity allows the plasmasphere to refill (inferred by the increase in \req).
 
 
 \begin{figure}[htp!]
@@ -38,12 +38,12 @@ Figure \ref{fig:alldata-examples} shows four more selected examples of short tim
 %27-Mar-1988 15:00:00
 
 \section{Solar Wind}
-The solar wind is the primary source of particles for the magnetosphere, and as such is an important input for a plasmatrough model. Conditions such as magnetic field orientation and particle velocity are important considerations for whether the plasmasphere is expected to be compressed, saturated, or experiencing high variability. By adding these to a model that includes time delayed inputs, their effects can be accounted for and aid in categorizing the state of the plasmatrough.
+The solar wind is the primary source of energy and particles for the magnetosphere, and as such is an important input for a plasmatrough model. Conditions such as magnetic field orientation and particle velocity are important considerations for whether the plasmasphere is expected to be compressed, saturated, or experiencing high variability. By adding these to a model that includes time delayed inputs, their effects can be accounted for and aid in categorizing the state of the plasmatrough.
 
 \subsection{Source}
-Solar wind data for this dissertation is provided by the OMNIWeb service \citep{OMNIWebKing2005}, which contains data from multiple satellites and is uniform in time, supplying a near-Earth set of solar wind measurements. The one-hour resolution dataset was used since the study is concerned with effects on timescales of longer than an hour, and to more easily compare to the other data sources used. 
+Solar wind data for this dissertation is provided by the OMNIWeb service \citep{OMNIWebKing2005}, which contains data from multiple satellites and is uniform in time, supplying a near-Earth set of solar wind measurements. The one-hour resolution dataset was used since the study is concerned with effects on timescales of one hour or longer, and to more easily compare to the other data sources used. 
 
-Since the OMNIWeb data has gaps for some of the variables, the dataset developed for \cite{Kondrashov2014ReconstructionOfGaps} was used as they reliably reconstruct gaps to make a continuous, uniform data set. They used Singular Spectrum Analysis to create a set of principle components and empirical orthogonal functions to find that the data contained significant oscillatory modes. This allowed the reconstruction of gaps in solar wind driving variables by using continuously observed responses such as geomagnetic indices.
+Since the OMNIWeb data has gaps for some of the variables, the dataset developed for \cite{Kondrashov2014ReconstructionOfGaps} was used as they reliably reconstruct gaps to make a continuous, uniform data set. They used Singular Spectrum Analysis to create a set of principle components and empirical orthogonal functions to find that the data contained significant oscillatory modes. This allowed the reconstruction of gaps in solar wind driving variables by using continuously observed responses from other data sources, such as geomagnetic indices.
 
 \subsection{Coverage}
 Low resolution (1-hour cadence) OMNI data is available from 1963 to present, but only the years of 1983-1992 were considered as they overlapped with the other data sets of interest. The data covers, but is not limited to: magnetic field magnitude in all three dimensions; solar wind proton density and temperature; and the $K_p$, $AE$, $F_{10.7}$, and $D_{st}$ indices.
@@ -59,7 +59,7 @@ The data come from \cite{Takahashi2010SolarCycleVariation}, which takes data fro
 
 \subsection{Coverage}
 \label{DataSparsity}
-The GOES satellites used in this study cover the years from 1980 to the end of 1991, often with overlapping years between satellites. The satellites themselves held a geostationary orbit at around 6.62 $R_E$ and collected data on a roughly 3-second cadence \citep{GOESDataSource}, which was then transformed onto a 10-minute cadence. Their radial position means they are almost always measuring properties of the plasmatrough, the region devoid of dense plasma located just outside the plasmasphere. Figure \ref{fig:PlasmapauseLocationCCMC} shows the location of the GOES satellites relative to the magnetopause and plasmasphere as both vary with geomagnetic activity, while Figure \ref{fig:PlasmapauseLocation} also shows that the plasmapause location tends to vary from 2-6 $R_E$ depending on magnetic activity. 
+The GOES satellites used in this study cover the years from 1980 to the end of 1991, often with overlapping years between satellites. The satellites themselves held a geostationary orbit at around 6.62 $R_E$ and collected data on a roughly 3-second cadence \citep{GOESDataSource}, which was then transformed onto a 10-minute cadence. Their radial position means they are almost always measuring properties of the plasmatrough, the region devoid of dense plasma located just outside the plasmasphere. Figure \ref{fig:PlasmapauseLocationCCMC} shows the location of the GOES satellites relative to the magnetopause and plasmasphere as both vary with geomagnetic activity, while Figure \ref{fig:PlasmapauseLocation} also shows that the plasmapause location tends to vary from 2-6 $R_E$ depending on geomagnetic activity. 
 
 
 \begin{figure}[htp!]
@@ -89,7 +89,7 @@ The data were prepared by replacing fill values of 9999 with NaN and then narrow
 \end{figure}
 
 
-In order to align the GOES data with the OMNI 1-hour cadence, the median of all existing 10-minute values within an hour was treated as the value for that hour (e.g. the median of all values from 7:00-7:59 was the value for 7:00). This was done to match the OMNI standard, and showed no significant difference on our timescales as using a centered median. For hours with no existing values, a NaN was inserted to keep the cadence uniform. 
+In order to align the GOES data with the OMNI 1-hour cadence, the median of all existing 10-minute values within an hour was treated as the value for that hour (e.g. the median of all values from 7:00-7:59 was the value for 7:00). This was done to match the OMNI time averaging correction, and showed no significant difference on our timescales as using a centered median. For hours with no existing values, a NaN was inserted to keep the cadence uniform. 
 
 \section{Plasmasphere and Plasmatrough}
 Plasmasphere data covers the inner regions of the magnetosphere, bounded by the plasmapause on the outer edge and the ionosphere on the inner edge. This puts it at a typical distance of $L=3-5R_E$ \citep{Carpenter1992ISEEModel}. 

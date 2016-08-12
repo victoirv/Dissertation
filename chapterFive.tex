@@ -14,14 +14,14 @@ Two formats and two time scales were tested: one format consisting of passing in
 \end{figure}
 
 
-In order to aid the model in finding event onsets despite being numerically overwhelmed by non-onsets, the targets are weighted to more highly value a "1". Since the number of events is similar between hourly and daily timescales, but the number of data points is a factor of 24 larger for the hourly scale. As such, the weights are scaled so targets have a value of the logarithm of the number of data points divided by the number of onsets, while all other points have a weight of 1. This gives a typical relative weight of 2-7 for onsets vs non-onsets. 
+In order to aid the model in finding event onsets despite being numerically overwhelmed by non-onsets, the targets are weighted to more highly value a "1". This is required since the number of events is similar between hourly and daily timescales, but the number of total time steps is a factor of 24 larger for the hourly scale. As such, the weights are scaled so targets have a value of the logarithm of the number of data points divided by the number of onsets, while all other points have a weight of 1. This gives a typical relative weight of 2-7 for onsets versus non-onsets. 
 
 
 \section{Results}
 
 \subsection{Classification} \label{sec:ClassifyResults}
 
-Figure \ref{fig:OnsetEvents} is a confusion matrix, where onsets (class "1") and non-onsets (class "0") are categorized based on their real value labeled "Target Class", and the value categorized by the model labeled "Output Class". So for example, on a daily timescale, there were 582 event onsets (sum of Target class 1), and the model correctly classified 473 of them (intersection of target class 1 and output class 1). Since this classification model is primarily concerned with correctly classifying onsets, the percentage values given will be for the percent of correctly classified onsets out of the total number of onsets, shown as the green value in the bottom of column 2. This specific figure shows that trying to classify events on an hourly timescale using only the onset hour and three hours before leads to a model that classifies almost no onsets. Using daily values, however, results in a model where a full 80\% of the onsets are correctly detected and classified, but only half of the predicted onsets were actually onsets.
+Figure \ref{fig:OnsetEvents} is a confusion matrix, where onsets (class ``1") and non-onsets (class ``0") are categorized based on their real value labeled the ``Target Class", and the value categorized by the model labeled the ``Output Class". So for example, on a daily timescale, there were 582 event onsets (sum of Target class 1), and the model correctly classified 473 of them (intersection of target class 1 and output class 1). Since this classification model is primarily concerned with correctly classifying onsets, the percentage values given will be for the percent of correctly classified onsets out of the total number of onsets, shown as the green value in the bottom of column 2. This specific figure shows that trying to classify events on an hourly timescale using only the onset hour and three hours before leads to a model that classifies almost no onsets. Using daily values, however, results in a model where a full 80\% of the onsets are correctly detected and classified, but only half of the predicted onsets were actually onsets.
 
 \begin{figure}[htp!]
 	\centering
@@ -31,7 +31,7 @@ Figure \ref{fig:OnsetEvents} is a confusion matrix, where onsets (class "1") and
 	\label{fig:OnsetEvents}
 \end{figure}
 
-In an attempt to find out what conditions best lead to a correct classification, histograms were made of the conditions associated with a correctly classified onset vs those of an undetected onset. Figure \ref{fig:OnsetEventsHist} shows this for the four variables used.
+In an attempt to determine what conditions best lead to a correct classification, histograms were made of the conditions associated with a correctly classified onset versus those of an undetected onset. Figure \ref{fig:OnsetEventsHist} shows this for the four variables used.
 
 \begin{figure}[htp!]
 	\centering
@@ -42,7 +42,7 @@ In an attempt to find out what conditions best lead to a correct classification,
 
 It shows that the model tended to miss onsets during periods of particularly low \f, and during high speed solar winds, but was largely unaffected otherwise.
 
-The next test was to add more obvious indicators of an event onset, such as the data being used to define an onset, and see if the model could pick that up. By adding \req\ as a factor in classifying \req\ events, the model unsurprisingly does very well, as shown in Figure \ref{fig:OnsetWithreq}.
+The next test was to add more obvious indicators of an event onset, such as the data being used to define an onset, and determine if the model could pick that up. By adding \req\ as a factor in classifying \req\ events, the model unsurprisingly does very well, as shown in Figure \ref{fig:OnsetWithreq}.
 
 \begin{figure}[htp!]
 	\centering
@@ -79,7 +79,7 @@ Using the full data set where each prediction was based on the previous four tim
 	\label{fig:OnsetFullWithreq}
 \end{figure}
 
-It is seen that the selected weighting scheme is not sufficient to pick up hourly events without further tuning, but is overly aggressive with the daily values and ends up creating more false positives than truly correct predictions. That said, being able to predict 66\% of events a day in advance, at the cost of only half of the predicted onsets being accurate, is not completely useless. Again, the variables were broken down by value and correctness of prediction, this time taking the median value of each variable across the four-timestep bin. The resulting histograms are shown in Figure \ref{fig:OnsetWithreq-hist-full}.
+It is seen that the selected weighting scheme is not sufficient to pick up hourly events without further tuning, but is overly aggressive with the daily values and ends up creating more false positives than truly correct predictions. That said, being able to predict 66\% of events a day in advance, at the cost of only half of the predicted onsets being accurate, can be of use if the cost of false positives is low. Again, the variables were broken down by value and correctness of prediction, this time taking the median value of each variable across the four-timestep bin. The resulting histograms are shown in Figure \ref{fig:OnsetWithreq-hist-full}.
 
 \begin{figure}[htp!]
 	\centering
