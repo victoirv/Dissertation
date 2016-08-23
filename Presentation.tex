@@ -44,7 +44,7 @@
 \begin{document}
 \title[Statistical Modeling of Earth's Plasmasphere]{Statistical Modeling of Earth's Plasmasphere}
 \author{Victoir Veibell}
-\date{July 21, 2016}
+\date{August 25, 2016}
 \setbeamertemplate{navigation symbols}{}
 
 \begin{frame}
@@ -55,6 +55,19 @@
 \begin{frame}
 	\tableofcontents
 \end{frame}
+
+\begin{frame}
+	Questions addressed by this dissertation:
+	\vfill
+	\begin{itemize}
+		\item What enhances equatorial plasma mass density (\req) in the plasmatrough? Solar wind (via geomagnetic storms) or internal processes (e.g. ionospheric outflow)?
+			\vfill
+		\item Does a \req\ enhancement depend on current IMF conditions?
+			\vfill
+		\item Can a \req\ enhancement be classified or forecasted?
+	\end{itemize}
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  _____      _                 _            _   _             
@@ -72,7 +85,7 @@
 \begin{figure}[htp]
 	\centering
 	\includegraphics[scale=0.35]{{Figures/MagnetoOverview.jpg}}
-	\caption{Overview of the magnetosphere and plasmasphere [Russel (2007)].}
+	\caption{Overview of the magnetosphere and plasmasphere [Russel (2007)]. Colors used for visual distinctiveness.}
 	\label{RingCurrentFigure}
 \end{figure}
 
@@ -343,7 +356,7 @@ Four main methods of analysis used:
 	\subheader
 	Epoch Analysis averages multiple events to find patterns.
 \begin{figure}
-\includegraphics[scale=0.35]{Figures/epochexample}
+\includegraphics[scale=0.3]{Figures/epochexample}
 \caption{Sample epoch of first ten events and median}
 \label{fig:epochexample}
 \end{figure}
@@ -513,7 +526,7 @@ Four main methods of analysis used:
 	\begin{itemize}
 		\item \req\ decreases significantly between the day of a \dst\ event and the day following
 		\item Elevated \f\ coincides with elevated \req\ before and after \req\ events
-		\item Elevated \f\ coincides with a short, multi-hour spike in \req\ following a \dst\ event
+		\item Elevated \f\ enables a short, multi-hour spike in \req\ following a \dst\ event
 		\item \req\ largely unaffected by north-south component of IMF around events.
 	\end{itemize}
 \end{frame}
@@ -531,58 +544,25 @@ Four main methods of analysis used:
 \end{frame}
 
 
-
 \begin{frame}
-	Classifying \req\ events using \f, Kp, \dst, and $V_{SW}$:
-	\begin{figure}[htp!]
-		\centering
-		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-hourly.eps}
-		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-daily.eps}
-		\caption{Classification confusion matrix for hourly (left) and daily (right) \req\ onset.}
-		\label{fig:OnsetEvents}
-	\end{figure}
-\end{frame}
-
-
-\begin{frame}
-	\begin{figure}[htp!]
-		\centering
-		\begin{columns}
-			\column{.6\linewidth}
-		\includegraphics[width=0.85\linewidth]{Figures/CH5/NNBinaryOnset-daily-hist.eps}
-		\column{.4\linewidth}
-		\caption{Histogram of onset conditions for daily-averaged \req\ events binned by correctness of prediction. Appears that model failures are distributed equally to model successes.}
-		\end{columns}
-		\label{fig:OnsetEventsHist}
-	\end{figure}
-\end{frame}
-
-
-
-\begin{frame}
-	Predicting \req\ onsets using \f, Kp, \dst, $V_{SW}$, and \req:
-	\begin{figure}[htp!]
-		\centering
-		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-hourly-withreq.eps}
-		\includegraphics[width=0.45\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq.eps}
-		\caption{Prediction confusion matrix for hourly (left) and daily (right) \req\ onset events.}
-		\label{fig:OnsetFullWithreq}
-	\end{figure}
+	Classifying \req\ events using \f, Kp, \dst, and $V_{SW}$ finds:
+	\begin{itemize}
+		\item Hourly: 19\% positive identification accuracy\\
+		\item Daily: 70\% positive identification accuracy\\
+		\item Equal distribution of values for correct and incorrect classifications
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\begin{figure}[htp!]
-		\centering
-		\begin{columns}
-			
-\column{.6\linewidth}
-		\includegraphics[width=0.85\linewidth]{Figures/CH5/NNBinaryOnset-full-daily-withreq-hist.eps}
-		\column{.4\linewidth}
-		\caption{Histogram of onset conditions for daily \req\ events including \req\ as an input, binned by correctness of prediction. Appears low \f\ leads to false negatives suggesting high \f\ is an indicator of a likely event.}
-				\end{columns}
-		\label{fig:OnsetWithreq-hist-full}
-	\end{figure}
+	Predicting \req\ onsets using \f, Kp, \dst, $V_{SW}$, and \req finds:
+	\begin{itemize}
+		\item Hourly: 0\% positive prediction accuracy (12k+ predictions, 140 \\
+		\item Daily: 58\% positive prediction accuracy\\
+		\item Low daily \f\ leads to false negatives suggesting high \f\ better indicator of event
+	\end{itemize}
 \end{frame}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  _____                  _           _                 
@@ -598,13 +578,14 @@ Four main methods of analysis used:
 	To reitterate the initial questions:	
 	\begin{itemize}
 		\item What enhances \req\ in the plasmatrough? Solar wind (via geomagnetic storms) or internal processes (e.g. ionospheric outflow)?
-		\item[] \textbf{Geomagnetic storms not nearly as impactful as internal processes, such as outflow driven by \f.}
+		\item[] \textbf{Geomagnetic storms not nearly as impactful as internal processes, such as outflow driven by \f, and processes enabled by high \f.}
 		\item Does a \req\ enhancement depend on current IMF conditions?
 		\item[] \textbf{Weakly. Northward IMF supports higher \req\ after either type of event.}
 		\item Can a \req\ enhancement be classified or forecasted?
 		\item[] \textbf{Not well using most common solar wind and geomagnetic variables. Suggests something else needed.}
 	\end{itemize}
 \end{frame}
+
 \begin{frame}
 	Further conclusions:
 	\begin{itemize}
