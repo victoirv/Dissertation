@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{aas_macros}
 \usepackage{array}
+\usepackage[utf8x]{inputenc} %So you can say alfvén
 
 
 
@@ -217,7 +218,7 @@
 	\begin{figure}[htp!]
 		\centering
 		\includegraphics[width=0.9\linewidth]{Figures/PlasmapauseLocation.png}
-		\caption{Model of plasmapause location as it varies with geomagnetic activity where the symbols indicate the local time of maximum plasmapause location [O'Brien and Moldwin (2003).}
+		\caption{Model of plasmapause location as it varies with geomagnetic activity where the symbols indicate the local time of maximum plasmapause location [O'Brien and Moldwin (2003)].}
 		\label{fig:PlasmapauseLocation}
 	\end{figure}
 \end{frame}
@@ -354,10 +355,10 @@ Four main methods of analysis used:
 \subsection{Epoch}
 \begin{frame}
 	\subheader
-	Epoch Analysis averages multiple events to find patterns.
+	Epoch Analyses average multiple events to find underlying patterns.
 \begin{figure}
 \includegraphics[scale=0.3]{Figures/epochexample}
-\caption{Sample epoch of first ten events and median}
+\caption{Sample epoch analysis showing ten events (blue) and their median (red)}
 \label{fig:epochexample}
 \end{figure}
 \end{frame}
@@ -371,7 +372,7 @@ Four main methods of analysis used:
 	Is an onset distinguishable using just the variables provided?
 	\begin{figure}[htp!]
 		\centering
-		\includegraphics[width=1\linewidth]{Figures/CH5/ClassifyGraphic2.png}
+		\includegraphics[width=1\linewidth]{Figures/CH5/ClassifyGraphic-2.png}
 		\caption{Diagram of classification method.}
 		\label{fig:ClassifyDiagram}
 	\end{figure}
@@ -382,7 +383,7 @@ Four main methods of analysis used:
 	Can an onset be forecasted using the previous four hours or days?
 	\begin{figure}[htp!]
 		\centering
-		\includegraphics[width=1\linewidth]{Figures/CH5/FullGraphic.png}
+		\includegraphics[width=1\linewidth]{Figures/CH5/FullGraphic-2.png}
 		\caption{Diagram of prediction method.}
 		\label{fig:ClassifyDiagram}
 	\end{figure}
@@ -527,7 +528,7 @@ Four main methods of analysis used:
 		\item \req\ decreases significantly between the day of a \dst\ event and the day following
 		\item Elevated \f\ coincides with elevated \req\ before and after \req\ events
 		\item Elevated \f\ enables a short, multi-hour spike in \req\ following a \dst\ event
-		\item \req\ largely unaffected by north-south component of IMF around events.
+		\item Northward IMF at \req\ event onset supports elevated \req\ over following 36 hours
 	\end{itemize}
 \end{frame}
 
@@ -536,7 +537,7 @@ Four main methods of analysis used:
 	\subheader
 	Two main questions:
 	\begin{itemize}
-		\item Can event onsets be distinguished from the hours or days before onset?
+		\item Can \req\ event onset criteria be determined by current IMF and geomagnetic conditions?
 		\item Can event onsets be forecasted using the hours or days before?
 	\end{itemize}
 	\vspace{1em}
@@ -547,19 +548,29 @@ Four main methods of analysis used:
 \begin{frame}
 	Classifying \req\ events using \f, Kp, \dst, and $V_{SW}$ finds:
 	\begin{itemize}
-		\item Hourly: 19\% positive identification accuracy\\
-		\item Daily: 70\% positive identification accuracy\\
+		\item Hourly averaged data: 19\% positive identification accuracy\\
+		\item Daily averaged data: 70\% positive identification accuracy\\
 		\item Equal distribution of values for correct and incorrect classifications
 	\end{itemize}
+	
+		\begin{figure}[htp!]
+			\centering
+			\includegraphics[width=1\linewidth]{Figures/CH5/ClassifyGraphic-2.png}
+		\end{figure}
 \end{frame}
 
 \begin{frame}
 	Predicting \req\ onsets using \f, Kp, \dst, $V_{SW}$, and \req finds:
 	\begin{itemize}
-		\item Hourly: 0\% positive prediction accuracy (12k+ predictions, 140 \\
-		\item Daily: 58\% positive prediction accuracy\\
+		\item Hourly averaged data: 0\% positive prediction accuracy (12k+ predictions, 140 events)\\
+		\item Daily averaged data: 58\% positive prediction accuracy\\
 		\item Low daily \f\ leads to false negatives suggesting high \f\ better indicator of event
 	\end{itemize}
+	
+		\begin{figure}[htp!]
+			\centering
+			\includegraphics[width=1\linewidth]{Figures/CH5/FullGraphic-2.png}
+		\end{figure}
 \end{frame}
 
 
@@ -599,7 +610,6 @@ Four main methods of analysis used:
 \subsection{Future work}
 \begin{frame}
 	\subheader
-	Many things could be done to improve:
 	\begin{itemize}
 		\item Exploring remaining signal after all collinear variables removed
 		\item Adding model complexity and extra information

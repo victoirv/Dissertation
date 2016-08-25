@@ -1,0 +1,47 @@
+\documentclass[11 pt]{GMUDissertation}
+
+%%  The file ``gmudissertation.sty''  is the GMU latex style file and
+%%   should be placed in the same directory as your LaTeX files
+\usepackage{gmudissertationAlex}
+
+%%
+%% other packages that need to be loaded
+%%
+\usepackage{graphicx}                    %   for imported graphics
+\usepackage{amsmath}                     %%
+\usepackage{amsfonts}                    %%  for AMS mathematics
+\usepackage{amssymb}                     %%
+\usepackage{amsthm}                      %%
+\usepackage[normalem]{ulem}              %   a nice standard underline package
+%%\usepackage[noadjust,verbose,sort]{cite} %   arranges reference citations neatly
+\usepackage{setspace}                    %   for line spacing commands
+\usepackage{url}
+\usepackage{notoccite} %So citations don't start in t.o.c. or figure list
+\usepackage{aas_macros}
+\usepackage{color}
+\usepackage[utf8x]{inputenc} %So you can say alfvén
+\usepackage{natbib}
+\usepackage{array}
+\usepackage{etoolbox} %Needed to make the abstract have roman numeral page numbering
+\usepackage{lscape}
+
+\newcolumntype{L}{>{$}l<{$}} %To enable math mode in tables (for saying things like B_z)
+\newcolumntype{C}{>{$}c<{$}} %To enable math mode in tables (for saying things like B_z)
+
+\begin{document}
+	
+\begin{landscape}
+\def\arraystretch{1.5}
+ \begin{table}[h]
+	\begin{tabular}{CCCCCCCCCCCC}
+ 		0 & 0 & 0 & 0 & 1 & 0 & ... & 0 & 0 & 0 & 0 & 1 \\
+ 		\hline
+ 		B_{z_{\tau-10}} & B_{z_{\tau-9}} & B_{z_{\tau-8}} & B_{z_{\tau-7}} & B_{z_{\tau-6}} & B_{z_{\tau-5}} & ... & B_{z_{\tau-4}} & B_{z_{\tau-3}} & B_{z_{\tau-2}} & B_{z_{\tau-1}} & B_{z_{\tau}}  \\
+		F_{10.7_{\tau-10}} & F_{10.7_{\tau-9}} & F_{10.7_{\tau-8}} & F_{10.7_{\tau-7}} & F_{10.7_{\tau-6}} & F_{10.7_{\tau-5}} & ... & F_{10.7_{\tau-4}} & F_{10.7_{\tau-3}} & F_{10.7_{\tau-2}} & F_{10.7_{\tau-1}} & F_{10.7_{\tau}}  \\ 
+		K_{p_{\tau-10}} & K_{p_{\tau-9}} & K_{p_{\tau-8}} & K_{p_{\tau-7}} & K_{p_{\tau-6}} & K_{p_{\tau-5}} & ... & K_{p_{\tau-4}} & K_{p_{\tau-3}} & K_{p_{\tau-2}} & K_{p_{\tau-1}} & K_{p_{\tau}}  \\
+		\rho_{eq_{\tau-10}} & \rho_{eq_{\tau-9}} & \rho_{eq_{\tau-8}} & \rho_{eq_{\tau-7}} & \rho_{eq_{\tau-6}} & \rho_{eq_{\tau-5}} & ... & \rho_{eq_{\tau-4}} & \rho_{eq_{\tau-3}} & \rho_{eq_{\tau-2}} & \rho_{eq_{\tau-1}} & \rho_{eq_{\tau}}  \\ 
+ 		\hline
+ 	\end{tabular}
+ \end{table}
+ \end{landscape}
+\end{document}
